@@ -1,35 +1,13 @@
 import React from 'react';
-import autobind from 'react-autobind';
-import { getAllBlogs } from '../Utils';
+import TopNavigation from './TopNavigation';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      allBlogs: [],
-    };
-    autobind(this);
-  }
+const App = () => (
 
-  componentDidMount() {
-    getAllBlogs().then((blogs) => {
-      this.setState({
-        allBlogs: blogs,
-      });
-    }).catch((error) => {
-      this.setState({
-        error,
-      });
-    });
-  }
+  <React.Fragment>
+      <TopNavigation />
+      <h1>Main Page</h1>
+    </React.Fragment>
+);
 
-  render() {
-    return (
-      <React.Fragment>
-        <h1>BLOGS</h1>
-      </React.Fragment>
-    );
-  }
-}
 
 export default App;
