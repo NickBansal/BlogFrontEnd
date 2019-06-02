@@ -3,7 +3,8 @@ import {
   arrayOf, shape, string,
 } from 'prop-types';
 import styled from 'styled-components';
-import { breakPoints, spacing } from '../../Components/StyleGuide';
+import moment from 'moment';
+import { breakPoints, spacing, colors } from '../../Components/StyleGuide';
 
 const EveryBlog = styled.div`
 margin-top: ${spacing.s4};
@@ -26,7 +27,9 @@ flex-direction: row;
 const BlogInfo = styled.div`
 display: flex;
 flex-direction: column;
-
+justify-content: space-between;
+height: 210px;
+width: 80%;
 @media (min-width: ${breakPoints.tablet}) {
 margin-left: ${spacing.s3};
 }
@@ -47,7 +50,7 @@ margin-bottom: ${spacing.s3};
 const Title = styled.h3`
 margin: 0;
 font-size: 23px;
-color: #577284;
+color: ${colors.textColor};
 line-height: 1.4rem;
 text-align: center;
 
@@ -58,12 +61,23 @@ text-align: left;
 
 const Body = styled.p`
 font-size: 15px;
-color: #577284;
+color: ${colors.textColor};
 text-align: center;
 
 @media (min-width: ${breakPoints.tablet}) {
 text-align: left;
 }
+`;
+
+const DateAndTags = styled.div`
+display: flex;
+justify-content: space-between;
+`;
+
+const Label = styled.h4`
+margin: 0;
+color: ${colors.textColor};
+font-weight: 100;
 `;
 
 const AllBlogs = ({ blogs }) => (
@@ -72,9 +86,14 @@ const AllBlogs = ({ blogs }) => (
       <IndividualBlog key={blog.title}>
         <Image src={blog.image} alt="cat" />
         <BlogInfo>
-          <Title>{blog.title}</Title>
-          <Body>{`${blog.body.substring(0, 200)}...`}</Body>
-          <h4>{blog.label}</h4>
+          <div>
+            <Title>{blog.title}</Title>
+            <Body>{`${blog.body.substring(0, 200)}...`}</Body>
+          </div>
+          <DateAndTags>
+            <Label>{blog.label}</Label>
+            <Label>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</Label>
+          </DateAndTags>
         </BlogInfo>
       </IndividualBlog>
     ))}
