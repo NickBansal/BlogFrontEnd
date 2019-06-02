@@ -6,10 +6,11 @@ box-shadow: 0px -12px 23px 0px rgba(0,0,0,0.75);
 margin: 0;
 font-size: 20px;
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 height: 60px;
 align-items: center;
 padding: 0 30px;
+background:#F3E0BE;
 `;
 
 const LoginNavigation = styled.div`
@@ -18,7 +19,7 @@ const LoginNavigation = styled.div`
 `;
 
 const Labels = styled.p`
-color: #CE5B78;
+color: #F96714;
 margin: 0;
 height: 100%;
 display: flex;
@@ -26,8 +27,8 @@ align-items: center;
 padding: 0 20px;
 &:hover {
   cursor: pointer;
-  background:#F3E0BE;
-  color: #F96714;
+  background: #9B1B30;
+  color: #F3E0BE;
 }
 transition: all 0.3s ease;
 `;
