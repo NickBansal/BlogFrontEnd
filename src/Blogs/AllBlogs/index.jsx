@@ -1,19 +1,58 @@
 import React from 'react';
 import {
-  arrayOf, shape, string, instanceOf,
+  arrayOf, shape, string,
 } from 'prop-types';
+import styled from 'styled-components';
+
+const EveryBlog = styled.div`
+margin-top: 30px;
+`;
+
+const IndividualBlog = styled.div`
+display: flex;
+width: 80%
+justify-content: center;
+margin: 40px auto;
+max-width: 700px;
+`;
+
+const BlogInfo = styled.div`
+display: flex;
+flex-direction: column;
+margin-left: 20px;
+`;
+
+const Image = styled.img`
+width: 240px;
+height: 210px;
+margin-right: 20px;
+`;
+
+const Title = styled.h3`
+margin: 0;
+font-size: 23px;
+color: #577284;
+line-height: 1.4rem;
+`;
+
+const Body = styled.p`
+font-size: 15px;
+color: #577284;
+`;
 
 const AllBlogs = ({ blogs }) => (
-  <div>
+  <EveryBlog>
     {blogs.map(blog => (
-      <div key={blog.title}>
-        <h4>{blog.title}</h4>
-        <h4>{blog.body}</h4>
-        <h4>{blog.label}</h4>
-        <img src={blog.image} alt="cat" />
-      </div>
+      <IndividualBlog key={blog.title}>
+        <Image src={blog.image} alt="cat" />
+        <BlogInfo>
+          <Title>{blog.title}</Title>
+          <Body>{`${blog.body.substring(0, 200)}...`}</Body>
+          <h4>{blog.label}</h4>
+        </BlogInfo>
+      </IndividualBlog>
     ))}
-  </div>
+  </EveryBlog>
 );
 
 AllBlogs.propTypes = {
@@ -22,7 +61,7 @@ AllBlogs.propTypes = {
     image: string,
     body: string,
     label: string,
-    created: instanceOf(Date),
+    created: string,
   })),
 };
 
