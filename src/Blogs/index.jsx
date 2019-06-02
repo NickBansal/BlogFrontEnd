@@ -2,6 +2,7 @@ import React from 'react';
 import autobind from 'react-autobind';
 import { getAllBlogs } from '../Utils';
 import TopNavigation from './TopNavigation';
+// import AllBlogs from './AllBlogs';
 import GlobalStyles from '../Components/GlobalStyles';
 
 class Blogs extends React.Component {
@@ -16,7 +17,7 @@ class Blogs extends React.Component {
   componentDidMount() {
     getAllBlogs().then((blogs) => {
       this.setState({
-        allBlogs: blogs,
+        allBlogs: blogs[0],
       });
     }).catch((error) => {
       this.setState({
@@ -26,11 +27,22 @@ class Blogs extends React.Component {
   }
 
   render() {
+    const { allBlogs } = this.state;
     return (
       <React.Fragment>
         <GlobalStyles />
         <TopNavigation />
-        <h1>All blogs</h1>
+        {allBlogs.map((blog) => {
+          console.log(blog);
+          return (
+            <div>
+              <h4>{blog.title}</h4>
+              <h4>{blog.body}</h4>
+              <h4>{blog.label}</h4>
+              <img src={blog.image} alt="cat" />
+            </div>
+          );
+        })}
       </React.Fragment>
     );
   }

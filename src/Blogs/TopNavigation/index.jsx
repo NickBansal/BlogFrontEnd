@@ -25,6 +25,7 @@ height: 100%;
 display: flex;
 align-items: center;
 padding: 0 20px;
+
 &:hover {
   cursor: pointer;
   background: #9B1B30;
