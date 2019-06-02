@@ -1,8 +1,10 @@
 import React from 'react';
 import autobind from 'react-autobind';
-import { getAllBlogs } from '../../Utils';
+import { getAllBlogs } from '../Utils';
+import TopNavigation from './TopNavigation';
+import GlobalStyles from '../Components/GlobalStyles';
 
-class App extends React.Component {
+class Blogs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,10 +28,12 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1>BLOGS</h1>
+        <GlobalStyles />
+        <TopNavigation />
+        <h1>All blogs</h1>
       </React.Fragment>
     );
   }
 }
 
-export default App;
+export default Blogs;
