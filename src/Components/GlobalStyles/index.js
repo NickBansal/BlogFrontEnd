@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Quicksand', sans-serif;
     padding: 0;
-    margin: 0;
+    margin-top: 100px;
   }
 `;
 

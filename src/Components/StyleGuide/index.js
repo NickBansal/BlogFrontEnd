@@ -16,4 +16,7 @@ export const spacing = {
 
 export const colors = {
   textColor: '#577284',
+  highlightText: '#91A8D0',
 };
+
+export const transitionSpeed = '0.3s';
