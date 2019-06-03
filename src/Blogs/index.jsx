@@ -1,9 +1,9 @@
 import React from 'react';
 import autobind from 'react-autobind';
-import { getAllBlogs } from '../Utils';
+import GlobalStyles from 'Components/GlobalStyles';
+import { getAllBlogs } from 'Utils';
 import TopNavigation from './TopNavigation';
 import AllBlogs from './AllBlogs';
-import GlobalStyles from '../Components/GlobalStyles';
 
 class Blogs extends React.Component {
   constructor(props) {

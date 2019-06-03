@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import {
   breakPoints, spacing, colors, transitionSpeed,
-} from '../../Components/StyleGuide';
+} from 'Components/StyleGuide';
 
 const EveryBlog = styled.div`
 margin-top: ${spacing.s4};
@@ -101,9 +101,12 @@ const AllBlogs = ({ blogs }) => (
             <Body>{`${blog.body.substring(0, 200)}...`}</Body>
           </div>
           <DateAndTags>
-            <Label>{blog.label}</Label>
             <Label>
-              <i className="far fa-calendar-alt" />
+              in
+              {' '}
+              <strong>{blog.label}</strong>
+            </Label>
+            <Label>
               {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
             </Label>
           </DateAndTags>

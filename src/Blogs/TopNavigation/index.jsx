@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   spacing, transitionSpeed,
-} from '../../Components/StyleGuide';
+} from 'Components/StyleGuide';
 
 const Navigation = styled.div`
 box-shadow: 0px -12px 23px 0px rgba(0,0,0,0.75);
@@ -12,7 +12,7 @@ display: flex;
 justify-content: space-around;
 height: 60px;
 align-items: center;
-padding: 0 ${spacing.s4};
+padding: 0;
 background:#F3E0BE;
 position: fixed;
 top: 0;
