@@ -1,6 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import { colors } from 'Components/StyleGuide';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Quicksand', sans-serif;
     padding: 0;
@@ -8,4 +9,9 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default GlobalStyle;
+export const Title = styled.h3`
+  margin: 0;
+  font-size: 23px;
+  color: ${colors.textColor};
+  line-height: 1.4rem;
+`;

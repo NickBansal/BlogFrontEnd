@@ -2,7 +2,7 @@
 import React from 'react';
 import autobind from 'react-autobind';
 import styled from 'styled-components';
-import GlobalStyles from 'Components/GlobalStyles';
+import { GlobalStyle } from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import TopNavigation from 'Blogs/TopNavigation';
 import AllBlogs from 'Blogs/AllBlogs';
@@ -44,7 +44,7 @@ class Blogs extends React.Component {
 
     return (
       <React.Fragment>
-        <GlobalStyles />
+        <GlobalStyle />
         <TopNavigation />
         <BlogWrapper>
           <AllBlogs blogs={allBlogs} />
