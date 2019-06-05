@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { arrayOf, string } from 'prop-types';
 import { spacing } from 'Components/StyleGuide';
+import { Title } from 'Components/GlobalStyles';
 
 const LabelWrapper = styled.div`
 display: flex;
@@ -14,9 +15,13 @@ const LabelLink = styled.p`
 margin:0;
 `;
 
+const CatTitle = styled(Title)`
+margin-bottom: ${spacing.s1};
+`;
+
 const SideBar = ({ labels }) => (
   <LabelWrapper>
-        Categories
+    <CatTitle>Categories</CatTitle>
     {labels.map((label, index) => (
       <LabelLink key={String(index)}>{label}</LabelLink>
     ))}
