@@ -5,6 +5,7 @@ import GlobalStyles from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import TopNavigation from 'Blogs/TopNavigation';
 import AllBlogs from 'Blogs/AllBlogs';
+import SideBar from 'Blogs/SideBar/index.jsx';
 
 class Blogs extends React.Component {
   constructor(props) {
@@ -29,11 +30,13 @@ class Blogs extends React.Component {
 
   render() {
     const { allBlogs } = this.state;
+
     return (
       <React.Fragment>
         <GlobalStyles />
         <TopNavigation />
         <AllBlogs blogs={allBlogs} />
+        <SideBar labels={allBlogs.map(blog => blog.label)} />
       </React.Fragment>
     );
   }
