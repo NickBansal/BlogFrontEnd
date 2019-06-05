@@ -10,11 +10,11 @@ import SideBar from 'Blogs/SideBar/index.jsx';
 import { breakPoints } from 'Components/StyleGuide';
 
 const BlogWrapper = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-@media (min-width: ${breakPoints.tablet}) {
-  flex-direction: row;
+  @media (min-width: ${breakPoints.tablet}) {
+    flex-direction: row;
   }
 `;
 
@@ -41,7 +41,6 @@ class Blogs extends React.Component {
 
   render() {
     const { allBlogs } = this.state;
-
     return (
       <React.Fragment>
         <GlobalStyle />

@@ -10,83 +10,87 @@ import {
 import { Title } from 'Components/GlobalStyles';
 
 const EveryBlog = styled.div`
-flex-basis: 80%;
-display: flex;
-flex-direction: column;
+  flex-basis: 85%;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: ${breakPoints.desktop}) {
+    flex-basis: 75%;
+  }
 `;
 
 const IndividualBlog = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 90%
-justify-content: center;
-margin: ${spacing.s5} auto;
-max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%
+  justify-content: center;
+  margin: ${spacing.s5} auto;
+  max-width: 700px;
 
-@media (min-width: ${breakPoints.tablet}) {
-flex-direction: row;
-}
+  @media (min-width: ${breakPoints.tablet}) {
+    flex-direction: row;
+  }
 `;
 
 const BlogInfo = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-height: 210px;
-width: 80%;
-@media (min-width: ${breakPoints.tablet}) {
-margin-left: ${spacing.s3};
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 210px;
+  width: 80%;
+  @media (min-width: ${breakPoints.tablet}) {
+    margin-left: ${spacing.s3};
+  }
 `;
 
 const Image = styled.img`
-width: 80%;
-margin-bottom: ${spacing.s3};
+  width: 80%;
+  margin-bottom: ${spacing.s3};
 
-@media (min-width: ${breakPoints.tablet}) {
-  flex-direction: row;
-  width: 250px;
-  height: 210px;
-  margin: 0 ${spacing.s3} 0 0
-}
+  @media (min-width: ${breakPoints.tablet}) {
+    flex-direction: row;
+    width: 250px;
+    height: 210px;
+    margin: 0 ${spacing.s3} 0 0
+  }
 `;
 
 const BlogTitle = styled(Title)`
-text-align: center;
+  text-align: center;
 
-@media (min-width: ${breakPoints.tablet}) {
-text-align: left;
-}
+  @media (min-width: ${breakPoints.tablet}) {
+  text-align: left;
+  }
 
-&:hover {
-  cursor: pointer;
-  color: ${colors.highlightText};
-}
+  &:hover {
+    cursor: pointer;
+    color: ${colors.highlightText};
+  }
 
-transition: all ${transitionSpeed} ease;
+  transition: all ${transitionSpeed} ease;
 `;
 
 const Body = styled.p`
-font-size: 15px;
-color: ${colors.textColor};
-text-align: center;
+  font-size: 15px;
+  color: ${colors.textColor};
+  text-align: center;
 
-@media (min-width: ${breakPoints.tablet}) {
-text-align: left;
-}
+  @media (min-width: ${breakPoints.tablet}) {
+    text-align: left;
+  }
 `;
 
 const DateAndTags = styled.div`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Label = styled.h4`
-margin: 0;
-font-size: 12px;
-color: ${colors.textColor};
-font-weight: 100;
+  margin: 0;
+  font-size: 12px;
+  color: ${colors.textColor};
+  font-weight: 100;
 `;
 
 const AllBlogs = ({ blogs }) => (
