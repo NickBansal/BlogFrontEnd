@@ -7,10 +7,9 @@ import moment from 'moment';
 import {
   breakPoints, spacing, colors, transitionSpeed,
 } from 'Components/StyleGuide';
-import { Title } from 'Components/GlobalStyles';
 
 const EveryBlog = styled.div`
-flex-basis: 75%;
+flex-basis: 85%;
 display: flex;
 flex-direction: column;
 `;
@@ -52,7 +51,11 @@ margin-bottom: ${spacing.s3};
 }
 `;
 
-const BlogTitle = styled(Title)`
+const Title = styled.h3`
+margin: 0;
+font-size: 23px;
+color: ${colors.textColor};
+line-height: 1.4rem;
 text-align: center;
 
 @media (min-width: ${breakPoints.tablet}) {
@@ -96,7 +99,7 @@ const AllBlogs = ({ blogs }) => (
         <Image src={blog.image} alt="cat" />
         <BlogInfo>
           <div>
-            <BlogTitle>{blog.title}</BlogTitle>
+            <Title>{blog.title}</Title>
             <Body>{`${blog.body.substring(0, 200)}...`}</Body>
           </div>
           <DateAndTags>
