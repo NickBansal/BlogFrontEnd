@@ -9,7 +9,9 @@ import {
 } from 'Components/StyleGuide';
 
 const EveryBlog = styled.div`
-margin-top: ${spacing.s4};
+flex-basis: 85%;
+display: flex;
+flex-direction: column;
 `;
 
 const IndividualBlog = styled.div`
