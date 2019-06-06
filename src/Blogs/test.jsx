@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '.';
+import { shallow } from 'enzyme';
+import Blog from '.';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<Blog />', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<Blog />);
+  });
+  it('Should render a top Navigation component', () => {
+    expect(wrapper.find('TopNavigation').exists()).toBe(true);
+  });
 });
