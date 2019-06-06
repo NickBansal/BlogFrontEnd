@@ -6,12 +6,14 @@ import { GlobalStyle } from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import TopNavigation from 'Blogs/TopNavigation';
 import AllBlogs from 'Blogs/AllBlogs';
-import SideBar from 'Blogs/SideBar/index.jsx';
+import SideBar from 'Blogs/SideBar';
 import { breakPoints } from 'Components/StyleGuide';
 
 const BlogWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 1200px;
+  margin: auto
 
   @media (min-width: ${breakPoints.tablet}) {
     flex-direction: row;
