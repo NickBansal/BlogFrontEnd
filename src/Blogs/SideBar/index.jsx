@@ -37,7 +37,6 @@ const LabelLink = styled.p`
 
 const SideBar = ({ labels }) => {
   let labelCount;
-  let mapCount;
 
   if (labels.length > 0) {
     labelCount = labels.reduce((acc, label) => {
@@ -46,21 +45,14 @@ const SideBar = ({ labels }) => {
     }, {});
   }
 
-  if (labelCount) {
-    mapCount = Object.keys(labelCount).map((label, index) => (
-      <LabelLink key={String(index)}>
-        {`${label} (${labelCount[label]})`}
-      </LabelLink>
-    ));
-  }
-
   return (
     <LabelWrapper>
       <LabelTitle>Categories</LabelTitle>
-      {mapCount}
-      {/* {labels.map((label, index) => (
-        <LabelLink key={String(index)}>{label}</LabelLink>
-      ))} */}
+      {labelCount && Object.keys(labelCount).map((label, index) => (
+        <LabelLink key={String(index)}>
+          {`${label} (${labelCount[label]})`}
+        </LabelLink>
+      ))}
     </LabelWrapper>
   );
 };
