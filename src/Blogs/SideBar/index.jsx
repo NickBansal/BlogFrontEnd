@@ -13,7 +13,7 @@ const LabelWrapper = styled.div`
   padding: ${spacing.s5} ${spacing.s2};
 
   @media (min-width: ${breakPoints.desktop}) {
-    flex-basis: 25%;
+    flex-basis: 20%;
   }
 `;
 
@@ -35,14 +35,35 @@ const LabelLink = styled.p`
   transition: all ${transitionSpeed} ease;
 `;
 
-const SideBar = ({ labels }) => (
-  <LabelWrapper>
-    <LabelTitle>Categories</LabelTitle>
-    {labels.map((label, index) => (
-      <LabelLink key={String(index)}>{label}</LabelLink>
-    ))}
-  </LabelWrapper>
-);
+const SideBar = ({ labels }) => {
+  let labelCount;
+  let mapCount;
+
+  if (labels.length > 0) {
+    labelCount = labels.reduce((acc, label) => {
+      (acc[label]) ? acc[label] += 1 : acc[label] = 1;
+      return acc;
+    }, {});
+  }
+
+  if (labelCount) {
+    mapCount = Object.keys(labelCount).map((label, index) => (
+      <LabelLink key={String(index)}>
+        {`${label} (${labelCount[label]})`}
+      </LabelLink>
+    ));
+  }
+
+  return (
+    <LabelWrapper>
+      <LabelTitle>Categories</LabelTitle>
+      {mapCount}
+      {/* {labels.map((label, index) => (
+        <LabelLink key={String(index)}>{label}</LabelLink>
+      ))} */}
+    </LabelWrapper>
+  );
+};
 
 SideBar.propTypes = {
   labels: arrayOf(string),

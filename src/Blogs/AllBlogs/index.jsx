@@ -14,9 +14,9 @@ const EveryBlog = styled.div`
   display: flex;
   flex-direction: column;
 
-@media (min-width: ${breakPoints.desktop}) {
-  flex-basis: 75%;
-}
+  @media (min-width: ${breakPoints.desktop}) {
+    flex-basis: 80%;
+  }
 `;
 
 const IndividualBlog = styled.div`

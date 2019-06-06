@@ -12,7 +12,7 @@ import { breakPoints } from 'Components/StyleGuide';
 const BlogWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto
 
   @media (min-width: ${breakPoints.tablet}) {
