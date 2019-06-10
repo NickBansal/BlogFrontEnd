@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  arrayOf, shape, string,
+  arrayOf, shape, string, instanceOf,
 } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
@@ -58,18 +58,16 @@ const Image = styled.img`
 
 const BlogTitle = styled(Title)`
   text-align: center;
-
   @media (min-width: ${breakPoints.tablet}) {
   text-align: left;
   }
-
   &:hover {
     cursor: pointer;
     color: ${colors.highlightText};
   }
-
   transition: all ${transitionSpeed} ease;
 `;
+BlogTitle.displayName = 'BlogTitle';
 
 const Body = styled.p`
   font-size: 15px;
@@ -80,6 +78,7 @@ const Body = styled.p`
     text-align: left;
   }
 `;
+Body.displayName = 'Body';
 
 const DateAndTags = styled.div`
   display: flex;
@@ -92,6 +91,7 @@ const Label = styled.h4`
   color: ${colors.textColor};
   font-weight: 100;
 `;
+Label.displayName = 'Label';
 
 const AllBlogs = ({ blogs }) => (
   <EveryBlog>
@@ -125,7 +125,7 @@ AllBlogs.propTypes = {
     image: string,
     body: string,
     label: string,
-    created: string,
+    created: instanceOf(Date),
   })),
 };
 

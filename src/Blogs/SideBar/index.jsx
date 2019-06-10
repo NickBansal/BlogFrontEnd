@@ -35,6 +35,7 @@ const LabelLink = styled.p`
 
   transition: all ${transitionSpeed} ease;
 `;
+LabelLink.displayName = 'LabelLink';
 
 const SideBar = ({ labels }) => {
   let labelCount;
