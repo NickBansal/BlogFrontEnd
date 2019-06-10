@@ -6,19 +6,7 @@ import { getAllBlogs } from '../Utils';
 
 jest.mock('Utils');
 
-const resolved = {
-  blogs: [{
-    title: 'title',
-    image: 'image.jpg',
-    body: 'body',
-    label: 'label',
-    created: new Date('2019-08-22'),
-  }],
-};
-
-getAllBlogs.mockImplementation(() => SynchronousPromise.resolve({
-  blogs: [resolved],
-}));
+getAllBlogs.mockImplementation(() => SynchronousPromise.resolve({}));
 
 describe('<Blog />', () => {
   let wrapper;

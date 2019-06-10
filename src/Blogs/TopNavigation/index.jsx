@@ -40,6 +40,7 @@ padding: 0 ${spacing.s3};
 }
 transition: all ${transitionSpeed} ease;
 `;
+Labels.displayName = 'Labels';
 
 const TopNavigation = () => (
   <Navigation>
