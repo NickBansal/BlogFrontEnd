@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React from 'react';
 import styled from 'styled-components';
 import { arrayOf, string } from 'prop-types';

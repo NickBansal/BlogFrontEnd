@@ -4,3 +4,5 @@ import 'jest-styled-components';
 
 // Setup enzyme's react adapter
 configure({ adapter: new Adapter() });
+
+console.log('Hello');

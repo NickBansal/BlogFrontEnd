@@ -25,6 +25,7 @@ class Blogs extends React.Component {
     super(props);
     this.state = {
       allBlogs: [],
+      labels: [],
     };
     autobind(this);
   }
@@ -33,6 +34,7 @@ class Blogs extends React.Component {
     getAllBlogs().then((blogs) => {
       this.setState({
         allBlogs: blogs[0],
+        labels: blogs[0].map(blog => blog.label),
       });
     }).catch((error) => {
       this.setState({
@@ -42,14 +44,14 @@ class Blogs extends React.Component {
   }
 
   render() {
-    const { allBlogs } = this.state;
+    const { allBlogs, labels } = this.state;
     return (
       <React.Fragment>
         <GlobalStyle />
         <TopNavigation />
         <BlogWrapper>
           <AllBlogs blogs={allBlogs} />
-          <SideBar labels={allBlogs.map(blog => blog.label)} />
+          <SideBar labels={labels} />
         </BlogWrapper>
       </React.Fragment>
     );

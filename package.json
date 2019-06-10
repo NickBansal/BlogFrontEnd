@@ -15,16 +15,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "NODE_ENV=test jest --watch",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "jest": {
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTest.js"
-    ],
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/node_modules/**",
