@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  arrayOf, shape, string, instanceOf,
+  arrayOf, shape, string, instanceOf, oneOfType,
 } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
@@ -125,7 +125,7 @@ AllBlogs.propTypes = {
     image: string,
     body: string,
     label: string,
-    created: instanceOf(Date),
+    created: oneOfType([instanceOf(Date), string]),
   })),
 };
 
