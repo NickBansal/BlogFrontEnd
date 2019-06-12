@@ -50,6 +50,7 @@ const SideBar = ({ labels, handleClick }) => {
   return (
     <LabelWrapper>
       <LabelTitle>Categories</LabelTitle>
+      <LabelLink onClick={() => handleClick('All')}>All {`(${labels.length})`}</LabelLink>
       {labelCount && Object.keys(labelCount).map((label, index) => (
         <LabelLink onClick={() => handleClick(label)} key={String(index)}>
           {`${label} (${labelCount[label]})`}

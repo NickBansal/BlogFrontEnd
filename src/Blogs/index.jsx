@@ -47,9 +47,10 @@ class Blogs extends React.Component {
 
   handleClick(value) {
     const { allBlogs } = this.state
-    const filteredBlogs = allBlogs.slice()
+    const filteredBlogs = value === 'All' ? allBlogs : allBlogs.filter(blog => blog.label === value)
+
     this.setState({
-      filteredBlogs: filteredBlogs.filter(blog => blog.label === value)
+      filteredBlogs
     })
   }
 

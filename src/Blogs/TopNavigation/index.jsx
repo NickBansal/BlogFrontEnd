@@ -46,7 +46,7 @@ Labels.displayName = 'Labels';
 const TopNavigation = () => (
   <Navigation>
     <LinkStyled to="/">
-      <Labels>Nick Bansal</Labels>
+      <Labels>Home</Labels>
     </LinkStyled>
     <LoginNavigation>
       <Labels>Create</Labels>
