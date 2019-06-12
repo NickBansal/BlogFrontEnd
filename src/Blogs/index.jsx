@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-state */
 import React from 'react';
 import autobind from 'react-autobind';
 import styled from 'styled-components';
@@ -55,7 +54,7 @@ class Blogs extends React.Component {
         <BlogWrapper>
           <Router>
             <AllBlogs blogs={allBlogs} path="/" />
-            <SingleBlog path="/blog" />
+            <SingleBlog blogs={allBlogs} path="/blog/:id" />
           </Router>
           <SideBar labels={labels} />
         </BlogWrapper>

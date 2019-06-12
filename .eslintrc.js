@@ -4,7 +4,10 @@ module.exports = {
         "es6": true,
         "jest": true
     },
-    "extends": "airbnb",
+    "extends": [
+        "airbnb",
+        "prettier"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -28,10 +31,19 @@ module.exports = {
     ],
     "rules": {
         "react/jsx-indent-props": 0,
+        "prettier/prettier": [
+            "error",
+            {
+                "useTabs": true,
+                "tabWidth": 4,
+                "singleQuote": true
+            }
+        ],
         "import/no-extraneous-dependencies": [
             "error", {
                 "devDependencies": true
             }
-        ]
+        ],
+        "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     }
 };

@@ -7,7 +7,7 @@ import moment from 'moment';
 import {
   breakPoints, spacing, colors, transitionSpeed,
 } from 'Components/StyleGuide';
-import { Title, LinkStyled } from 'Components/GlobalStyles';
+import { Title, LinkStyled, Image } from 'Components/GlobalStyles';
 
 const EveryBlog = styled.div`
   flex-basis: 85%;
@@ -44,12 +44,8 @@ const BlogInfo = styled.div`
   }
 `;
 
-const Image = styled.img`
-  width: 80%;
-  margin-bottom: ${spacing.s3};
-
+const ImageStyled = styled(Image)`
   @media (min-width: ${breakPoints.tablet}) {
-    flex-direction: row;
     width: 250px;
     height: 210px;
     margin: 0 ${spacing.s3} 0 0
@@ -98,10 +94,10 @@ const AllBlogs = ({ blogs }) => (
   <EveryBlog>
     {blogs.map(blog => (
       <IndividualBlog key={blog.title}>
-        <Image src={blog.image} alt="cat" />
+        <ImageStyled src={blog.image} alt="cat" />
         <BlogInfo>
           <div>
-            <LinkStyled to="/blog">
+            <LinkStyled to={`/blog/${blog._id}`}>
               <BlogTitle>{blog.title}</BlogTitle>
             </LinkStyled>
             <Body>{`${blog.body.substring(0, 200)}...`}</Body>
