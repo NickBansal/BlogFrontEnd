@@ -8,11 +8,12 @@ describe('<SideBar />', () => {
   };
   it('Should render the correct amount of elements', () => {
     const wrapper = shallow(<SideBar {...props} />);
-    expect(wrapper.find('LabelLink')).toHaveLength(3);
+    expect(wrapper.find('LabelLink')).toHaveLength(4);
   });
   it('Should show how many the correct amount of elements', () => {
     const wrapper = shallow(<SideBar {...props} />);
-    expect(wrapper.find('LabelLink').at(0).text()).toBe('cats (2)');
-    expect(wrapper.find('LabelLink').at(1).text()).toBe('lions (1)');
+    expect(wrapper.find('LabelLink').at(0).text()).toBe('All (4)');
+    expect(wrapper.find('LabelLink').at(1).text()).toBe('cats (2)');
+    expect(wrapper.find('LabelLink').at(2).text()).toBe('lions (1)');
   });
 });

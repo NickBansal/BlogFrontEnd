@@ -11,7 +11,7 @@ describe('<TopNavigation />', () => {
     expect(wrapper.find('Labels')).toHaveLength(3);
   });
   it('Should render the correct text', () => {
-    expect(wrapper.find('Labels').at(0).text()).toBe('Nick Bansal');
+    expect(wrapper.find('Labels').at(0).text()).toBe('Home');
     expect(wrapper.find('Labels').at(1).text()).toBe('Create');
     expect(wrapper.find('Labels').at(2).text()).toBe('Login');
   });
