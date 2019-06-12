@@ -47,7 +47,9 @@ class Blogs extends React.Component {
 
   handleClick(value) {
     const { allBlogs } = this.state
-    const filteredBlogs = value === 'All' ? allBlogs : allBlogs.filter(blog => blog.label === value)
+    const filteredBlogs = value === 'All'
+      ? allBlogs
+      : allBlogs.filter(blog => blog.label === value)
 
     this.setState({
       filteredBlogs
