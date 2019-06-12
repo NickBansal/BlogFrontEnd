@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
   spacing, transitionSpeed,
 } from 'Components/StyleGuide';
+import { LinkStyled } from 'Components/GlobalStyles';
 
 const Navigation = styled.div`
 box-shadow: 0px -12px 23px 0px rgba(0,0,0,0.75);
@@ -44,7 +45,9 @@ Labels.displayName = 'Labels';
 
 const TopNavigation = () => (
   <Navigation>
-    <Labels>Nick Bansal</Labels>
+    <LinkStyled to="/">
+      <Labels>Nick Bansal</Labels>
+    </LinkStyled>
     <LoginNavigation>
       <Labels>Create</Labels>
       <Labels>Login</Labels>

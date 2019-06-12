@@ -7,7 +7,7 @@ import moment from 'moment';
 import {
   breakPoints, spacing, colors, transitionSpeed,
 } from 'Components/StyleGuide';
-import { Title } from 'Components/GlobalStyles';
+import { Title, LinkStyled } from 'Components/GlobalStyles';
 
 const EveryBlog = styled.div`
   flex-basis: 85%;
@@ -93,6 +93,7 @@ const Label = styled.h4`
 `;
 Label.displayName = 'Label';
 
+
 const AllBlogs = ({ blogs }) => (
   <EveryBlog>
     {blogs.map(blog => (
@@ -100,7 +101,9 @@ const AllBlogs = ({ blogs }) => (
         <Image src={blog.image} alt="cat" />
         <BlogInfo>
           <div>
-            <BlogTitle>{blog.title}</BlogTitle>
+            <LinkStyled to="/blog">
+              <BlogTitle>{blog.title}</BlogTitle>
+            </LinkStyled>
             <Body>{`${blog.body.substring(0, 200)}...`}</Body>
           </div>
           <DateAndTags>

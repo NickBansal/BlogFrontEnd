@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { Link } from '@reach/router';
 import { colors } from 'Components/StyleGuide';
 
 export const GlobalStyle = createGlobalStyle`
@@ -14,4 +15,9 @@ export const Title = styled.h3`
   font-size: 23px;
   color: ${colors.textColor};
   line-height: 1.4rem;
+`;
+
+export const LinkStyled = styled(Link)`
+  text-decoration: none;
+  height: 100%;
 `;

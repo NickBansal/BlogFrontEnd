@@ -2,18 +2,21 @@
 import React from 'react';
 import autobind from 'react-autobind';
 import styled from 'styled-components';
+import { Router } from '@reach/router';
 import { GlobalStyle } from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import TopNavigation from 'Blogs/TopNavigation';
 import AllBlogs from 'Blogs/AllBlogs';
 import SideBar from 'Blogs/SideBar';
+import SingleBlog from 'Blogs/SingleBlog';
 import { breakPoints } from 'Components/StyleGuide';
 
 const BlogWrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1300px;
-  margin: auto
+  justify-content: center;
+  margin: auto;
 
   @media (min-width: ${breakPoints.tablet}) {
     flex-direction: row;
@@ -50,7 +53,10 @@ class Blogs extends React.Component {
         <GlobalStyle />
         <TopNavigation />
         <BlogWrapper>
-          <AllBlogs blogs={allBlogs} />
+          <Router>
+            <AllBlogs blogs={allBlogs} path="/" />
+            <SingleBlog path="/blog" />
+          </Router>
           <SideBar labels={labels} />
         </BlogWrapper>
       </React.Fragment>
