@@ -14,7 +14,7 @@ export const spacing = {
   s5: '40px',
 };
 
-export const imageShadow = '2px 2px 10px #BCBCBE'
+export const imageShadow = '2px 2px 10px #9F9C99'
 
 export const colors = {
   textColor: '#577284',

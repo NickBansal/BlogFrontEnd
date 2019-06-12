@@ -5,8 +5,7 @@ import { colors, spacing, breakPoints, imageShadow } from 'Components/StyleGuide
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Quicksand', sans-serif;
-    padding: 0;
-    margin-top: 100px;
+    padding-top: 100px;
   }
 `;
 

@@ -6,7 +6,6 @@ import { GlobalStyle } from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import TopNavigation from 'Blogs/TopNavigation';
 import AllBlogs from 'Blogs/AllBlogs';
-import SideBar from 'Blogs/SideBar';
 import SingleBlog from 'Blogs/SingleBlog';
 import { breakPoints } from 'Components/StyleGuide';
 
@@ -53,10 +52,9 @@ class Blogs extends React.Component {
         <TopNavigation />
         <BlogWrapper>
           <Router>
-            <AllBlogs blogs={allBlogs} path="/" />
+            <AllBlogs blogs={allBlogs} labels={labels} path="/" />
             <SingleBlog blogs={allBlogs} path="/blog/:id" />
           </Router>
-          <SideBar labels={labels} />
         </BlogWrapper>
       </React.Fragment>
     );

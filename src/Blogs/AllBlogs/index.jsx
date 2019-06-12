@@ -8,14 +8,14 @@ import {
   breakPoints, spacing, colors, transitionSpeed,
 } from 'Components/StyleGuide';
 import { Title, LinkStyled, Image } from 'Components/GlobalStyles';
+import SideBar from 'Blogs/SideBar';
 
 const EveryBlog = styled.div`
-  flex-basis: 85%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
-  @media (min-width: ${breakPoints.desktop}) {
-    flex-basis: 80%;
+  @media (min-width: ${breakPoints.tablet}) {
+    flex-direction: row-reverse;
   }
 `;
 
@@ -90,31 +90,34 @@ const Label = styled.h4`
 Label.displayName = 'Label';
 
 
-const AllBlogs = ({ blogs }) => (
+const AllBlogs = ({ blogs, labels }) => (
   <EveryBlog>
-    {blogs.map(blog => (
-      <IndividualBlog key={blog.title}>
-        <ImageStyled src={blog.image} alt="cat" />
-        <BlogInfo>
-          <div>
-            <LinkStyled to={`/blog/${blog._id}`}>
-              <BlogTitle>{blog.title}</BlogTitle>
-            </LinkStyled>
-            <Body>{`${blog.body.substring(0, 200)}...`}</Body>
-          </div>
-          <DateAndTags>
-            <Label>
-              in
+    <SideBar labels={labels} />
+    <div>
+      {blogs.map(blog => (
+        <IndividualBlog key={blog.title}>
+          <ImageStyled src={blog.image} alt="cat" />
+          <BlogInfo>
+            <div>
+              <LinkStyled to={`/blog/${blog._id}`}>
+                <BlogTitle>{blog.title}</BlogTitle>
+              </LinkStyled>
+              <Body>{`${blog.body.substring(0, 200)}...`}</Body>
+            </div>
+            <DateAndTags>
+              <Label>
+                in
               {' '}
-              <strong>{blog.label}</strong>
-            </Label>
-            <Label>
-              {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
-            </Label>
-          </DateAndTags>
-        </BlogInfo>
-      </IndividualBlog>
-    ))}
+                <strong>{blog.label}</strong>
+              </Label>
+              <Label>
+                {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
+              </Label>
+            </DateAndTags>
+          </BlogInfo>
+        </IndividualBlog>
+      ))}
+    </div>
   </EveryBlog>
 );
 

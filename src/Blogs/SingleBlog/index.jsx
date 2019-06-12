@@ -1,18 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import moment from 'moment';
 import {
   breakPoints, colors, transitionSpeed,
 } from 'Components/StyleGuide';
 import { Title, Image } from 'Components/GlobalStyles';
-
-const IndividualBlog = styled.div`
-  flex-basis: 85%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
 
 const BlogTitle = styled(Title)`
   text-align: center;
@@ -34,10 +25,10 @@ const SingleBlog = ({ blogs, id }) => {
       {!filteredBlog.length && <h1>LOADING</h1>}
       {
         filteredBlog.length > 0 &&
-        <IndividualBlog>
+        <React.Fragment>
           <Image src={filteredBlog[0].image} alt="cat" />
           <BlogTitle>{filteredBlog[0].title}</BlogTitle>
-        </IndividualBlog>
+        </React.Fragment>
       }
     </React.Fragment>
   )

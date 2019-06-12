@@ -10,7 +10,7 @@ import { Title } from 'Components/GlobalStyles';
 const LabelWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  flex-basis: 15%;
+  flex-basis: 10%;
   padding: ${spacing.s5} ${spacing.s2};
 
   @media (min-width: ${breakPoints.desktop}) {
