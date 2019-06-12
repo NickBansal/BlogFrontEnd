@@ -35,6 +35,7 @@ class Blogs extends React.Component {
     getAllBlogs().then((blogs) => {
       this.setState({
         allBlogs: blogs[0],
+        filteredBlogs: blogs[0],
         labels: blogs[0].map(blog => blog.label),
       });
     }).catch((error) => {
@@ -44,15 +45,27 @@ class Blogs extends React.Component {
     });
   }
 
+  handleClick(value) {
+    const { allBlogs } = this.state
+    const filteredBlogs = allBlogs.slice()
+    this.setState({
+      filteredBlogs: filteredBlogs.filter(blog => blog.label === value)
+    })
+  }
+
   render() {
-    const { allBlogs, labels } = this.state;
+    const { allBlogs, labels, filteredBlogs } = this.state;
     return (
       <React.Fragment>
         <GlobalStyle />
         <TopNavigation />
         <BlogWrapper>
           <Router>
-            <AllBlogs blogs={allBlogs} labels={labels} path="/" />
+            <AllBlogs
+              handleClick={this.handleClick}
+              blogs={filteredBlogs}
+              labels={labels}
+              path="/" />
             <SingleBlog blogs={allBlogs} path="/blog/:id" />
           </Router>
         </BlogWrapper>

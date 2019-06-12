@@ -90,9 +90,9 @@ const Label = styled.h4`
 Label.displayName = 'Label';
 
 
-const AllBlogs = ({ blogs, labels }) => (
+const AllBlogs = ({ blogs, labels, handleClick }) => (
   <EveryBlog>
-    <SideBar labels={labels} />
+    <SideBar handleClick={handleClick} labels={labels} />
     <div>
       {blogs.map(blog => (
         <IndividualBlog key={blog.title}>

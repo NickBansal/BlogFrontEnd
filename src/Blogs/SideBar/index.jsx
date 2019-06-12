@@ -37,7 +37,7 @@ const LabelLink = styled.p`
 `;
 LabelLink.displayName = 'LabelLink';
 
-const SideBar = ({ labels }) => {
+const SideBar = ({ labels, handleClick }) => {
   let labelCount;
 
   if (labels.length > 0) {
@@ -51,7 +51,7 @@ const SideBar = ({ labels }) => {
     <LabelWrapper>
       <LabelTitle>Categories</LabelTitle>
       {labelCount && Object.keys(labelCount).map((label, index) => (
-        <LabelLink key={String(index)}>
+        <LabelLink onClick={() => handleClick(label)} key={String(index)}>
           {`${label} (${labelCount[label]})`}
         </LabelLink>
       ))}
