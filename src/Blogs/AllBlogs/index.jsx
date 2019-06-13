@@ -90,10 +90,11 @@ const Label = styled.h4`
 Label.displayName = 'Label';
 
 
-const AllBlogs = ({ blogs, labels, handleClick }) => (
+const AllBlogs = ({ blogs, labels, handleClick, loading }) => (
   <EveryBlog>
-    <SideBar handleClick={handleClick} labels={labels} />
+    {!loading && <SideBar handleClick={handleClick} labels={labels} />}
     <div>
+      {loading && <h1>LOADING</h1>}
       {blogs.map(blog => (
         <IndividualBlog key={blog.title}>
           <ImageStyled src={blog.image} alt="cat" />

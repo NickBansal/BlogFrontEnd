@@ -27,6 +27,7 @@ class Blogs extends React.Component {
     this.state = {
       allBlogs: [],
       labels: [],
+      loading: true
     };
     autobind(this);
   }
@@ -37,6 +38,7 @@ class Blogs extends React.Component {
         allBlogs: blogs[0],
         filteredBlogs: blogs[0],
         labels: blogs[0].map(blog => blog.label),
+        loading: false
       });
     }).catch((error) => {
       this.setState({
@@ -57,7 +59,7 @@ class Blogs extends React.Component {
   }
 
   render() {
-    const { allBlogs, labels, filteredBlogs } = this.state;
+    const { labels, filteredBlogs, loading } = this.state;
     return (
       <React.Fragment>
         <GlobalStyle />
@@ -65,11 +67,12 @@ class Blogs extends React.Component {
         <BlogWrapper>
           <Router>
             <AllBlogs
+              loading={loading}
               handleClick={this.handleClick}
               blogs={filteredBlogs}
               labels={labels}
               path="/" />
-            <SingleBlog blogs={allBlogs} path="/blog/:id" />
+            <SingleBlog path="/blog/:id" />
           </Router>
         </BlogWrapper>
       </React.Fragment>

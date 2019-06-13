@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getSingleBlog } from 'Utils';
 import {
   breakPoints, colors, transitionSpeed,
 } from 'Components/StyleGuide';
@@ -18,20 +19,48 @@ const BlogTitle = styled(Title)`
 `;
 BlogTitle.displayName = 'BlogTitle';
 
-const SingleBlog = ({ blogs, id }) => {
-  const filteredBlog = blogs.filter(blog => blog._id === id)
-  return (
-    <React.Fragment>
-      {!filteredBlog.length && <h1>LOADING</h1>}
-      {
-        filteredBlog.length > 0 &&
-        <React.Fragment>
-          <Image src={filteredBlog[0].image} alt="cat" />
-          <BlogTitle>{filteredBlog[0].title}</BlogTitle>
-        </React.Fragment>
+class SingleBlog extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      error: false,
+      blog: {}
+    }
+  }
+
+  componentDidMount() {
+    const { id } = this.props
+    getSingleBlog(id)
+      .then(blog => {
+        this.setState({
+          loading: false,
+          blog: blog[0]
+        })
+      })
+      .catch(error => {
+        this.setState({
+          error
+        })
       }
-    </React.Fragment>
-  )
-};
+      )
+  }
+
+  render() {
+    const { loading, blog, error } = this.state
+    return (
+      <React.Fragment>
+        {loading && !error && <h1>LOADING</h1>}
+        {!loading && !error &&
+          <React.Fragment>
+            <Image src={blog.image} alt="cat" />
+            <BlogTitle>{blog.title}</BlogTitle>
+          </React.Fragment>
+        }
+        {error && <h1>Blog does not exist</h1>}
+      </React.Fragment>
+    )
+  }
+}
 
 export default SingleBlog;
