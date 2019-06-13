@@ -1,21 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { getSingleBlog } from 'Utils';
-import {
-  breakPoints, colors, transitionSpeed,
-} from 'Components/StyleGuide';
+import { breakPoints } from 'Components/StyleGuide';
 import { Title, Image } from 'Components/GlobalStyles';
+
+const BlogWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 const BlogTitle = styled(Title)`
   text-align: center;
+
   @media (min-width: ${breakPoints.tablet}) {
-  text-align: left;
+    text-align: left;
   }
-  &:hover {
-    cursor: pointer;
-    color: ${colors.highlightText};
-  }
-  transition: all ${transitionSpeed} ease;
 `;
 BlogTitle.displayName = 'BlogTitle';
 
@@ -52,10 +51,10 @@ class SingleBlog extends React.Component {
       <React.Fragment>
         {loading && !error && <h1>LOADING</h1>}
         {!loading && !error &&
-          <React.Fragment>
+          <BlogWrapper>
             <Image src={blog.image} alt="cat" />
             <BlogTitle>{blog.title}</BlogTitle>
-          </React.Fragment>
+          </BlogWrapper>
         }
         {error && <h1>Blog does not exist</h1>}
       </React.Fragment>

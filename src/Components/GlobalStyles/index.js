@@ -22,14 +22,13 @@ export const LinkStyled = styled(Link)`
 `;
 
 export const Image = styled.img`
-  width: 80%;
+  width: 70%;
   margin-bottom: ${spacing.s3};
   border-radius: 10px 50px;
   border: 2px solid ${colors.imageBorder};
   box-shadow: ${imageShadow};
 
   @media (min-width: ${breakPoints.tablet}) {
-    flex-direction: row;
     width: auto;
     height: 400px;
   }
