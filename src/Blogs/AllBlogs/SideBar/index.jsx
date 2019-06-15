@@ -24,9 +24,9 @@ const LabelTitle = styled(Title)`
 
 const LabelLink = styled.p`
   margin: 0 0 0 ${spacing.s1};
-  color: ${colors.textColor};
+  color: ${props => (props.selected ? 'white' : colors.textColor)};
   width: 100px;
-
+  background: ${props => (props.selected ? colors.highlightText : 'white')}
   &:hover {
     cursor: pointer;
     color: white;
@@ -37,7 +37,7 @@ const LabelLink = styled.p`
 `;
 LabelLink.displayName = 'LabelLink';
 
-const SideBar = ({ labels, handleClick }) => {
+const SideBar = ({ labels, handleClick, selected }) => {
   let labelCount;
 
   if (labels.length > 0) {
@@ -56,7 +56,7 @@ const SideBar = ({ labels, handleClick }) => {
         {`(${labels.length})`}
       </LabelLink>
       {labelCount && Object.keys(labelCount).map((label, index) => (
-        <LabelLink onClick={() => handleClick(label)} key={String(index)}>
+        <LabelLink selected={selected === label} onClick={() => handleClick(label)} key={String(index)}>
           {`${label} (${labelCount[label]})`}
         </LabelLink>
       ))}
@@ -67,11 +67,13 @@ const SideBar = ({ labels, handleClick }) => {
 SideBar.propTypes = {
   labels: arrayOf(string),
   handleClick: func,
+  selected: string,
 };
 
 SideBar.defaultProps = {
   labels: [],
   handleClick: () => { },
+  selected: '',
 };
 
 export default SideBar;

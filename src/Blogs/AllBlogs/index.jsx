@@ -93,10 +93,17 @@ Label.displayName = 'Label';
 
 
 const AllBlogs = ({
-  blogs, labels, handleClick, loading,
+  blogs, labels, handleClick, loading, selected,
 }) => (
-    <EveryBlog>
-      {!loading && <SideBar handleClick={handleClick} labels={labels} />}
+  <EveryBlog>
+      {!loading
+        && (
+          <SideBar
+            selected={selected}
+            handleClick={handleClick}
+            labels={labels}
+          />
+        )}
       <div>
         {loading && <Loading />}
         {blogs.map(blog => (
@@ -124,7 +131,7 @@ const AllBlogs = ({
         ))}
       </div>
     </EveryBlog>
-  );
+);
 
 AllBlogs.propTypes = {
   blogs: arrayOf(shape({
@@ -137,6 +144,7 @@ AllBlogs.propTypes = {
   labels: arrayOf(string),
   handleClick: func,
   loading: bool,
+  selected: string,
 };
 
 AllBlogs.defaultProps = {
@@ -144,6 +152,7 @@ AllBlogs.defaultProps = {
   labels: [],
   handleClick: () => { },
   loading: false,
+  selected: '',
 };
 
 export default AllBlogs;

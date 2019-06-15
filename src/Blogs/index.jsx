@@ -42,6 +42,7 @@ class Blogs extends React.Component {
       });
     }).catch((error) => {
       this.setState({
+        // eslint-disable-next-line react/no-unused-state
         error,
       });
     });
@@ -55,11 +56,14 @@ class Blogs extends React.Component {
 
     this.setState({
       filteredBlogs,
+      selected: value,
     });
   }
 
   render() {
-    const { labels, filteredBlogs, loading } = this.state;
+    const {
+      labels, filteredBlogs, loading, selected,
+    } = this.state;
     return (
       <React.Fragment>
         <GlobalStyle />
@@ -71,6 +75,7 @@ class Blogs extends React.Component {
               handleClick={this.handleClick}
               blogs={filteredBlogs}
               labels={labels}
+              selected={selected}
               path="/"
             />
             <SingleBlog
