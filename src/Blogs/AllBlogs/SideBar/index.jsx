@@ -50,7 +50,7 @@ const SideBar = ({ labels, handleClick, selected }) => {
   return (
     <LabelWrapper>
       <LabelTitle>Categories</LabelTitle>
-      <LabelLink onClick={() => handleClick('All')}>
+      <LabelLink selected={selected === 'All'} onClick={() => handleClick('All')}>
         All
         {' '}
         {`(${labels.length})`}
