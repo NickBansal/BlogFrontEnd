@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { func } from 'prop-types';
 import {
   spacing, colors, transitionSpeed,
 } from 'Components/StyleGuide';
 
-const Select = styled.div`
+const Select = styled.form`
     height: 40px;
     padding: 0 ${spacing.s2};
     font-size: 18px;
@@ -37,8 +38,8 @@ const Label = styled.label`
     transition: all ${transitionSpeed} ease;
 `;
 
-const Filter = () => (
-  <Select>
+const Filter = ({ handleSort }) => (
+  <Select onChange={e => handleSort(e.target.value)}>
       <Selection>
           <Input
         type="radio"
@@ -54,7 +55,7 @@ const Filter = () => (
         type="radio"
         id="created"
         name="drone"
-              value="created"
+        value="created"
       />
       <Label htmlFor="created">Created</Label>
     </Selection>
@@ -71,5 +72,13 @@ const Filter = () => (
     </Selection>
   </Select>
 );
+
+Filter.propTypes = {
+  handleSort: func,
+};
+
+Filter.defaultProps = {
+  handleSort: () => { },
+};
 
 export default Filter;

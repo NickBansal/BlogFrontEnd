@@ -101,11 +101,11 @@ const Form = styled.div`
 
 
 const AllBlogs = ({
-  blogs, labels, handleClick, loading, selected,
+  blogs, labels, handleClick, loading, selected, handleSort,
 }) => (
   <React.Fragment>
     <Form>
-      <Filter />
+      <Filter handleSort={handleSort} />
     </Form>
     <EveryBlog>
       {!loading
@@ -158,6 +158,7 @@ AllBlogs.propTypes = {
   handleClick: func,
   loading: bool,
   selected: string,
+  handleSort: func,
 };
 
 AllBlogs.defaultProps = {
@@ -166,6 +167,7 @@ AllBlogs.defaultProps = {
   handleClick: () => { },
   loading: false,
   selected: '',
+  handleSort: () => { },
 };
 
 export default AllBlogs;

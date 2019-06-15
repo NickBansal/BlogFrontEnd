@@ -2,6 +2,7 @@ import React from 'react';
 import autobind from 'react-autobind';
 import styled from 'styled-components';
 import { Router } from '@reach/router';
+import sortBy from 'lodash/sortBy';
 import { GlobalStyle } from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import TopNavigation from 'Blogs/TopNavigation';
@@ -62,6 +63,15 @@ class Blogs extends React.Component {
     });
   }
 
+  handleSort(value) {
+    const { filteredBlogs } = this.state;
+    const sortedBlogs = sortBy(filteredBlogs, o => o[value]);
+
+    this.setState({
+      filteredBlogs: sortedBlogs,
+    });
+  }
+
   render() {
     const {
       labels, filteredBlogs, loading, selected, error,
@@ -75,6 +85,7 @@ class Blogs extends React.Component {
             {error && <ErrorMessage path="/" singleBlog={false} />}
             {!error && (
               <AllBlogs
+                handleSort={this.handleSort}
                 loading={loading}
                 handleClick={this.handleClick}
                 blogs={filteredBlogs}
