@@ -7,7 +7,7 @@ import {
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Quicksand', sans-serif;
-    padding-top: 100px;
+    padding-top: 80px;
   }
 `;
 

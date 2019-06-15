@@ -2,24 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import { string } from 'prop-types';
 import { Link } from '@reach/router';
-import { colors, transitionSpeed } from '../StyleGuide';
+import { colors, transitionSpeed, spacing } from '../StyleGuide';
 
 const ButtonStyled = styled(Link)`
-  border: 2px solid ${colors.btnBorder};
+  border: 2px solid ${colors.btnText};
   height: 30px;
-  padding: 8px;
+  padding: ${spacing.s1};
   display: flex;
   align-items: center;
   text-decoration: none;
   border-radius: 10px;
   font-size: 17px;
-  margin-top: 16px;
-  color: ${colors.btnBorder};
+  margin-top: ${spacing.s2};
+  color: ${colors.btnText};
   background: white;
   
   &:hover {
     color: white;
-    background: ${colors.btnBorder};
+    background: ${colors.btnText};
   }
   transition: all ${transitionSpeed} ease;
 `;

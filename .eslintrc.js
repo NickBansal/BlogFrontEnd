@@ -33,6 +33,16 @@ module.exports = {
             }
         ],
         "no-underscore-dangle": ["error", { "allow": ["_id"] }],
-        "indent": ["error", 2]
+        "indent": ["error", 2],
+        "jsx-a11y/label-has-associated-control": ["error", {
+            "required": {
+                "some": ["nesting", "id"]
+            }
+        }],
+        "jsx-a11y/label-has-for": ["error", {
+            "required": {
+                "some": ["nesting", "id"]
+            }
+        }]
     }
 };

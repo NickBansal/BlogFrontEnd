@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { func } from 'prop-types';
 import {
-  spacing, transitionSpeed,
+  spacing, transitionSpeed, colors,
 } from 'Components/StyleGuide';
 import { LinkStyled } from 'Components/GlobalStyles';
 
@@ -15,7 +15,7 @@ justify-content: space-around;
 height: 60px;
 align-items: center;
 padding: 0;
-background:#F3E0BE;
+background: ${colors.btnBackground};
 position: fixed;
 top: 0;
 left: 0;
@@ -29,7 +29,7 @@ const LoginNavigation = styled.div`
 
 
 const Labels = styled.p`
-color: #F96714;
+color: ${colors.btnText};
 margin: 0;
 height: 100%;
 display: flex;
@@ -39,7 +39,7 @@ padding: 0 ${spacing.s3};
 &:hover {
   cursor: pointer;
   background: #9B1B30;
-  color: #F3E0BE;
+  color: ${colors.btnBackground};
 }
 transition: all ${transitionSpeed} ease;
 `;

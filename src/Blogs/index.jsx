@@ -71,7 +71,7 @@ class Blogs extends React.Component {
         <GlobalStyle />
         <TopNavigation handleClick={this.handleClick} />
         <BlogWrapper>
-          <Router>
+          <Router primary={false}>
             {error && <ErrorMessage path="/" singleBlog={false} />}
             {!error && (
               <AllBlogs

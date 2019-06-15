@@ -25,7 +25,7 @@ const LabelTitle = styled(Title)`
 const LabelLink = styled.p`
   margin: 0 0 0 ${spacing.s1};
   color: ${props => (props.selected ? 'white' : colors.textColor)};
-  width: 100px;
+  width: 110px;
   background: ${props => (props.selected ? colors.highlightText : 'white')}
   &:hover {
     cursor: pointer;

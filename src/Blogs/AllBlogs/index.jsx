@@ -10,6 +10,8 @@ import {
 import { Title, LinkStyled, Image } from 'Components/GlobalStyles';
 import SideBar from 'Blogs/AllBlogs/SideBar';
 import Loading from 'Components/Loading';
+import Search from './Search';
+import Filter from './Filter';
 
 const EveryBlog = styled.div`
   display: flex;
@@ -91,46 +93,59 @@ const Label = styled.h4`
 `;
 Label.displayName = 'Label';
 
+const Form = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+`;
+
 
 const AllBlogs = ({
   blogs, labels, handleClick, loading, selected,
 }) => (
-  <EveryBlog>
-    {!loading
-        && (
-          <SideBar
-            selected={selected}
-            handleClick={handleClick}
-            labels={labels}
-          />
-        )}
-    <div>
-      {loading && <Loading />}
-      {blogs.map(blog => (
-        <IndividualBlog key={blog._id}>
-          <ImageStyled src={blog.image} alt="cat" />
-          <BlogInfo>
-            <div>
-              <LinkStyled to={`/blog/${blog._id}`}>
-                <BlogTitle>{blog.title}</BlogTitle>
-              </LinkStyled>
-              <Body>{`${blog.body.substring(0, 150)}...`}</Body>
-            </div>
-            <DateAndTags>
-              <Label>
-                  in
-                {' '}
-                <strong>{blog.label}</strong>
-              </Label>
-              <Label>
-                {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
-              </Label>
-            </DateAndTags>
-          </BlogInfo>
-        </IndividualBlog>
-      ))}
-    </div>
-  </EveryBlog>
+  <React.Fragment>
+    <Form>
+      <Search />
+      <Filter />
+    </Form>
+    <EveryBlog>
+      {!loading
+          && (
+            <SideBar
+              selected={selected}
+              handleClick={handleClick}
+              labels={labels}
+            />
+          )}
+      <div>
+        {loading && <Loading />}
+        {blogs.map(blog => (
+          <IndividualBlog key={blog._id}>
+            <ImageStyled src={blog.image} alt="cat" />
+            <BlogInfo>
+              <div>
+                <LinkStyled to={`/blog/${blog._id}`}>
+                  <BlogTitle>{blog.title}</BlogTitle>
+                </LinkStyled>
+                <Body>{`${blog.body.substring(0, 150)}...`}</Body>
+              </div>
+              <DateAndTags>
+                <Label>
+                    in
+                  {' '}
+                  <strong>{blog.label}</strong>
+                </Label>
+                <Label>
+                  {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
+                </Label>
+              </DateAndTags>
+            </BlogInfo>
+          </IndividualBlog>
+        ))}
+      </div>
+    </EveryBlog>
+  </React.Fragment>
 );
 
 AllBlogs.propTypes = {
