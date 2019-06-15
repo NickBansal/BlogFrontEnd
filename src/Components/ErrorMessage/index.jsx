@@ -10,9 +10,9 @@ Message.displayName = 'Message';
 const ErrorMessage = ({ singleBlog }) => {
   const message = singleBlog ? 'Blog does not exist' : 'Something went wrong';
   return (
-      <React.Fragment>
-          <Message>{message}</Message>
-        </React.Fragment>
+    <React.Fragment>
+      <Message>{message}</Message>
+    </React.Fragment>
   );
 };
 
