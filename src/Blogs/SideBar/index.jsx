@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react';
 import styled from 'styled-components';
-import { arrayOf, string } from 'prop-types';
+import { arrayOf, string, func } from 'prop-types';
 import {
   spacing, colors, transitionSpeed, breakPoints,
 } from 'Components/StyleGuide';
@@ -50,7 +50,11 @@ const SideBar = ({ labels, handleClick }) => {
   return (
     <LabelWrapper>
       <LabelTitle>Categories</LabelTitle>
-      <LabelLink onClick={() => handleClick('All')}>All {`(${labels.length})`}</LabelLink>
+      <LabelLink onClick={() => handleClick('All')}>
+        All
+        {' '}
+        {`(${labels.length})`}
+      </LabelLink>
       {labelCount && Object.keys(labelCount).map((label, index) => (
         <LabelLink onClick={() => handleClick(label)} key={String(index)}>
           {`${label} (${labelCount[label]})`}
@@ -62,10 +66,12 @@ const SideBar = ({ labels, handleClick }) => {
 
 SideBar.propTypes = {
   labels: arrayOf(string),
+  handleClick: func,
 };
 
 SideBar.defaultProps = {
   labels: [],
+  handleClick: () => { },
 };
 
 export default SideBar;

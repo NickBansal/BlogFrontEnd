@@ -11,6 +11,7 @@ describe('<AllBlogs />', () => {
       body: 'body',
       label: 'label',
       created: new Date('2019-08-22'),
+      id: '77fgi',
     }],
   };
   beforeEach(() => {

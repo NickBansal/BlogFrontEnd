@@ -27,7 +27,7 @@ class Blogs extends React.Component {
     this.state = {
       allBlogs: [],
       labels: [],
-      loading: true
+      loading: true,
     };
     autobind(this);
   }
@@ -38,7 +38,7 @@ class Blogs extends React.Component {
         allBlogs: blogs[0],
         filteredBlogs: blogs[0],
         labels: blogs[0].map(blog => blog.label),
-        loading: false
+        loading: false,
       });
     }).catch((error) => {
       this.setState({
@@ -48,14 +48,14 @@ class Blogs extends React.Component {
   }
 
   handleClick(value) {
-    const { allBlogs } = this.state
+    const { allBlogs } = this.state;
     const filteredBlogs = value === 'All'
       ? allBlogs
-      : allBlogs.filter(blog => blog.label === value)
+      : allBlogs.filter(blog => blog.label === value);
 
     this.setState({
-      filteredBlogs
-    })
+      filteredBlogs,
+    });
   }
 
   render() {
@@ -71,10 +71,12 @@ class Blogs extends React.Component {
               handleClick={this.handleClick}
               blogs={filteredBlogs}
               labels={labels}
-              path="/" />
+              path="/"
+            />
             <SingleBlog
               handleClick={this.handleClick}
-              path="/blog/:id" />
+              path="/blog/:id"
+            />
           </Router>
         </BlogWrapper>
       </React.Fragment>

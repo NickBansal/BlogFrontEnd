@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  arrayOf, shape, string, instanceOf, oneOfType,
+  arrayOf, shape, string, instanceOf, oneOfType, func, bool,
 } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
@@ -90,37 +90,40 @@ const Label = styled.h4`
 Label.displayName = 'Label';
 
 
-const AllBlogs = ({ blogs, labels, handleClick, loading }) => (
-  <EveryBlog>
-    {!loading && <SideBar handleClick={handleClick} labels={labels} />}
-    <div>
-      {loading && <h1>LOADING</h1>}
-      {blogs.map(blog => (
-        <IndividualBlog key={blog.title}>
-          <ImageStyled src={blog.image} alt="cat" />
-          <BlogInfo>
-            <div>
-              <LinkStyled to={`/blog/${blog._id}`}>
-                <BlogTitle>{blog.title}</BlogTitle>
-              </LinkStyled>
-              <Body>{`${blog.body.substring(0, 200)}...`}</Body>
-            </div>
-            <DateAndTags>
-              <Label>
-                in
-              {' '}
-                <strong>{blog.label}</strong>
-              </Label>
-              <Label>
-                {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
-              </Label>
-            </DateAndTags>
-          </BlogInfo>
-        </IndividualBlog>
-      ))}
-    </div>
-  </EveryBlog>
-);
+const AllBlogs = ({
+  blogs, labels, handleClick, loading,
+}) => (
+    <EveryBlog>
+      {!loading
+        && <SideBar handleClick={handleClick} labels={labels} />}
+      <div>
+        {loading && <h1>LOADING</h1>}
+        {blogs.map(blog => (
+          <IndividualBlog key={blog._id}>
+            <ImageStyled src={blog.image} alt="cat" />
+            <BlogInfo>
+              <div>
+                <LinkStyled to={`/blog/${blog._id}`}>
+                  <BlogTitle>{blog.title}</BlogTitle>
+                </LinkStyled>
+                <Body>{`${blog.body.substring(0, 200)}...`}</Body>
+              </div>
+              <DateAndTags>
+                <Label>
+                  in
+                {' '}
+                  <strong>{blog.label}</strong>
+                </Label>
+                <Label>
+                  {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
+                </Label>
+              </DateAndTags>
+            </BlogInfo>
+          </IndividualBlog>
+        ))}
+      </div>
+    </EveryBlog>
+  );
 
 AllBlogs.propTypes = {
   blogs: arrayOf(shape({
@@ -130,10 +133,16 @@ AllBlogs.propTypes = {
     label: string,
     created: oneOfType([instanceOf(Date), string]),
   })),
+  labels: arrayOf(string),
+  handleClick: func,
+  loading: bool,
 };
 
 AllBlogs.defaultProps = {
   blogs: [],
+  labels: [],
+  handleClick: () => { },
+  loading: false,
 };
 
 export default AllBlogs;

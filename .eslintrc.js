@@ -4,20 +4,10 @@ module.exports = {
         "es6": true,
         "jest": true
     },
-    "extends": [
-        "airbnb",
-        "prettier"
-    ],
+    "extends": "airbnb",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
-    },
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "moduleDirectory": ["node_modules", "src/"]
-            }
-        }
     },
     "parserOptions": {
         "ecmaFeatures": {
@@ -29,16 +19,14 @@ module.exports = {
     "plugins": [
         "react"
     ],
-    "rules": {
-        "react/jsx-indent-props": 0,
-        "prettier/prettier": [
-            "error",
-            {
-                "useTabs": true,
-                "tabWidth": 4,
-                "singleQuote": true
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "moduleDirectory": ["node_modules", "src/"]
             }
-        ],
+        }
+    },
+    "rules": {
         "import/no-extraneous-dependencies": [
             "error", {
                 "devDependencies": true
