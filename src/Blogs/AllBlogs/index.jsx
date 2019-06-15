@@ -8,7 +8,7 @@ import {
   breakPoints, spacing, colors, transitionSpeed,
 } from 'Components/StyleGuide';
 import { Title, LinkStyled, Image } from 'Components/GlobalStyles';
-import SideBar from 'Blogs/SideBar';
+import SideBar from 'Blogs/AllBlogs/SideBar';
 import Loading from 'Components/Loading';
 
 const EveryBlog = styled.div`
@@ -95,11 +95,8 @@ Label.displayName = 'Label';
 const AllBlogs = ({
   blogs, labels, handleClick, loading,
 }) => (
-  <EveryBlog>
-      {
-        !loading
-        && <SideBar handleClick={handleClick} labels={labels} />
-      }
+    <EveryBlog>
+      {!loading && <SideBar handleClick={handleClick} labels={labels} />}
       <div>
         {loading && <Loading />}
         {blogs.map(blog => (
@@ -127,7 +124,7 @@ const AllBlogs = ({
         ))}
       </div>
     </EveryBlog>
-);
+  );
 
 AllBlogs.propTypes = {
   blogs: arrayOf(shape({

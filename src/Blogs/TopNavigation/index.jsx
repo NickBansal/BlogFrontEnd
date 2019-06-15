@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { func } from 'prop-types';
 import {
   spacing, transitionSpeed,
 } from 'Components/StyleGuide';
@@ -43,10 +44,10 @@ transition: all ${transitionSpeed} ease;
 `;
 Labels.displayName = 'Labels';
 
-const TopNavigation = () => (
+const TopNavigation = ({ handleClick }) => (
   <Navigation>
     <LinkStyled to="/">
-      <Labels>Home</Labels>
+      <Labels onClick={() => handleClick('All')}>Home</Labels>
     </LinkStyled>
     <LoginNavigation>
       <Labels>Create</Labels>
@@ -54,5 +55,13 @@ const TopNavigation = () => (
     </LoginNavigation>
   </Navigation>
 );
+
+TopNavigation.propTypes = {
+  handleClick: func,
+};
+
+TopNavigation.defaultProps = {
+  handleClick: () => { },
+};
 
 export default TopNavigation;

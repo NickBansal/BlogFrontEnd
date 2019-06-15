@@ -63,7 +63,7 @@ class Blogs extends React.Component {
     return (
       <React.Fragment>
         <GlobalStyle />
-        <TopNavigation />
+        <TopNavigation handleClick={this.handleClick} />
         <BlogWrapper>
           <Router>
             <AllBlogs
