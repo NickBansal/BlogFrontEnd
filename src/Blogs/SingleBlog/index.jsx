@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { getSingleBlog } from 'Utils';
-import { breakPoints } from 'Components/StyleGuide';
+import { breakPoints, colors } from 'Components/StyleGuide';
 import { Title, Image } from 'Components/GlobalStyles';
+import Loading from 'Components/Loading'
+import ErrorMessage from 'Components/ErrorMessage'
 
 const BlogWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `
+BlogWrapper.displayName = 'BlogWrapper';
 
 const BlogTitle = styled(Title)`
   text-align: center;
@@ -18,6 +21,14 @@ const BlogTitle = styled(Title)`
   }
 `;
 BlogTitle.displayName = 'BlogTitle';
+
+const BlogBody = styled.div`
+  margin-top: 16px;
+  width: 80%;
+  max-width: 1000px;
+  color: ${colors.textColor};
+  line-height: 1.2;
+`
 
 class SingleBlog extends React.Component {
   constructor(props) {
@@ -50,14 +61,15 @@ class SingleBlog extends React.Component {
     const { loading, blog, error } = this.state
     return (
       <React.Fragment>
-        {loading && !error && <h1>LOADING</h1>}
+        {loading && !error && <Loading />}
         {!loading && !error &&
           <BlogWrapper>
             <Image src={blog.image} alt="cat" />
             <BlogTitle>{blog.title}</BlogTitle>
+            <BlogBody>{blog.body}</BlogBody>
           </BlogWrapper>
         }
-        {error && <h1>Blog does not exist</h1>}
+        {error && <ErrorMessage />}
       </React.Fragment>
     )
   }
