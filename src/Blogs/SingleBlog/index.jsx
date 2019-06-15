@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { getSingleBlog } from 'Utils';
-import { breakPoints, colors, spacing } from 'Components/StyleGuide';
+import { breakPoints, colors, spacing, transitionSpeed } from 'Components/StyleGuide';
 import { LinkStyled } from 'Components/GlobalStyles'
 import { Title, Image } from 'Components/GlobalStyles';
 import Loading from 'Components/Loading'
@@ -53,8 +53,10 @@ const Label = styled.h4`
       cursor: pointer;
       color: ${colors.highlightText};
     }
+    transition: all ${transitionSpeed} ease;
   }
 `;
+Label.displayName = 'Label';
 
 class SingleBlog extends React.Component {
   constructor(props) {

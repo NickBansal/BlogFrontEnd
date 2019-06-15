@@ -15,5 +15,6 @@ describe('<SideBar />', () => {
     expect(wrapper.find('LabelLink').at(0).text()).toBe('All (4)');
     expect(wrapper.find('LabelLink').at(1).text()).toBe('cats (2)');
     expect(wrapper.find('LabelLink').at(2).text()).toBe('lions (1)');
+    expect(wrapper.find('LabelLink').at(3).text()).toBe('dogs (1)');
   });
 });
