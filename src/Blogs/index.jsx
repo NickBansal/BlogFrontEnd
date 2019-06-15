@@ -32,6 +32,8 @@ class Blogs extends React.Component {
       loading: true,
       selected: 'All',
       error: false,
+      down: true,
+      sortVal: '',
     };
     autobind(this);
   }
@@ -64,17 +66,19 @@ class Blogs extends React.Component {
   }
 
   handleSort(value) {
-    const { filteredBlogs } = this.state;
+    const { filteredBlogs, sortVal, down } = this.state;
     const sortedBlogs = sortBy(filteredBlogs, o => o[value]);
-
+    const downVal = value === sortVal ? !down : true;
     this.setState({
       filteredBlogs: sortedBlogs,
+      sortVal: value,
+      down: downVal,
     });
   }
 
   render() {
     const {
-      labels, filteredBlogs, loading, selected, error,
+      labels, filteredBlogs, loading, selected, error, down,
     } = this.state;
     return (
       <React.Fragment>
@@ -85,6 +89,7 @@ class Blogs extends React.Component {
             {error && <ErrorMessage path="/" singleBlog={false} />}
             {!error && (
               <AllBlogs
+                down={down}
                 handleSort={this.handleSort}
                 loading={loading}
                 handleClick={this.handleClick}

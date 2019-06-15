@@ -15,7 +15,6 @@ import Filter from './Filter';
 const EveryBlog = styled.div`
   display: flex;
   flex-direction: column-reverse;
-
   @media (min-width: ${breakPoints.tablet}) {
     flex-direction: row-reverse;
   }
@@ -25,7 +24,7 @@ const IndividualBlog = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%
+  width: 90%;
   justify-content: center;
   margin: ${spacing.s5} auto;
   max-width: 700px;
@@ -99,9 +98,14 @@ const Form = styled.div`
   margin: 0;
 `;
 
+const DynamicFlex = styled.div`
+  display: flex;
+  flex-direction: ${props => (props.down ? 'column' : 'column-reverse')};
+`;
+
 
 const AllBlogs = ({
-  blogs, labels, handleClick, loading, selected, handleSort,
+  blogs, labels, handleClick, loading, selected, handleSort, down,
 }) => (
   <React.Fragment>
     <Form>
@@ -116,7 +120,7 @@ const AllBlogs = ({
               labels={labels}
             />
           )}
-      <div>
+      <DynamicFlex down={down}>
         {loading && <Loading />}
         {blogs.map(blog => (
           <IndividualBlog key={blog._id}>
@@ -141,7 +145,7 @@ const AllBlogs = ({
             </BlogInfo>
           </IndividualBlog>
         ))}
-      </div>
+      </DynamicFlex>
     </EveryBlog>
   </React.Fragment>
 );
@@ -159,6 +163,7 @@ AllBlogs.propTypes = {
   loading: bool,
   selected: string,
   handleSort: func,
+  down: bool,
 };
 
 AllBlogs.defaultProps = {
@@ -168,6 +173,7 @@ AllBlogs.defaultProps = {
   loading: false,
   selected: '',
   handleSort: () => { },
+  down: true,
 };
 
 export default AllBlogs;

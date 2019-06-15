@@ -39,7 +39,7 @@ const Label = styled.label`
 `;
 
 const Filter = ({ handleSort }) => (
-  <Select onChange={e => handleSort(e.target.value)}>
+  <Select onClick={e => handleSort(e.target.value)}>
       <Selection>
           <Input
         type="radio"
