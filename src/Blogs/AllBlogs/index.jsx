@@ -95,7 +95,7 @@ Label.displayName = 'Label';
 const AllBlogs = ({
   blogs, labels, handleClick, loading, selected,
 }) => (
-  <EveryBlog>
+    <EveryBlog>
       {!loading
         && (
           <SideBar
@@ -114,7 +114,7 @@ const AllBlogs = ({
                 <LinkStyled to={`/blog/${blog._id}`}>
                   <BlogTitle>{blog.title}</BlogTitle>
                 </LinkStyled>
-                <Body>{`${blog.body.substring(0, 200)}...`}</Body>
+                <Body>{`${blog.body.substring(0, 150)}...`}</Body>
               </div>
               <DateAndTags>
                 <Label>
@@ -131,7 +131,7 @@ const AllBlogs = ({
         ))}
       </div>
     </EveryBlog>
-);
+  );
 
 AllBlogs.propTypes = {
   blogs: arrayOf(shape({

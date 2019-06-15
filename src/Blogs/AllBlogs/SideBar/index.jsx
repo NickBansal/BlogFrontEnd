@@ -56,7 +56,11 @@ const SideBar = ({ labels, handleClick, selected }) => {
         {`(${labels.length})`}
       </LabelLink>
       {labelCount && Object.keys(labelCount).map((label, index) => (
-        <LabelLink selected={selected === label} onClick={() => handleClick(label)} key={String(index)}>
+        <LabelLink
+          selected={selected === label}
+          onClick={() => handleClick(label)}
+          key={String(index)}
+        >
           {`${label} (${labelCount[label]})`}
         </LabelLink>
       ))}

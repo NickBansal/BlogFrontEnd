@@ -27,6 +27,7 @@ const LoginNavigation = styled.div`
   height: 100%;
 `;
 
+
 const Labels = styled.p`
 color: #F96714;
 margin: 0;
@@ -44,15 +45,25 @@ transition: all ${transitionSpeed} ease;
 `;
 Labels.displayName = 'Labels';
 
+const MaxNav = styled.div`
+  height: 100%;
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+  max-width: 1000px;
+`;
+
 const TopNavigation = ({ handleClick }) => (
   <Navigation>
-    <LinkStyled to="/">
-      <Labels onClick={() => handleClick('All')}>Home</Labels>
-    </LinkStyled>
-    <LoginNavigation>
-      <Labels>Create</Labels>
-      <Labels>Login</Labels>
-    </LoginNavigation>
+    <MaxNav>
+      <LinkStyled to="/">
+        <Labels onClick={() => handleClick('All')}>Home</Labels>
+      </LinkStyled>
+      <LoginNavigation>
+        <Labels>Create</Labels>
+        <Labels>Login</Labels>
+      </LoginNavigation>
+    </MaxNav>
   </Navigation>
 );
 

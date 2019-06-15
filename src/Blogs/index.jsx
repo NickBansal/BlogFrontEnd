@@ -28,6 +28,7 @@ class Blogs extends React.Component {
       allBlogs: [],
       labels: [],
       loading: true,
+      selected: 'All',
     };
     autobind(this);
   }
