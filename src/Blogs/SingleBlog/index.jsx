@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { getSingleBlog } from 'Utils';
-import { breakPoints, colors } from 'Components/StyleGuide';
+import { breakPoints, colors, spacing } from 'Components/StyleGuide';
 import { Title, Image } from 'Components/GlobalStyles';
 import Loading from 'Components/Loading'
 import ErrorMessage from 'Components/ErrorMessage'
@@ -30,21 +30,23 @@ const BlogBody = styled.div`
   color: ${colors.textColor};
   line-height: 1.2;
 `
-const Created = styled.p`
-  margin: 0
-`
-
-const Label = styled.p`
-  margin: 0   
-`
 
 const LabelWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
-  flex-direction: column;
+  max-width: 800px;
+  flex-direction: row-reverse;
   align-items: center;
+  margin-bottom: ${spacing.s2};
 `
+
+const Label = styled.h4`
+  margin: 0;
+  font-size: 15px;
+  color: ${colors.textColor};
+  font-weight: 100;
+`;
 
 class SingleBlog extends React.Component {
   constructor(props) {
@@ -83,7 +85,7 @@ class SingleBlog extends React.Component {
             <Image src={blog.image} alt="cat" />
             <LabelWrapper>
               <Label>{blog.label}</Label>
-              <Created>Created: {moment(blog.created).format('DD/MM/YYYY')}</Created>
+              <Label>Created: {moment(blog.created).format('DD/MM/YYYY')}</Label>
             </LabelWrapper>
             <BlogTitle>{blog.title}</BlogTitle>
             <BlogBody>{blog.body}</BlogBody>
