@@ -14,6 +14,7 @@ const Select = styled.form`
     color: ${colors.textColor};
     display: flex;
 `;
+Select.displayName = 'Select';
 
 const Selection = styled.div`
     display: flex;
@@ -28,24 +29,25 @@ const Input = styled.input`
         cursor: pointer;
     }
 `;
+Input.displayName = 'Input';
 
 const Label = styled.label`
     &:hover {
-        color: ${colors.highlightText};
-        cursor: pointer;
+      color: ${colors.highlightText};
+      cursor: pointer;
     }
-
     transition: all ${transitionSpeed} ease;
 `;
+Label.displayName = 'Label';
 
 const Filter = ({ handleSort }) => (
   <Select onClick={e => handleSort(e.target.value)}>
-      <Selection>
-          <Input
+    <Selection>
+      <Input
         type="radio"
         id="title"
         name="drone"
-              value="title"
+        value="title"
       />
       <Label htmlFor="title">Title</Label>
     </Selection>

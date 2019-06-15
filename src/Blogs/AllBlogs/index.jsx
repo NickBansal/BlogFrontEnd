@@ -4,12 +4,12 @@ import {
 } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
-import {
-  breakPoints, spacing, colors, transitionSpeed,
-} from 'Components/StyleGuide';
 import { Title, LinkStyled, Image } from 'Components/GlobalStyles';
 import SideBar from 'Blogs/AllBlogs/SideBar';
 import Loading from 'Components/Loading';
+import {
+  breakPoints, spacing, colors, transitionSpeed,
+} from 'Components/StyleGuide';
 import Filter from './Filter';
 
 const EveryBlog = styled.div`
