@@ -6,7 +6,7 @@ import { colors, transitionSpeed, spacing } from '../StyleGuide';
 
 const ButtonStyled = styled(Link)`
   border: 2px solid ${colors.btnText};
-  height: 30px;
+  height: 25px;
   padding: ${spacing.s1};
   display: flex;
   align-items: center;
