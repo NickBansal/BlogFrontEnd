@@ -9,6 +9,7 @@ import {
 } from 'Components/StyleGuide';
 import { Title, LinkStyled, Image } from 'Components/GlobalStyles';
 import SideBar from 'Blogs/SideBar';
+import Loading from 'Components/Loading';
 
 const EveryBlog = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ const IndividualBlog = styled.div`
     flex-direction: row;
   }
 `;
+IndividualBlog.displayName = 'IndividualBlog';
 
 const BlogInfo = styled.div`
   display: flex;
@@ -93,11 +95,13 @@ Label.displayName = 'Label';
 const AllBlogs = ({
   blogs, labels, handleClick, loading,
 }) => (
-    <EveryBlog>
-      {!loading
-        && <SideBar handleClick={handleClick} labels={labels} />}
+  <EveryBlog>
+      {
+        !loading
+        && <SideBar handleClick={handleClick} labels={labels} />
+      }
       <div>
-        {loading && <h1>LOADING</h1>}
+        {loading && <Loading />}
         {blogs.map(blog => (
           <IndividualBlog key={blog._id}>
             <ImageStyled src={blog.image} alt="cat" />
@@ -111,7 +115,7 @@ const AllBlogs = ({
               <DateAndTags>
                 <Label>
                   in
-                {' '}
+                  {' '}
                   <strong>{blog.label}</strong>
                 </Label>
                 <Label>
@@ -123,7 +127,7 @@ const AllBlogs = ({
         ))}
       </div>
     </EveryBlog>
-  );
+);
 
 AllBlogs.propTypes = {
   blogs: arrayOf(shape({

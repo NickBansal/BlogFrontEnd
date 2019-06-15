@@ -11,8 +11,11 @@ describe('<AllBlogs />', () => {
       body: 'body',
       label: 'label',
       created: new Date('2019-08-22'),
-      id: '77fgi',
+      _id: '77fgi',
     }],
+    labels: [],
+    loading: false,
+    handleClick: jest.fn(),
   };
   beforeEach(() => {
     wrapper = shallow(<AllBlogs {...props} />);
@@ -33,5 +36,13 @@ describe('<AllBlogs />', () => {
   });
   it('Should render the correct labels', () => {
     expect(wrapper.find('Label').at(0).text()).toBe('in label');
+  });
+  it('Should render the side bar and blogs if loading is false', () => {
+    expect(wrapper.find('SideBar').exists()).toBe(true);
+    expect(wrapper.find('IndividualBlog').exists()).toBe(true);
+  });
+  it('Should render loading component if loading is true', () => {
+    wrapper.setProps({ loading: true });
+    expect(wrapper.find('Loading').exists()).toBe(true);
   });
 });
