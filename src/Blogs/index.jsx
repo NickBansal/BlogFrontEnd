@@ -72,7 +72,9 @@ class Blogs extends React.Component {
               blogs={filteredBlogs}
               labels={labels}
               path="/" />
-            <SingleBlog path="/blog/:id" />
+            <SingleBlog
+              handleClick={this.handleClick}
+              path="/blog/:id" />
           </Router>
         </BlogWrapper>
       </React.Fragment>

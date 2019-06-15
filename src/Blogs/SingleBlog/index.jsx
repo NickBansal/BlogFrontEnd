@@ -96,7 +96,7 @@ class SingleBlog extends React.Component {
                 Created: {moment(blog.created).format('DD/MM/YYYY')}
               </Label>
               <LinkStyled to="/">
-                <Label onClick={() => console.log('Hello')}>
+                <Label onClick={() => this.props.handleClick(blog.label)}>
                   <strong>{blog.label}</strong>
                 </Label>
               </LinkStyled>
