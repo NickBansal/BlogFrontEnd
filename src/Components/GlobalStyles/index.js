@@ -1,6 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { Link } from '@reach/router';
-import { colors, spacing, breakPoints, imageShadow } from 'Components/StyleGuide';
+import {
+  colors, spacing, breakPoints, imageShadow,
+} from 'Components/StyleGuide';
 
 export const GlobalStyle = createGlobalStyle`
   body {

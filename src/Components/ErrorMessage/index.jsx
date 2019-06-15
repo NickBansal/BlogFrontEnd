@@ -1,18 +1,27 @@
 import React from 'react';
 import { bool } from 'prop-types';
 import styled from 'styled-components';
+import { colors } from '../StyleGuide';
+import RefreshBtn from '../RefreshBtn';
+
+const FullMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Message = styled.h2`
-
+  color: ${colors.textColor};
 `;
 Message.displayName = 'Message';
 
 const ErrorMessage = ({ singleBlog }) => {
   const message = singleBlog ? 'Blog does not exist' : 'Something went wrong';
   return (
-    <React.Fragment>
+    <FullMessage>
       <Message>{message}</Message>
-    </React.Fragment>
+      <RefreshBtn text="Return home" />
+    </FullMessage>
   );
 };
 

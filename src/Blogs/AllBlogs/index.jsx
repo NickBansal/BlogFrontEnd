@@ -95,8 +95,8 @@ Label.displayName = 'Label';
 const AllBlogs = ({
   blogs, labels, handleClick, loading, selected,
 }) => (
-    <EveryBlog>
-      {!loading
+  <EveryBlog>
+    {!loading
         && (
           <SideBar
             selected={selected}
@@ -104,34 +104,34 @@ const AllBlogs = ({
             labels={labels}
           />
         )}
-      <div>
-        {loading && <Loading />}
-        {blogs.map(blog => (
-          <IndividualBlog key={blog._id}>
-            <ImageStyled src={blog.image} alt="cat" />
-            <BlogInfo>
-              <div>
-                <LinkStyled to={`/blog/${blog._id}`}>
-                  <BlogTitle>{blog.title}</BlogTitle>
-                </LinkStyled>
-                <Body>{`${blog.body.substring(0, 150)}...`}</Body>
-              </div>
-              <DateAndTags>
-                <Label>
+    <div>
+      {loading && <Loading />}
+      {blogs.map(blog => (
+        <IndividualBlog key={blog._id}>
+          <ImageStyled src={blog.image} alt="cat" />
+          <BlogInfo>
+            <div>
+              <LinkStyled to={`/blog/${blog._id}`}>
+                <BlogTitle>{blog.title}</BlogTitle>
+              </LinkStyled>
+              <Body>{`${blog.body.substring(0, 150)}...`}</Body>
+            </div>
+            <DateAndTags>
+              <Label>
                   in
-                  {' '}
-                  <strong>{blog.label}</strong>
-                </Label>
-                <Label>
-                  {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
-                </Label>
-              </DateAndTags>
-            </BlogInfo>
-          </IndividualBlog>
-        ))}
-      </div>
-    </EveryBlog>
-  );
+                {' '}
+                <strong>{blog.label}</strong>
+              </Label>
+              <Label>
+                {`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}
+              </Label>
+            </DateAndTags>
+          </BlogInfo>
+        </IndividualBlog>
+      ))}
+    </div>
+  </EveryBlog>
+);
 
 AllBlogs.propTypes = {
   blogs: arrayOf(shape({
