@@ -10,7 +10,6 @@ import {
 import { Title, LinkStyled, Image } from 'Components/GlobalStyles';
 import SideBar from 'Blogs/AllBlogs/SideBar';
 import Loading from 'Components/Loading';
-import Search from './Search';
 import Filter from './Filter';
 
 const EveryBlog = styled.div`
@@ -95,7 +94,7 @@ Label.displayName = 'Label';
 
 const Form = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
   margin: 0;
 `;
@@ -106,7 +105,6 @@ const AllBlogs = ({
 }) => (
   <React.Fragment>
     <Form>
-      <Search />
       <Filter />
     </Form>
     <EveryBlog>
