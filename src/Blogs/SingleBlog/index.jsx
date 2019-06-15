@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { getSingleBlog } from 'Utils';
 import { breakPoints, colors, spacing } from 'Components/StyleGuide';
+import { LinkStyled } from 'Components/GlobalStyles'
 import { Title, Image } from 'Components/GlobalStyles';
 import Loading from 'Components/Loading'
 import ErrorMessage from 'Components/ErrorMessage'
@@ -36,7 +37,7 @@ const LabelWrapper = styled.div`
   justify-content: space-around;
   width: 100%;
   max-width: 800px;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   margin-bottom: ${spacing.s2};
 `
@@ -46,6 +47,13 @@ const Label = styled.h4`
   font-size: 15px;
   color: ${colors.textColor};
   font-weight: 100;
+
+  &:nth-child(2) {
+    &:hover {
+      cursor: pointer;
+      color: ${colors.highlightText};
+    }
+  }
 `;
 
 class SingleBlog extends React.Component {
@@ -84,8 +92,14 @@ class SingleBlog extends React.Component {
           <BlogWrapper>
             <Image src={blog.image} alt="cat" />
             <LabelWrapper>
-              <Label>{blog.label}</Label>
-              <Label>Created: {moment(blog.created).format('DD/MM/YYYY')}</Label>
+              <Label>
+                Created: {moment(blog.created).format('DD/MM/YYYY')}
+              </Label>
+              <LinkStyled to="/">
+                <Label onClick={() => console.log('Hello')}>
+                  <strong>{blog.label}</strong>
+                </Label>
+              </LinkStyled>
             </LabelWrapper>
             <BlogTitle>{blog.title}</BlogTitle>
             <BlogBody>{blog.body}</BlogBody>
