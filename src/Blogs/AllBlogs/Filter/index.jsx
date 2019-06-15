@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  spacing, colors,
+  spacing, colors, transitionSpeed,
 } from 'Components/StyleGuide';
 
 const Select = styled.div`
     height: 40px;
-    padding: ${spacing.s1} ${spacing.s2};
+    padding: 0 ${spacing.s2};
     font-size: 18px;
     border-radius: 5px;
     outline: none;
@@ -17,11 +17,24 @@ const Select = styled.div`
 const Selection = styled.div`
     display: flex;
     align-items: center;
-    margin: ${spacing.s1};
+    margin: 0 ${spacing.s1};
 `;
 
 const Input = styled.input`
     margin-right: 8px;
+
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
+const Label = styled.label`
+    &:hover {
+        color: ${colors.highlightText};
+        cursor: pointer;
+    }
+
+    transition: all ${transitionSpeed} ease;
 `;
 
 const Filter = () => (
@@ -33,7 +46,7 @@ const Filter = () => (
         name="drone"
               value="title"
       />
-      <label htmlFor="title">Title</label>
+      <Label htmlFor="title">Title</Label>
     </Selection>
 
     <Selection>
@@ -43,17 +56,17 @@ const Filter = () => (
         name="drone"
               value="created"
       />
-      <label htmlFor="created">Created</label>
+      <Label htmlFor="created">Created</Label>
     </Selection>
 
     <Selection>
       <Input
         type="radio"
-        id="label"
+        id="category"
         name="drone"
-        value="label"
+        value="category"
       />
-      <label htmlFor="label">Label</label>
+      <Label htmlFor="category">Category</Label>
 
     </Selection>
   </Select>
