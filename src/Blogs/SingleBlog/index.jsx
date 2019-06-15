@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import { getSingleBlog } from 'Utils';
 import { breakPoints, colors } from 'Components/StyleGuide';
 import { Title, Image } from 'Components/GlobalStyles';
@@ -28,6 +29,21 @@ const BlogBody = styled.div`
   max-width: 1000px;
   color: ${colors.textColor};
   line-height: 1.2;
+`
+const Created = styled.p`
+  margin: 0
+`
+
+const Label = styled.p`
+  margin: 0   
+`
+
+const LabelWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 `
 
 class SingleBlog extends React.Component {
@@ -65,6 +81,10 @@ class SingleBlog extends React.Component {
         {!loading && !error &&
           <BlogWrapper>
             <Image src={blog.image} alt="cat" />
+            <LabelWrapper>
+              <Label>{blog.label}</Label>
+              <Created>Created: {moment(blog.created).format('DD/MM/YYYY')}</Created>
+            </LabelWrapper>
             <BlogTitle>{blog.title}</BlogTitle>
             <BlogBody>{blog.body}</BlogBody>
           </BlogWrapper>
