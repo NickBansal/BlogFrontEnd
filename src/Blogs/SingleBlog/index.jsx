@@ -7,6 +7,7 @@ import { Title, Image } from 'Components/GlobalStyles';
 const BlogWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `
 
 const BlogTitle = styled(Title)`
