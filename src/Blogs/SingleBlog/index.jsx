@@ -1,18 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { func, string } from 'prop-types';
 import { getSingleBlog } from 'Utils';
-import { breakPoints, colors, spacing, transitionSpeed } from 'Components/StyleGuide';
-import { LinkStyled } from 'Components/GlobalStyles'
-import { Title, Image } from 'Components/GlobalStyles';
-import Loading from 'Components/Loading'
-import ErrorMessage from 'Components/ErrorMessage'
+import {
+  breakPoints, colors, spacing, transitionSpeed,
+} from 'Components/StyleGuide';
+import { LinkStyled, Title, Image } from 'Components/GlobalStyles';
+
+import Loading from 'Components/Loading';
+import ErrorMessage from 'Components/ErrorMessage';
 
 const BlogWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 BlogWrapper.displayName = 'BlogWrapper';
 
 const BlogTitle = styled(Title)`
@@ -30,7 +33,7 @@ const BlogBody = styled.div`
   max-width: 1000px;
   color: ${colors.textColor};
   line-height: 1.2;
-`
+`;
 
 const LabelWrapper = styled.div`
   display: flex;
@@ -40,7 +43,7 @@ const LabelWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   margin-bottom: ${spacing.s2};
-`
+`;
 
 const Label = styled.h4`
   margin: 0;
@@ -64,53 +67,66 @@ class SingleBlog extends React.Component {
     this.state = {
       loading: true,
       error: false,
-      blog: {}
-    }
+      blog: {},
+    };
   }
 
   componentDidMount() {
-    const { id } = this.props
+    const { id } = this.props;
     getSingleBlog(id)
-      .then(blog => {
+      .then((blog) => {
         this.setState({
           loading: false,
-          blog: blog[0]
-        })
+          blog: blog[0],
+        });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
-          error
-        })
-      }
-      )
+          error,
+        });
+      });
   }
 
   render() {
-    const { loading, blog, error } = this.state
+    const { loading, blog, error } = this.state;
+    const { handleClick } = this.props;
     return (
       <React.Fragment>
         {loading && !error && <Loading />}
-        {!loading && !error &&
-          <BlogWrapper>
-            <Image src={blog.image} alt="cat" />
-            <LabelWrapper>
-              <Label>
-                Created: {moment(blog.created).format('DD/MM/YYYY')}
-              </Label>
-              <LinkStyled to="/">
-                <Label onClick={() => this.props.handleClick(blog.label)}>
-                  <strong>{blog.label}</strong>
+        {!loading && !error
+          && (
+            <BlogWrapper>
+              <Image src={blog.image} alt="cat" />
+              <LabelWrapper>
+                <Label>
+                  Created:
+                  {' '}
+                  {moment(blog.created).format('DD/MM/YYYY')}
                 </Label>
-              </LinkStyled>
-            </LabelWrapper>
-            <BlogTitle>{blog.title}</BlogTitle>
-            <BlogBody>{blog.body}</BlogBody>
-          </BlogWrapper>
+                <LinkStyled to="/">
+                  <Label onClick={() => handleClick(blog.label)}>
+                    <strong>{blog.label}</strong>
+                  </Label>
+                </LinkStyled>
+              </LabelWrapper>
+              <BlogTitle>{blog.title}</BlogTitle>
+              <BlogBody>{blog.body}</BlogBody>
+            </BlogWrapper>
+          )
         }
-        {error && <ErrorMessage />}
+        {error && <ErrorMessage singleBlog />}
       </React.Fragment>
-    )
+    );
   }
 }
+
+SingleBlog.propTypes = {
+  handleClick: func.isRequired,
+  id: string,
+};
+
+SingleBlog.defaultProps = {
+  id: '',
+};
 
 export default SingleBlog;

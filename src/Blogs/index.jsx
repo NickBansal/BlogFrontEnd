@@ -8,6 +8,7 @@ import TopNavigation from 'Blogs/TopNavigation';
 import AllBlogs from 'Blogs/AllBlogs';
 import SingleBlog from 'Blogs/SingleBlog';
 import { breakPoints } from 'Components/StyleGuide';
+import ErrorMessage from 'Components/ErrorMessage';
 
 const BlogWrapper = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ class Blogs extends React.Component {
       labels: [],
       loading: true,
       selected: 'All',
+      error: false,
     };
     autobind(this);
   }
@@ -43,7 +45,6 @@ class Blogs extends React.Component {
       });
     }).catch((error) => {
       this.setState({
-        // eslint-disable-next-line react/no-unused-state
         error,
       });
     });
@@ -63,7 +64,7 @@ class Blogs extends React.Component {
 
   render() {
     const {
-      labels, filteredBlogs, loading, selected,
+      labels, filteredBlogs, loading, selected, error,
     } = this.state;
     return (
       <React.Fragment>
@@ -71,14 +72,17 @@ class Blogs extends React.Component {
         <TopNavigation handleClick={this.handleClick} />
         <BlogWrapper>
           <Router>
-            <AllBlogs
-              loading={loading}
-              handleClick={this.handleClick}
-              blogs={filteredBlogs}
-              labels={labels}
-              selected={selected}
-              path="/"
-            />
+            {error && <ErrorMessage path="/" singleBlog={false} />}
+            {!error && (
+              <AllBlogs
+                loading={loading}
+                handleClick={this.handleClick}
+                blogs={filteredBlogs}
+                labels={labels}
+                selected={selected}
+                path="/"
+              />
+            )}
             <SingleBlog
               handleClick={this.handleClick}
               path="/blog/:id"
