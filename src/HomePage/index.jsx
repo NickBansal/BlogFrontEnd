@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalStyle } from 'Components/GlobalStyles';
+import GlobalStyle from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 
 class HomePage extends React.Component {
@@ -21,10 +21,12 @@ class HomePage extends React.Component {
   }
 
   render() {
+    const { allBlogs, error } = this.state;
     return (
       <React.Fragment>
         <GlobalStyle />
-        <h1>BLogs</h1>
+        {allBlogs && <h1>Blogs</h1>}
+        {error && <h1>Error</h1>}
       </React.Fragment>
     );
   }
