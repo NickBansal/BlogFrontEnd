@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import GlobalStyle from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import TopNavigation from './TopNavigation';
+import AllBlogs from './AllBlogs';
 
 const HomePage = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +23,7 @@ const HomePage = () => {
       <GlobalStyle />
       <TopNavigation />
       {loading && <h1>Loading</h1>}
-      {data && <h1>{data.map(blog => <p key={blog._id}>{blog.title}</p>)}</h1>}
+      <AllBlogs data={data} />
       {error && <p>Error</p>}
     </React.Fragment>
   );

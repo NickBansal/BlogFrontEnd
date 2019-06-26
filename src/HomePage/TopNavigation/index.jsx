@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'Components/StyleGuide';
+import { colors, transitionSpeed } from 'Components/StyleGuide';
 
 const NavigationWrapper = styled.div`
-    postion: absolute;
+    postion: sticky;
+    top: 0;
+    left:0;
     width: 100%;
-    background: ${colors.btnBackground};
-    color: ${colors.btnText};
+    background: ${colors.navBackground};
+    color: ${colors.navText};
 `;
 
 const Divider = styled.div`
@@ -15,17 +17,20 @@ const Divider = styled.div`
 
 const Links = styled.h2`
     font-weight: normal;
-    margin: 10px;
-
+    padding: 10px;
+    margin: 0;
     &:hover {
         cursor: pointer;
+        background: ${colors.navHighlight};
+        color: ${colors.navBackground};
     }
+    transition: ${transitionSpeed} ease-in;
 `;
 
 const MaxWidth = styled.div`
-    max-width: 1400px;
+    max-width: 900px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: auto
 `;
 

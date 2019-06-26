@@ -20,8 +20,9 @@ export const colors = {
   textColor: '#577284',
   highlightText: '#91A8D0',
   imageBorder: '#9F9C99',
-  btnText: '#F96714',
-  btnBackground: '#F3E0BE',
+  navText: '#F96714',
+  navBackground: '#F3E0BE',
+  navHighlight: '#9B1B30',
 };
 
 export const transitionSpeed = '0.3s';
