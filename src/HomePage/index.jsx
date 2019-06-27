@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Router } from '@reach/router';
 import GlobalStyle from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
+import { spacing } from 'Components/StyleGuide';
 import TopNavigation from './TopNavigation';
 import AllBlogs from './AllBlogs';
 import Sidebar from './Sidebar';
@@ -15,6 +16,7 @@ const PageWrapper = styled.div`
 `;
 
 const Loading = styled.h1`
+margin-top: ${spacing.s5};
   display: flex;
   justify-content: center;
 `;
@@ -38,10 +40,10 @@ const HomePage = () => {
       <GlobalStyle />
       <TopNavigation />
       {loading && <Loading>Loading....</Loading>}
-      <PageWrapper path="/">
+      <PageWrapper>
         {!loading && <Sidebar labels={data.map(blog => blog.label)} />}
         <Router>
-          <AllBlogs path="/" data={data} loading={loading} />
+          <AllBlogs path="/" data={data} />
         </Router>
       </PageWrapper>
       {error && <p>Error</p>}
