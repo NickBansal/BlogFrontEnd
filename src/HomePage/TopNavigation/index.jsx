@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors, transitionSpeed } from 'Components/StyleGuide';
+import { colors, transitionSpeed, spacing } from 'Components/StyleGuide';
 
 const NavigationWrapper = styled.div`
     postion: sticky;
@@ -30,6 +30,7 @@ const Links = styled.h2`
 const MaxWidth = styled.div`
     max-width: 900px;
     display: flex;
+    padding: 0 ${spacing.s2};
     justify-content: space-between;
     margin: auto
 `;

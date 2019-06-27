@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { } from 'react';
 import {
   arrayOf, shape, string, bool,
 } from 'prop-types';
 import styled from 'styled-components';
-import { colors } from 'Components/StyleGuide';
+import { colors, transitionSpeed } from 'Components/StyleGuide';
 
 const BlogWrapper = styled.div`
   max-width: 800px;
@@ -12,8 +12,8 @@ const BlogWrapper = styled.div`
 `;
 
 const Image = styled.img`
+  height: 250px;
   width: 250px;
-  height: auto;
   border-radius: 10px 50px;
   margin-right: 20px;
 `;
@@ -25,6 +25,7 @@ const Title = styled.h2`
     cursor: pointer;
     color: ${colors.highlightText};
   }
+  transition: ${transitionSpeed};
 `;
 
 const AllBlogs = ({ data }) => (
