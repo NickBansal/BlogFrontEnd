@@ -7,6 +7,7 @@ import { spacing } from 'Components/StyleGuide';
 import TopNavigation from './TopNavigation';
 import AllBlogs from './AllBlogs';
 import Sidebar from './Sidebar';
+import SingleBlog from './SingleBlog';
 
 const PageWrapper = styled.div`
   display: flex;
@@ -42,8 +43,9 @@ const HomePage = () => {
       {loading && <Loading>Loading....</Loading>}
       <PageWrapper>
         {!loading && <Sidebar labels={data.map(blog => blog.label)} />}
-        <Router>
+        <Router primary={false}>
           <AllBlogs path="/" data={data} />
+          <SingleBlog path="/:id" />
         </Router>
       </PageWrapper>
       {error && <p>Error</p>}

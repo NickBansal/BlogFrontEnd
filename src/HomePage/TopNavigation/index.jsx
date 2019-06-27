@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from '@reach/router';
 import { colors, transitionSpeed, spacing } from 'Components/StyleGuide';
 
 const NavigationWrapper = styled.div`
@@ -24,6 +25,11 @@ const Links = styled.h2`
     transition: ${transitionSpeed} ease-in;
 `;
 
+const LinkStyled = styled(Link)`
+    text-decoration: none;
+    color: ${colors.navText};
+`;
+
 const MaxWidth = styled.div`
     max-width: 900px;
     display: flex;
@@ -35,7 +41,9 @@ const MaxWidth = styled.div`
 const TopNavigation = () => (
   <NavigationWrapper>
     <MaxWidth>
-      <Links>Home</Links>
+      <LinkStyled to="/">
+        <Links>Home</Links>
+      </LinkStyled>
       <Divider>
         <Links>Create</Links>
         <Links>Login</Links>

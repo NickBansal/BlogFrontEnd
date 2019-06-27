@@ -3,6 +3,7 @@ import {
   arrayOf, shape, string, bool,
 } from 'prop-types';
 import styled from 'styled-components';
+import { Link } from '@reach/router';
 import { colors, transitionSpeed, spacing } from 'Components/StyleGuide';
 
 const BlogWrapper = styled.div`
@@ -39,6 +40,10 @@ const Title = styled.h2`
   transition: ${transitionSpeed};
 `;
 
+const LinkStyled = styled(Link)`
+    text-decoration: none;
+`;
+
 const AllBlogs = ({ data }) => (
 
   <FullWrapper>
@@ -48,7 +53,9 @@ const AllBlogs = ({ data }) => (
         <BlogWrapper lastElement={lastElement} key={blog._id}>
           <Image src={blog.image} alt="blog" />
           <div>
-            <Title>{blog.title}</Title>
+            <LinkStyled to={`/${blog._id}`}>
+              <Title>{blog.title}</Title>
+            </LinkStyled>
             <p>{blog.body.substring(0, 100)}</p>
           </div>
         </BlogWrapper>
