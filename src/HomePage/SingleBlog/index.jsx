@@ -4,12 +4,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { getSingleBlog } from 'Utils';
 import { spacing, colors, breakPoints } from 'Components/StyleGuide';
-
-const Loading = styled.h1`
-  margin-top: ${spacing.s5};
-  display: flex;
-  justify-content: center;
-`;
+import Loading from 'Components/Loading';
 
 const BlogWrapper = styled.div`
   display: flex;
@@ -71,8 +66,8 @@ const SingleBlog = ({ id }) => {
 
   return (
     <BlogWrapper>
-      {loading && <Loading>Loading....</Loading>}
-      {error && <Loading>Loading....</Loading>}
+      {loading && <Loading />}
+      {error && <Loading />}
       <Image src={blog.image} alt="blog" />
       <Title>{blog.title}</Title>
       <Body>{blog.body}</Body>
