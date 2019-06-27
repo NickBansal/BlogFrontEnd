@@ -1,18 +1,37 @@
 import React from 'react';
 import { arrayOf, string } from 'prop-types';
 import styled from 'styled-components';
-import { spacing, colors } from 'Components/StyleGuide';
+import {
+  spacing, colors, transitionSpeed, breakPoints,
+} from 'Components/StyleGuide';
 
 const SidebarWrapper = styled.div`
     display: flex;
     flex-direction: column
-    flex-basis: 20%
+    display: none;
     padding: ${spacing.s2};
+
+    @media (min-width: ${breakPoints.tablet}) {
+        display: block;
+    }
 `;
 
 const Title = styled.h2`
-  color: ${colors.textColor};
-  `;
+    color: ${colors.textColor};
+    margin: ${spacing.s1} 0;
+`;
+
+const Label = styled.p`
+    margin: 0 0 0 ${spacing.s2};
+    color: ${colors.textColor};
+
+      
+  &:hover {
+    cursor: pointer;
+    color: ${colors.highlightText};
+  }
+  transition: ${transitionSpeed};
+`;
 
 const Sidebar = ({ labels }) => {
   const labelObj = labels.reduce((acc, value) => {
@@ -27,9 +46,9 @@ const Sidebar = ({ labels }) => {
     <SidebarWrapper>
       <Title>Categories</Title>
       {objKeys.map((label, index) => (
-        <p key={String(index)}>
+        <Label key={String(index)}>
           {`${label} (${labelObj[label]})`}
-        </p>
+        </Label>
       ))}
     </SidebarWrapper>
   );
