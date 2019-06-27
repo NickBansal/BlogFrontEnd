@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import { colors, transitionSpeed } from 'Components/StyleGuide';
 
 const BlogWrapper = styled.div`
-  max-width: 800px;
   margin: 20px auto;
   display: flex;
+  flex-basis: 80%;
 `;
 
 const FullWrapper = styled.div`

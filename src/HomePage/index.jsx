@@ -8,7 +8,9 @@ import Sidebar from './Sidebar';
 
 const PageWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
+  margin: auto;
+  max-width: 800px;
 `;
 
 const HomePage = () => {
