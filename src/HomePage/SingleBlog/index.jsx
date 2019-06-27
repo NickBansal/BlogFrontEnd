@@ -53,18 +53,21 @@ const Bold = styled.strong`
 `;
 
 const SingleBlog = ({ id }) => {
-  const [blog, setBlog] = useState({});
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [state, setState] = useState({
+    blog: [],
+    error: false,
+    loading: true,
+  });
 
   useEffect(() => {
     getSingleBlog(id)
-      .then((data) => {
-        setBlog(data[0]);
-        setLoading(false);
+      .then((blogs) => {
+        setState({ blog: blogs[0], loading: false });
       })
-      .catch(err => setError(err));
+      .catch(() => setState({ error: true }));
   }, [id]);
+
+  const { blog, loading, error } = state;
 
   return (
     <BlogWrapper>
@@ -76,7 +79,7 @@ const SingleBlog = ({ id }) => {
       <BlogInfo>
         <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>
         <p>
-                    in
+          in
           {' '}
           <Bold>{blog.label}</Bold>
         </p>

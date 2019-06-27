@@ -23,18 +23,21 @@ margin-top: ${spacing.s5};
 `;
 
 const HomePage = () => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [state, setState] = useState({
+    data: [],
+    error: false,
+    loading: true,
+  });
 
   useEffect(() => {
     getAllBlogs()
       .then((blogs) => {
-        setData(blogs[0]);
-        setLoading(false);
+        setState({ data: blogs[0], loading: false });
       })
-      .catch(() => setError(true));
+      .catch(() => setState({ error: true }));
   }, []);
+
+  const { data, loading, error } = state;
 
   return (
     <React.Fragment>

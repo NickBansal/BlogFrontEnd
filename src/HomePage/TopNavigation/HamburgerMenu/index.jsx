@@ -21,6 +21,11 @@ const Container = styled.div`
     @media (min-width: ${breakPoints.tablet}) {
         display: none;
     }
+
+    &:hover {
+        cursor: pointer;
+        background: ${colors.navHighlight};
+    }
 `;
 
 const Hamburger = () => (

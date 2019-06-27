@@ -15,7 +15,7 @@ const BlogWrapper = styled.div`
   width: 80%;
   padding: ${spacing.s2};
   align-items: center;
-  border-bottom: 2px solid rgba(0,0,0,.1);
+  border-bottom: ${props => (props.lastElement ? 'none' : '2px solid rgba(0,0,0,.1)')};
   
   @media (min-width: ${breakPoints.mobile}) {
     box-shadow: 0 30px 40px rgba(0,0,0,.1);
