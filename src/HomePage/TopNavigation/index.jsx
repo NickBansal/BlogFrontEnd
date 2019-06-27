@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
-import { colors, transitionSpeed, spacing } from 'Components/StyleGuide';
+import {
+  colors, transitionSpeed, spacing, breakPoints,
+} from 'Components/StyleGuide';
+import HamburgerMenu from './HamburgerMenu';
 
 const NavigationWrapper = styled.div`
     width: 100%;
@@ -10,7 +13,11 @@ const NavigationWrapper = styled.div`
 `;
 
 const Divider = styled.div`
-    display: flex;
+    display: none;
+
+    @media (min-width: ${breakPoints.tablet}) {
+      display: flex;
+    }
 `;
 
 const Links = styled.h2`
@@ -44,6 +51,7 @@ const TopNavigation = () => (
       <LinkStyled to="/">
         <Links>Home</Links>
       </LinkStyled>
+      <HamburgerMenu />
       <Divider>
         <Links>Create</Links>
         <Links>Login</Links>
