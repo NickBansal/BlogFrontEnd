@@ -11,6 +11,11 @@ const BlogWrapper = styled.div`
   display: flex;
 `;
 
+const FullWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Image = styled.img`
   height: 250px;
   width: 250px;
@@ -29,7 +34,7 @@ const Title = styled.h2`
 `;
 
 const AllBlogs = ({ data }) => (
-  <React.Fragment>
+  <FullWrapper>
     {data.map(blog => (
       <BlogWrapper key={blog._id}>
         <Image src={blog.image} alt="blog" />
@@ -39,7 +44,7 @@ const AllBlogs = ({ data }) => (
         </div>
       </BlogWrapper>
     ))}
-  </React.Fragment>
+  </FullWrapper>
 );
 
 AllBlogs.propTypes = {
