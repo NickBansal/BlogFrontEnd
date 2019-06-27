@@ -3,22 +3,27 @@ import {
   arrayOf, shape, string, bool,
 } from 'prop-types';
 import styled from 'styled-components';
-import { colors, transitionSpeed } from 'Components/StyleGuide';
+import { colors, transitionSpeed, spacing } from 'Components/StyleGuide';
 
 const BlogWrapper = styled.div`
-  margin: 20px auto;
+  margin: 0 auto;
   display: flex;
-  flex-basis: 80%;
+  width: 80%;
+  padding: ${spacing.s2}
+  border-bottom: 2px solid rgba(0,0,0,.15);
+  box-shadow: 0 30px 40px rgba(0,0,0,.1);
 `;
 
 const FullWrapper = styled.div`
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const Image = styled.img`
-height: 250px;
-width: 250px;
+height: 150px;
+width: 150px;
   border-radius: 10px 50px;
   margin-right: 20px;
 `;
@@ -35,15 +40,18 @@ const Title = styled.h2`
 
 const AllBlogs = ({ data }) => (
   <FullWrapper>
-    {data.map(blog => (
-      <BlogWrapper key={blog._id}>
-        <Image src={blog.image} alt="blog" />
-        <div>
-          <Title>{blog.title}</Title>
-          <p>{blog.body.substring(0, 100)}</p>
-        </div>
-      </BlogWrapper>
-    ))}
+    {data.map((blog, index) => {
+      const lastElement = index === data.length - 1;
+      return (
+        <BlogWrapper lastElement={lastElement} key={blog._id}>
+          <Image src={blog.image} alt="blog" />
+          <div>
+            <Title>{blog.title}</Title>
+            <p>{blog.body.substring(0, 100)}</p>
+          </div>
+        </BlogWrapper>
+      );
+    })}
   </FullWrapper>
 );
 

@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import { colors, transitionSpeed, spacing } from 'Components/StyleGuide';
 
 const NavigationWrapper = styled.div`
-    postion: sticky;
-    top: 0;
-    left:0;
     width: 100%;
     background: ${colors.navBackground};
     color: ${colors.navText};
