@@ -37,7 +37,7 @@ const HomePage = () => {
     <React.Fragment>
       <GlobalStyle />
       <TopNavigation />
-      {loading && <Loading />}
+      {!loading && <Loading />}
       <PageWrapper>
         {!loading && <Sidebar labels={data.map(blog => blog.label)} />}
         <Router primary={false}>

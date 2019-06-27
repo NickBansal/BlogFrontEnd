@@ -15,7 +15,7 @@ const BlogWrapper = styled.div`
   width: 80%;
   padding: ${spacing.s2};
   align-items: center;
-  border-bottom: ${props => (props.lastElement ? 'none' : '2px solid rgba(0,0,0,.1)')};
+  border-bottom: ${({ lastElement }) => (lastElement ? 'none' : '2px solid rgba(0,0,0,.1)')};
   
   @media (min-width: ${breakPoints.mobile}) {
     box-shadow: 0 20px 40px rgba(0,0,0,.1);
@@ -77,8 +77,7 @@ const AllBlogs = ({ data }) => (
               <Title>{blog.title}</Title>
             </LinkStyled>
             <Body>
-              {blog.body.substring(0, 100)}
-              ...
+              {`${blog.body.substring(0, 100)}...`}
             </Body>
           </div>
         </BlogWrapper>
