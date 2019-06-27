@@ -67,7 +67,6 @@ const SingleBlog = ({ id }) => {
   return (
     <BlogWrapper>
       {loading && <Loading />}
-      {error && <Loading />}
       <Image src={blog.image} alt="blog" />
       <Title>{blog.title}</Title>
       <Body>{blog.body}</Body>
@@ -79,6 +78,7 @@ const SingleBlog = ({ id }) => {
           <Bold>{blog.label}</Bold>
         </p>
       </BlogInfo>
+      {error && <Loading />}
     </BlogWrapper>
   );
 };
