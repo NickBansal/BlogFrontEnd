@@ -15,7 +15,7 @@ const Divider = styled.div`
 
 const Links = styled.h2`
     font-weight: normal;
-    padding: 10px;
+    padding: ${spacing.s1};
     margin: 0;
     &:hover {
         cursor: pointer;

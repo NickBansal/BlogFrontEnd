@@ -24,8 +24,8 @@ const FullWrapper = styled.div`
 `;
 
 const Image = styled.img`
-height: 150px;
-width: 150px;
+  height: 150px;
+  width: 150px;
   border-radius: 10px 50px;
   margin-right: 20px;
 `;
