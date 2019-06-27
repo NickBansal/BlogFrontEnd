@@ -45,6 +45,13 @@ const BlogInfo = styled.div`
   width: 100%;
 `;
 
+const Bold = styled.strong`
+  &:hover {
+      cursor: pointer;
+      color: ${colors.highlightText};
+  }
+`;
+
 const SingleBlog = ({ id }) => {
   const [blog, setBlog] = useState({});
   const [error, setError] = useState(false);
@@ -57,7 +64,7 @@ const SingleBlog = ({ id }) => {
         setLoading(false);
       })
       .catch(err => setError(err));
-  }, []);
+  }, [id]);
 
   return (
     <BlogWrapper>
@@ -68,7 +75,11 @@ const SingleBlog = ({ id }) => {
       <Body>{blog.body}</Body>
       <BlogInfo>
         <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>
-        <p><strong>{`in ${blog.label}`}</strong></p>
+        <p>
+                    in
+          {' '}
+          <Bold>{blog.label}</Bold>
+        </p>
       </BlogInfo>
     </BlogWrapper>
   );
