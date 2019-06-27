@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { Router } from '@reach/router';
 import GlobalStyle from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import TopNavigation from './TopNavigation';
@@ -11,6 +12,11 @@ const PageWrapper = styled.div`
   flex-direction: row-reverse;
   margin: auto;
   max-width: 800px;
+`;
+
+const Loading = styled.h1`
+  display: flex;
+  justify-content: center;
 `;
 
 const HomePage = () => {
@@ -31,11 +37,13 @@ const HomePage = () => {
     <React.Fragment>
       <GlobalStyle />
       <TopNavigation />
-      <PageWrapper>
-        <Sidebar labels={data.map(blog => blog.label)} />
-        <AllBlogs data={data} />
+      {loading && <Loading>Loading....</Loading>}
+      <PageWrapper path="/">
+        {!loading && <Sidebar labels={data.map(blog => blog.label)} />}
+        <Router>
+          <AllBlogs path="/" data={data} loading={loading} />
+        </Router>
       </PageWrapper>
-      {loading && <h1>Loading</h1>}
       {error && <p>Error</p>}
     </React.Fragment>
   );

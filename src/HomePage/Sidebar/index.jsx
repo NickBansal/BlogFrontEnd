@@ -9,7 +9,7 @@ const SidebarWrapper = styled.div`
     display: flex;
     flex-direction: column
     display: none;
-    padding: ${spacing.s2};
+    padding: 50px ${spacing.s2};
 
     @media (min-width: ${breakPoints.tablet}) {
         display: block;

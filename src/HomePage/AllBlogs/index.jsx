@@ -9,8 +9,9 @@ const BlogWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   width: 80%;
-  padding: ${spacing.s2}
-  border-bottom: 2px solid rgba(0,0,0,.15);
+  padding: ${spacing.s2};
+  align-items: center;
+  border-bottom: 2px solid rgba(0,0,0,.1);
   box-shadow: 0 30px 40px rgba(0,0,0,.1);
 `;
 
@@ -39,6 +40,7 @@ const Title = styled.h2`
 `;
 
 const AllBlogs = ({ data }) => (
+
   <FullWrapper>
     {data.map((blog, index) => {
       const lastElement = index === data.length - 1;
