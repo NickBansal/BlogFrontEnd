@@ -1,6 +1,7 @@
 import React from 'react';
-import { arrayOf, string } from 'prop-types';
+import { arrayOf, string, func } from 'prop-types';
 import styled from 'styled-components';
+import { Link } from '@reach/router';
 import {
   spacing, colors, transitionSpeed, breakPoints,
 } from 'Components/StyleGuide';
@@ -33,7 +34,7 @@ const Label = styled.p`
   transition: ${transitionSpeed};
 `;
 
-const Sidebar = ({ labels }) => {
+const Sidebar = ({ labels, handleClick }) => {
   const labelObj = labels.reduce((acc, value) => {
     // eslint-disable-next-line no-unused-expressions
     acc[value] ? acc[value] += 1 : acc[value] = 1;
@@ -46,9 +47,11 @@ const Sidebar = ({ labels }) => {
     <SidebarWrapper>
       <Title>Categories</Title>
       {objKeys.map((label, index) => (
-        <Label key={String(index)}>
-          {`${label} (${labelObj[label]})`}
-        </Label>
+        <Link to="/">
+          <Label key={String(index)} onClick={() => handleClick(label)}>
+            {`${label} (${labelObj[label]})`}
+          </Label>
+        </Link>
       ))}
     </SidebarWrapper>
   );
@@ -56,6 +59,7 @@ const Sidebar = ({ labels }) => {
 
 Sidebar.propTypes = {
   labels: arrayOf(string).isRequired,
+  handleClick: func.isRequired,
 };
 
 export default Sidebar;

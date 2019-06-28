@@ -12,7 +12,7 @@ const Line = styled.div`
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    border: 2px solid ${colors.navText};
+    border: 1px solid ${colors.navText};
     justify-content: center;
     margin: 4px 8px;
     padding: 2px 6px;
