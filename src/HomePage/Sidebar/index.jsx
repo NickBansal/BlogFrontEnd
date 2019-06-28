@@ -21,6 +21,7 @@ const Title = styled.h2`
   color: ${colors.textColor};
   margin: ${spacing.s1} 0;
 `;
+Title.displayName = 'Title';
 
 const Label = styled.p`
   margin: 0 0 0 ${spacing.s2};
@@ -32,6 +33,7 @@ const Label = styled.p`
   }
   transition: ${transitionSpeed};
 `;
+Label.displayName = 'Label';
 
 const LinkStyled = styled(Link)`
   text-decoration: none;
@@ -51,8 +53,8 @@ const Sidebar = ({ labels, handleClick }) => {
     <SidebarWrapper>
       <Title>Categories</Title>
       {objKeys.map((label, index) => (
-        <LinkStyled to="/">
-          <Label key={String(index)} onClick={() => handleClick(label)}>
+        <LinkStyled key={String(index)} to="/">
+          <Label onClick={() => handleClick(label)}>
             {`${label} (${labelObj[label]})`}
           </Label>
         </LinkStyled>
