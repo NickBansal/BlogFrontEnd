@@ -22,6 +22,7 @@ const BlogWrapper = styled.div`
     flex-direction: row;
   }
 `;
+BlogWrapper.displayName = 'BlogWrapper';
 
 const FullWrapper = styled.div`
   margin: 40px auto;
@@ -36,6 +37,7 @@ const Image = styled.img`
   border-radius: 10px 50px;
   margin-right: 20px;
 `;
+Image.displayName = 'Image';
 
 const Title = styled.h2`
   color: ${colors.textColor};
@@ -50,8 +52,8 @@ const Title = styled.h2`
     font-size: 24px;
     text-align: left;
   }
-  
 `;
+Title.displayName = 'Title';
 
 const LinkStyled = styled(Link)`
     text-decoration: none;
