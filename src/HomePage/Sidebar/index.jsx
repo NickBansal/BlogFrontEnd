@@ -7,31 +7,35 @@ import {
 } from 'Components/StyleGuide';
 
 const SidebarWrapper = styled.div`
-    display: flex;
-    flex-direction: column
-    display: none;
-    padding: 50px ${spacing.s2};
+  display: flex;
+  flex-direction: column
+  display: none;
+  padding: 50px ${spacing.s2};
 
-    @media (min-width: ${breakPoints.tablet}) {
-        display: block;
-    }
+  @media (min-width: ${breakPoints.tablet}) {
+    display: block;
+  }
 `;
 
 const Title = styled.h2`
-    color: ${colors.textColor};
-    margin: ${spacing.s1} 0;
+  color: ${colors.textColor};
+  margin: ${spacing.s1} 0;
 `;
 
 const Label = styled.p`
-    margin: 0 0 0 ${spacing.s2};
-    color: ${colors.textColor};
+  margin: 0 0 0 ${spacing.s2};
+  color: ${colors.textColor};
 
-      
   &:hover {
     cursor: pointer;
     color: ${colors.highlightText};
   }
   transition: ${transitionSpeed};
+`;
+
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: ${colors.navText};
 `;
 
 const Sidebar = ({ labels, handleClick }) => {
@@ -47,11 +51,11 @@ const Sidebar = ({ labels, handleClick }) => {
     <SidebarWrapper>
       <Title>Categories</Title>
       {objKeys.map((label, index) => (
-        <Link to="/">
+        <LinkStyled to="/">
           <Label key={String(index)} onClick={() => handleClick(label)}>
             {`${label} (${labelObj[label]})`}
           </Label>
-        </Link>
+        </LinkStyled>
       ))}
     </SidebarWrapper>
   );

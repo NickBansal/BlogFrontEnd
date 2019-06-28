@@ -8,6 +8,7 @@ const Line = styled.div`
     background-color: ${colors.navText};
     margin: 3px 0;
 `;
+Line.displayName = 'Line';
 
 const Container = styled.div`
     display: flex;
@@ -27,6 +28,7 @@ const Container = styled.div`
         background: ${colors.navHighlight};
     }
 `;
+Container.displayName = 'Container';
 
 const Hamburger = () => (
   <Container>
