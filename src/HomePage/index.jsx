@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Router } from '@reach/router';
 import GlobalStyle from 'Components/GlobalStyles';
@@ -32,10 +32,11 @@ const HomePage = () => {
       .catch(() => setState({ error: true }));
   }, []);
 
-  const filterBlogs = useCallback((value) => {
-    const filtered = state.data.filter(blog => blog.label === value);
+  const filterBlogs = (value) => {
+    const { data } = state;
+    const filtered = value === 'All' ? data : data.filter(blog => blog.label === value);
     setState({ ...state, filtered });
-  }, [state]);
+  };
 
   const {
     data, loading, error, filtered,
@@ -46,7 +47,7 @@ const HomePage = () => {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <TopNavigation />
+      <TopNavigation handleClick={filterBlogs} />
       {loading && <Loading />}
       <PageWrapper>
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}

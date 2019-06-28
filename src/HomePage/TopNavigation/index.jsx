@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
+import { func } from 'prop-types';
 import {
   colors, transitionSpeed, spacing, breakPoints,
 } from 'Components/StyleGuide';
@@ -45,11 +46,11 @@ const MaxWidth = styled.div`
     margin: auto;
 `;
 
-const TopNavigation = () => (
+const TopNavigation = ({ handleClick }) => (
   <NavigationWrapper>
     <MaxWidth>
       <LinkStyled to="/">
-        <Links>Home</Links>
+        <Links onClick={() => handleClick('All')}>Home</Links>
       </LinkStyled>
       <HamburgerMenu />
       <Divider>
@@ -58,7 +59,10 @@ const TopNavigation = () => (
       </Divider>
     </MaxWidth>
   </NavigationWrapper>
-
 );
+
+TopNavigation.propTypes = {
+  handleClick: func.isRequired,
+};
 
 export default TopNavigation;
