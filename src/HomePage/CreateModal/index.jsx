@@ -8,7 +8,7 @@ import Cross from './Cross';
 import Form from './Form';
 
 const ModalWrapper = styled.div`
-  height: 300px;
+  height: auto;
   width: 95%;
   border: 2px solid rgba(0,0,0,.1);
   box-shadow: ${boxShadow};
