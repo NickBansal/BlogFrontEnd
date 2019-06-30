@@ -23,17 +23,21 @@ const HomePage = () => {
     error: false,
     loading: true,
     filtered: [],
+    create: false,
   });
 
   useEffect(() => {
     getAllBlogs()
       .then((blogs) => {
         setState({
-          data: blogs[0], loading: false, filtered: blogs[0], create: false,
+          ...state,
+          data: blogs[0],
+          loading: false,
+          filtered: blogs[0],
         });
       })
       .catch(() => setState({ error: true }));
-  }, []);
+  }, [state]);
 
   const filterBlogs = (value) => {
     const { data } = state;
