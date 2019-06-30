@@ -25,3 +25,7 @@ export const colors = {
 };
 
 export const transitionSpeed = '0.3s';
+
+export const boxShadow = '0 20px 40px rgba(0,0,0,.1)';
+
+export const imageRadius = '10px 50px';

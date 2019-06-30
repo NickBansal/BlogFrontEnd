@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from '@reach/router';
 import {
-  colors, transitionSpeed, spacing, breakPoints,
+  colors, transitionSpeed, spacing, breakPoints, boxShadow, imageRadius,
 } from 'Components/StyleGuide';
 
 const BlogWrapper = styled.div`
@@ -19,7 +19,7 @@ const BlogWrapper = styled.div`
   border-bottom: ${({ lastElement }) => (lastElement ? 'none' : '2px solid rgba(0,0,0,.1)')};
   
   @media (min-width: ${breakPoints.mobile}) {
-    box-shadow: 0 20px 40px rgba(0,0,0,.1);
+    box-shadow: ${boxShadow};
     flex-direction: row;
   }
 `;
@@ -35,7 +35,7 @@ const FullWrapper = styled.div`
 const Image = styled.img`
   height: 150px;
   width: 150px;
-  border-radius: 10px 50px;
+  border-radius: ${imageRadius};
   margin-right: 20px;
 `;
 Image.displayName = 'Image';

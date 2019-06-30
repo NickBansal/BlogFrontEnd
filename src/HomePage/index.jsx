@@ -8,6 +8,7 @@ import TopNavigation from './TopNavigation';
 import AllBlogs from './AllBlogs';
 import Sidebar from './Sidebar';
 import SingleBlog from './SingleBlog';
+import CreateModal from './CreateModal';
 
 const PageWrapper = styled.div`
   display: flex;
@@ -27,7 +28,9 @@ const HomePage = () => {
   useEffect(() => {
     getAllBlogs()
       .then((blogs) => {
-        setState({ data: blogs[0], loading: false, filtered: blogs[0] });
+        setState({
+          data: blogs[0], loading: false, filtered: blogs[0], create: false,
+        });
       })
       .catch(() => setState({ error: true }));
   }, []);
@@ -38,8 +41,12 @@ const HomePage = () => {
     setState({ ...state, filtered });
   };
 
+  const openCreate = () => {
+    setState({ ...state, create: !state.create });
+  };
+
   const {
-    data, loading, error, filtered,
+    data, loading, error, filtered, create,
   } = state;
 
   const labelArray = data.map(blog => blog.label);
@@ -47,8 +54,9 @@ const HomePage = () => {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <TopNavigation handleClick={filterBlogs} />
+      <TopNavigation handleClick={filterBlogs} openCreate={openCreate} />
       {loading && <Loading />}
+      {create && <CreateModal />}
       <PageWrapper>
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>

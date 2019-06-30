@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Link } from '@reach/router';
 import { getSingleBlog } from 'Utils';
 import {
-  spacing, colors, breakPoints, transitionSpeed,
+  spacing, colors, breakPoints, transitionSpeed, imageRadius,
 } from 'Components/StyleGuide';
 import Loading from 'Components/Loading';
 
@@ -18,7 +18,7 @@ const BlogWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  border-radius: 10px 50px;
+  border-radius: ${imageRadius};
   width: 100%;
 
   @media (min-width: ${breakPoints.tablet}) {

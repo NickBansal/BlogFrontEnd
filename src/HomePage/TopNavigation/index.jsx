@@ -47,7 +47,7 @@ const MaxWidth = styled.div`
   margin: auto;
 `;
 
-const TopNavigation = ({ handleClick }) => (
+const TopNavigation = ({ handleClick, openCreate }) => (
   <NavigationWrapper>
     <MaxWidth>
       <LinkStyled to="/">
@@ -55,7 +55,7 @@ const TopNavigation = ({ handleClick }) => (
       </LinkStyled>
       <HamburgerMenu />
       <Divider>
-        <Links>Create</Links>
+        <Links onClick={openCreate}>Create</Links>
         <Links>Login</Links>
       </Divider>
     </MaxWidth>
@@ -64,6 +64,7 @@ const TopNavigation = ({ handleClick }) => (
 
 TopNavigation.propTypes = {
   handleClick: func.isRequired,
+  openCreate: func.isRequired,
 };
 
 export default TopNavigation;
