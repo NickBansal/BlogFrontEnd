@@ -74,23 +74,25 @@ const SingleBlog = ({ id, handleClick }) => {
   const { blog, loading, error } = state;
 
   return (
-    <BlogWrapper>
+    <React.Fragment>
       {loading && <Loading />}
-      <Image src={blog.image} alt="blog" />
-      <Title>{blog.title}</Title>
-      <Body>{blog.body}</Body>
-      <BlogInfo>
-        <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>
-        <p>
-          in
-          {' '}
-          <LinkStyled to="/">
-            <Bold onClick={() => handleClick(blog.label)}>{blog.label}</Bold>
-          </LinkStyled>
-        </p>
-      </BlogInfo>
-      {error && <Loading />}
-    </BlogWrapper>
+      <BlogWrapper>
+        <Image src={blog.image} alt="blog" />
+        <Title>{blog.title}</Title>
+        <Body>{blog.body}</Body>
+        <BlogInfo>
+          {blog.created && <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>}
+          <p>
+            in
+            {' '}
+            <LinkStyled to="/">
+              <Bold onClick={() => handleClick(blog.label)}>{blog.label}</Bold>
+            </LinkStyled>
+          </p>
+        </BlogInfo>
+        {error && <Loading />}
+      </BlogWrapper>
+    </React.Fragment>
   );
 };
 
