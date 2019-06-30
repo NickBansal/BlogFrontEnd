@@ -19,6 +19,7 @@ const PageWrapper = styled.div`
   filter: ${({ create }) => (create ? 'grayscale(30%) blur(5px)' : 'none')};
   transition: ${transitionSpeed};
   transition-delay: ${transitionSpeed};
+  pointer-events: ${({ create }) => (create ? 'none' : 'auto')};;
 `;
 
 const HomePage = () => {
