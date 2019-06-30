@@ -13,7 +13,7 @@ const ModalWrapper = styled.div`
   border: 2px solid rgba(0,0,0,.1);
   box-shadow: ${boxShadow};
   position: absolute;
-  top: ${props => (props.create ? '35%' : '-20%')};
+  top: ${props => (props.create ? '45%' : '-30%')};
   left: 50%;
   z-index: 100;
   transform: translate(-50%, -50%);

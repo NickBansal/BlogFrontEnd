@@ -35,6 +35,7 @@ const HomePage = () => {
     getAllBlogs()
       .then((blogs) => {
         setState({
+          create: false,
           data: blogs[0],
           loading: false,
           filtered: blogs[0],
@@ -64,7 +65,7 @@ const HomePage = () => {
       <GlobalStyle />
       <TopNavigation handleClick={filterBlogs} openCreate={openCreate} />
       {loading && <Loading />}
-      <CreateModal create={create} openCreate={openCreate || false} />
+      <CreateModal create={create} openCreate={openCreate} />
       <PageWrapper create={create}>
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>

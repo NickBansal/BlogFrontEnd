@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { spacing, colors } from 'Components/StyleGuide';
+import { spacing, colors, transitionSpeed } from 'Components/StyleGuide';
 
 const FormStyled = styled.form`
   display: flex;
@@ -14,6 +14,10 @@ const InputStyled = styled.input`
   padding: 0 ${spacing.s1};
   font-size: 20px;
   border-radius: 4px;
+`;
+
+const TextArea = styled(InputStyled)`
+  height: 200px;
 `;
 
 const Label = styled.label`
@@ -30,8 +34,38 @@ const Title = styled.p`
   width: 13%;
 `;
 
+const SubmitStyled = styled.button`
+  margin: ${spacing.s2} auto ${spacing.s1};
+  width: 20%;
+  font-size: 20px;
+  height: 40px;
+  border-radius: 10px;
+  border: solid 3px ${colors.navHighlight};
+  color: ${colors.navHighlight};
+
+  &:hover {
+    cursor: pointer;
+    background: ${colors.navHighlight};
+    color: ${colors.navBackground};
+  }
+
+  &:focus {
+    outline: none;
+  }
+  transition: ${transitionSpeed};
+`;
+
 const Form = () => (
-  <FormStyled onSubmit={e => e.stopPropagation()}>
+  <FormStyled onSubmit={(e) => {
+    e.preventDefault();
+    console.log({
+      title: e.target[0].value,
+      label: e.target[1].value,
+      Image: e.target[2].value,
+      body: e.target[3].value,
+    });
+  }}
+  >
     <Label>
       <Title>Title:</Title>
       <InputStyled id="title" type="text" placeholder="Title..." />
@@ -46,9 +80,9 @@ const Form = () => (
     </Label>
     <Label>
       <Title>Body:</Title>
-      <InputStyled type="textarea" placeholder="Body..." />
+      <TextArea rows="4" cols="70" wrap="hard" />
     </Label>
-    <input type="submit" />
+    <SubmitStyled type="submit">Submit</SubmitStyled>
   </FormStyled>
 );
 
