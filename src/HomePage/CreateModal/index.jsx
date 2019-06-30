@@ -16,10 +16,10 @@ const ModalWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  z-index: ${props => (props.create ? 0 : 100)}
   opacity: ${props => (props.create ? 1 : 0)}
   transition: 0.4s ease-in;
 `;
+ModalWrapper.displayName = 'ModalWrapper';
 
 const Title = styled.p`
   font-size: 24px;
