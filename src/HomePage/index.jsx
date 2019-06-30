@@ -53,7 +53,7 @@ const HomePage = () => {
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>
           <AllBlogs path="/" data={filtered} />
-          <SingleBlog path="/:id" />
+          <SingleBlog path="/:id" handleClick={filterBlogs} />
         </Router>
       </PageWrapper>
       {error && <p>Error</p>}

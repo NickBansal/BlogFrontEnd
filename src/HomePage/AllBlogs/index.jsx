@@ -1,8 +1,9 @@
 import React, { } from 'react';
 import {
-  arrayOf, shape, string, bool,
+  arrayOf, shape, string, bool, instanceOf, oneOfType,
 } from 'prop-types';
 import styled from 'styled-components';
+import moment from 'moment';
 import { Link } from '@reach/router';
 import {
   colors, transitionSpeed, spacing, breakPoints,
@@ -61,9 +62,23 @@ const LinkStyled = styled(Link)`
 
 const Body = styled.p`
   text-align: center;
+  color: ${colors.textColor};
+  margin: ${spacing.s1} 0 0 0;
   @media (min-width: ${breakPoints.mobile}) {
     text-align: left;
   }
+`;
+
+const BlogInfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: ${spacing.s2};
+`;
+
+const Info = styled.p`
+  color: ${colors.textColor};
+  margin: 0;
+  font-size: 13px;
 `;
 
 const AllBlogs = ({ data }) => (
@@ -81,6 +96,10 @@ const AllBlogs = ({ data }) => (
             <Body>
               {`${blog.body.substring(0, 100)}...`}
             </Body>
+            <BlogInfoWrapper>
+              <Info>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</Info>
+              <Info>{`Label: ${blog.label}`}</Info>
+            </BlogInfoWrapper>
           </div>
         </BlogWrapper>
       );
@@ -94,7 +113,7 @@ AllBlogs.propTypes = {
     title: string,
     edited: bool,
     body: string,
-    created: string,
+    created: oneOfType([string, instanceOf(Date)]),
     image: string,
     label: string,
   })).isRequired,

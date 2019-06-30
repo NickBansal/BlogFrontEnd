@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
+import { Link } from '@reach/router';
 import { getSingleBlog } from 'Utils';
-import { spacing, colors, breakPoints } from 'Components/StyleGuide';
+import {
+  spacing, colors, breakPoints, transitionSpeed,
+} from 'Components/StyleGuide';
 import Loading from 'Components/Loading';
 
 const BlogWrapper = styled.div`
@@ -42,12 +45,18 @@ const BlogInfo = styled.div`
 
 const Bold = styled.strong`
   &:hover {
-      cursor: pointer;
-      color: ${colors.highlightText};
+    cursor: pointer;
+    color: ${colors.highlightText};
   }
 `;
 
-const SingleBlog = ({ id }) => {
+const LinkStyled = styled(Link)`
+  color: ${colors.textColor};
+  text-decoration: none;
+  transition: ${transitionSpeed};
+`;
+
+const SingleBlog = ({ id, handleClick }) => {
   const [state, setState] = useState({
     blog: [],
     error: false,
@@ -75,7 +84,9 @@ const SingleBlog = ({ id }) => {
         <p>
           in
           {' '}
-          <Bold>{blog.label}</Bold>
+          <LinkStyled to="/">
+            <Bold onClick={() => handleClick(blog.label)}>{blog.label}</Bold>
+          </LinkStyled>
         </p>
       </BlogInfo>
       {error && <Loading />}
@@ -84,7 +95,13 @@ const SingleBlog = ({ id }) => {
 };
 
 SingleBlog.propTypes = {
-  id: string.isRequired,
+  id: string,
+  handleClick: func,
+};
+
+SingleBlog.defaultProps = {
+  id: '',
+  handleClick: () => { },
 };
 
 export default SingleBlog;

@@ -9,7 +9,7 @@ describe('<AllBlogs />', () => {
     title: 'Test title',
     edited: false,
     body: 'Test body',
-    created: '21/10/1988',
+    created: new Date('21/10/1988'),
     image: 'image.jpg',
     label: 'cats',
   }];
@@ -30,7 +30,7 @@ describe('<AllBlogs />', () => {
         title: 'Test title 2',
         edited: false,
         body: 'Test body 2',
-        created: '21/10/1988',
+        created: new Date('21/10/1988'),
         image: 'image.jpg',
         label: 'cats',
       }],
