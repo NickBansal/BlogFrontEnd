@@ -64,7 +64,7 @@ const HomePage = () => {
       <GlobalStyle />
       <TopNavigation handleClick={filterBlogs} openCreate={openCreate} />
       {loading && <Loading />}
-      <CreateModal create={create} openCreate={openCreate} />
+      <CreateModal create={create} openCreate={openCreate || false} />
       <PageWrapper create={create}>
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>

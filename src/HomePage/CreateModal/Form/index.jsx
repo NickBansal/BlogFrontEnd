@@ -13,6 +13,7 @@ const InputStyled = styled.input`
   width: 80%;
   padding: 0 ${spacing.s1};
   font-size: 20px;
+  border-radius: 4px;
 `;
 
 const Label = styled.label`
@@ -30,12 +31,12 @@ const Title = styled.p`
 `;
 
 const Form = () => (
-  <FormStyled>
-      <Label>
-          <Title>Title:</Title>
+  <FormStyled onSubmit={e => e.stopPropagation()}>
+    <Label>
+      <Title>Title:</Title>
       <InputStyled id="title" type="text" placeholder="Title..." />
     </Label>
-      <Label>
+    <Label>
       <Title> Label:</Title>
       <InputStyled type="text" placeholder="Label..." />
     </Label>
@@ -47,6 +48,7 @@ const Form = () => (
       <Title>Body:</Title>
       <InputStyled type="textarea" placeholder="Body..." />
     </Label>
+    <input type="submit" />
   </FormStyled>
 );
 
