@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Router } from '@reach/router';
 import GlobalStyle from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
+import { transitionSpeed } from 'Components/StyleGuide';
 import Loading from 'Components/Loading';
 import TopNavigation from './TopNavigation';
 import AllBlogs from './AllBlogs';
@@ -15,6 +16,9 @@ const PageWrapper = styled.div`
   flex-direction: row-reverse;
   margin: auto;
   max-width: 800px;
+  filter: ${({ create }) => (create ? 'grayscale(30%) blur(5px)' : 'none')};
+  transition: ${transitionSpeed};
+  transition-delay: ${transitionSpeed};
 `;
 
 const HomePage = () => {
@@ -30,14 +34,13 @@ const HomePage = () => {
     getAllBlogs()
       .then((blogs) => {
         setState({
-          ...state,
           data: blogs[0],
           loading: false,
           filtered: blogs[0],
         });
       })
       .catch(() => setState({ error: true }));
-  }, [state]);
+  }, []);
 
   const filterBlogs = (value) => {
     const { data } = state;
@@ -61,7 +64,7 @@ const HomePage = () => {
       <TopNavigation handleClick={filterBlogs} openCreate={openCreate} />
       {loading && <Loading />}
       <CreateModal create={create} openCreate={openCreate} />
-      <PageWrapper>
+      <PageWrapper create={create}>
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>
           <AllBlogs path="/" data={filtered} />

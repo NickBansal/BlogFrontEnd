@@ -14,9 +14,10 @@ const ModalWrapper = styled.div`
   position: absolute;
   top: ${props => (props.create ? '35%' : '-10%')};
   left: 50%;
+  z-index: 100;
   transform: translate(-50%, -50%);
   background: white;
-  opacity: ${props => (props.create ? 1 : 0)}
+  opacity: ${props => (props.create ? 1 : 0)};
   transition: 0.4s ease-in;
 `;
 ModalWrapper.displayName = 'ModalWrapper';
@@ -27,7 +28,7 @@ const Title = styled.p`
   margin: 0;
   background: ${colors.navBackground};
   color: ${colors.navText};
-  padding: ${spacing.s1}
+  padding: ${spacing.s1};
 `;
 
 const ModalHeader = styled.div`
