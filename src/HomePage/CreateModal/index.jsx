@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { bool } from 'prop-types';
+import { bool, func } from 'prop-types';
 import {
   colors, spacing, boxShadow,
 } from 'Components/StyleGuide';
-import Cross from 'Components/Cross';
+import Cross from './Cross';
 
 const ModalWrapper = styled.div`
   height: 300px;
@@ -37,17 +37,18 @@ const ModalHeader = styled.div`
     justify-content: space-between;
 `;
 
-const CreateModal = ({ create }) => (
+const CreateModal = ({ create, openCreate }) => (
   <ModalWrapper create={create}>
     <ModalHeader>
       <Title>Create new post</Title>
-      <Cross />
+      <Cross openCreate={openCreate} />
     </ModalHeader>
   </ModalWrapper>
 );
 
 CreateModal.propTypes = {
   create: bool.isRequired,
+  openCreate: func.isRequired,
 };
 
 export default CreateModal;

@@ -55,7 +55,7 @@ const TopNavigation = ({ handleClick, openCreate }) => (
       </LinkStyled>
       <HamburgerMenu />
       <Divider>
-        <Links onClick={openCreate}>Create</Links>
+        <Links onClick={() => openCreate(true)}>Create</Links>
         <Links>Login</Links>
       </Divider>
     </MaxWidth>

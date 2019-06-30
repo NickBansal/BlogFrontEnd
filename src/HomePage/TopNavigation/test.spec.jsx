@@ -5,8 +5,12 @@ import TopNavigation from '.';
 describe('<TopNavigation />', () => {
   let wrapper;
   const handleClick = jest.fn();
+  const openCreate = jest.fn();
+  const props = {
+    handleClick, openCreate,
+  };
   beforeEach(() => {
-    wrapper = shallow(<TopNavigation handleClick={handleClick} />);
+    wrapper = shallow(<TopNavigation {...props} />);
   });
   it('Should render 3 links', () => {
     expect(wrapper.find('Links')).toHaveLength(3);

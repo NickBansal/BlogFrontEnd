@@ -41,8 +41,8 @@ const HomePage = () => {
     setState({ ...state, filtered });
   };
 
-  const openCreate = () => {
-    setState({ ...state, create: !state.create });
+  const openCreate = (value) => {
+    setState({ ...state, create: value });
   };
 
   const {
@@ -56,7 +56,7 @@ const HomePage = () => {
       <GlobalStyle />
       <TopNavigation handleClick={filterBlogs} openCreate={openCreate} />
       {loading && <Loading />}
-      <CreateModal create={create} />
+      <CreateModal create={create} openCreate={openCreate} />
       <PageWrapper>
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors, spacing } from 'Components/StyleGuide';
+import { func } from 'prop-types';
+import { colors, spacing, transitionSpeed } from 'Components/StyleGuide';
 
 const MainCross = styled.div`
-  border: 2px solid ${colors.navText};
   width: 30px;
   height: 30px;
   display: flex;
@@ -16,10 +16,15 @@ const MainCross = styled.div`
   &:hover {
     cursor: pointer;
     color: ${colors.navHighlight};
-    border: 2px solid ${colors.navHighlight};
   }
+  transition: ${transitionSpeed} ease-in;
 `;
+MainCross.displayName = 'MainCross';
 
-const Cross = () => <MainCross>X</MainCross>;
+const Cross = ({ openCreate }) => <MainCross onClick={() => openCreate(false)}>X</MainCross>;
+
+Cross.propTypes = {
+  openCreate: func.isRequired,
+};
 
 export default Cross;
