@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors, spacing, boxShadow } from 'Components/StyleGuide';
+import { bool } from 'prop-types';
+import {
+  colors, spacing, boxShadow,
+} from 'Components/StyleGuide';
+import Cross from 'Components/Cross';
 
 const ModalWrapper = styled.div`
   height: 300px;
@@ -8,13 +12,16 @@ const ModalWrapper = styled.div`
   border: 2px solid rgba(0,0,0,.1);
   box-shadow: ${boxShadow};
   position: absolute;
-  top: 30%;
+  top: ${props => (props.create ? '35%' : '-10%')};
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
+  z-index: ${props => (props.create ? 0 : 100)}
+  opacity: ${props => (props.create ? 1 : 0)}
+  transition: 0.4s ease-in;
 `;
 
-const Title = styled.h2`
+const Title = styled.p`
   font-size: 24px;
   text-align: center;
   margin: 0;
@@ -23,10 +30,24 @@ const Title = styled.h2`
   padding: ${spacing.s1}
 `;
 
-const CreateModal = () => (
-  <ModalWrapper>
-    <Title>Create Modal</Title>
+const ModalHeader = styled.div`
+    background: ${colors.navBackground};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const CreateModal = ({ create }) => (
+  <ModalWrapper create={create}>
+    <ModalHeader>
+      <Title>Create new post</Title>
+      <Cross />
+    </ModalHeader>
   </ModalWrapper>
 );
+
+CreateModal.propTypes = {
+  create: bool.isRequired,
+};
 
 export default CreateModal;
