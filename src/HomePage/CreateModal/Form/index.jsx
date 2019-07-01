@@ -9,11 +9,12 @@ const FormStyled = styled.form`
 `;
 
 const InputStyled = styled.input`
-  height: 30px;
+  height: 40px;
   width: 80%;
   padding: 0 ${spacing.s1};
   font-size: 20px;
   border-radius: 4px;
+  border: 2px solid ${colors.imageBorder};
 `;
 
 const TextArea = styled(InputStyled)`

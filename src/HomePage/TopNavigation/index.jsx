@@ -45,6 +45,7 @@ const MaxWidth = styled.div`
   padding: 0 ${spacing.s2};
   justify-content: space-between;
   margin: auto;
+  z-index: 400;
 `;
 
 const TopNavigation = ({ handleClick, openCreate }) => (

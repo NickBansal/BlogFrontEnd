@@ -98,7 +98,7 @@ const AllBlogs = ({ data }) => (
             </Body>
             <BlogInfoWrapper>
               <Info>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</Info>
-              <Info>{`Label: ${blog.label}`}</Info>
+              <Info>{`In: ${blog.label}`}</Info>
             </BlogInfoWrapper>
           </div>
         </BlogWrapper>

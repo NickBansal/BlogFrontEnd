@@ -14,13 +14,13 @@ const ModalWrapper = styled.div`
   box-shadow: ${boxShadow};
   position: absolute;
   top: ${props => (props.create ? '45%' : '-30%')};
-  left: 50%;
-  z-index: 100;
+  left: 50%;  
+  z-index: 200;
   transform: translate(-50%, -50%);
   background: white;
   opacity: ${props => (props.create ? 1 : 0)};
   transition: 0.4s ease-in;
-
+  border-radius: 8px;
   @media (min-width: ${breakPoints.mobile}) {
     width: 550px;
   }
