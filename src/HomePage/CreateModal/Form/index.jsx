@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { spacing, colors, transitionSpeed } from 'Components/StyleGuide';
+import { func } from 'prop-types';
+import { spacing, colors } from 'Components/StyleGuide';
 import { postSingleBlog } from 'Utils';
+import Buttons from 'Components/Buttons';
+import Completed from './Completed';
 
 const FormStyled = styled.form`
   display: flex;
@@ -50,50 +53,29 @@ const Error = styled.p`
   align-items: center;
 `;
 
-const SubmitStyled = styled.button`
-  margin: ${spacing.s2} auto ${spacing.s1};
-  width: 20%;
-  font-size: 20px;
-  height: 40px;
-  border-radius: 10px;
-  border: solid 3px ${colors.navHighlight};
-  color: ${colors.navHighlight};
-
-  &:hover {
-    cursor: pointer;
-    background: ${colors.navHighlight};
-    color: ${colors.navBackground};
-  }
-
-  &:focus {
-    outline: none;
-  }
-  transition: ${transitionSpeed};
-`;
-
-const Form = () => {
+const Form = ({ openCreate }) => {
   const [state, setState] = useState({
     completed: false,
     error: false,
   });
-  const { completed, error } = state;
+  const { completed, error, id } = state;
 
   return completed
-    ? <h1>Done</h1>
+    ? <Completed id={id} openCreate={openCreate} />
     : (
       <FormStyled onSubmit={(e) => {
         e.preventDefault();
         const data = ({
           title: e.target[0].value,
           label: e.target[1].value,
-          Image: e.target[2].value,
+          image: e.target[2].value,
           body: e.target[3].value,
         });
         postSingleBlog(data)
-          .then(() => {
-            setState({ error: false, completed: true });
+          .then((blog) => {
+            setState({ error: false, completed: true, id: blog._id });
           }).catch(() => {
-            setState({ error: true, completed: false });
+            setState({ ...state, error: true });
           });
       }}
       >
@@ -114,9 +96,13 @@ const Form = () => {
           <TextArea rows="4" cols="70" wrap="hard" />
         </Label>
         {error && <Error>Please fill out all the fields</Error>}
-        <SubmitStyled type="submit">Submit</SubmitStyled>
+        <Buttons text="Submit" />
       </FormStyled>
     );
+};
+
+Form.propTypes = {
+  openCreate: func.isRequired,
 };
 
 export default Form;
