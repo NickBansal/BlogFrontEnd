@@ -12,12 +12,12 @@ describe('<CreateModal />', () => {
     wrapper = mount(<CreateModal {...props} />);
   });
   it('Should pass in the correct styles when create is false', () => {
-    expect(wrapper.find('ModalWrapper')).toHaveStyleRule('top', '-10%');
+    expect(wrapper.find('ModalWrapper')).toHaveStyleRule('top', '-30%');
     expect(wrapper.find('ModalWrapper')).toHaveStyleRule('opacity', '0');
   });
   it('Should pass in the correct styles when create is true', () => {
     wrapper.setProps({ create: true });
-    expect(wrapper.find('ModalWrapper')).toHaveStyleRule('top', '35%');
+    expect(wrapper.find('ModalWrapper')).toHaveStyleRule('top', '45%');
     expect(wrapper.find('ModalWrapper')).toHaveStyleRule('opacity', '1');
   });
 });

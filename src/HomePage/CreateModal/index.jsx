@@ -49,7 +49,7 @@ const CreateModal = ({ create, openCreate }) => (
       <Title>Create new post</Title>
       <Cross openCreate={openCreate} />
     </ModalHeader>
-    <Form />
+    <Form openCreate={openCreate} />
   </ModalWrapper>
 );
 

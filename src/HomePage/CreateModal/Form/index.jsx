@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { spacing, colors, transitionSpeed } from 'Components/StyleGuide';
+import { postSingleBlog } from 'Utils';
 
 const FormStyled = styled.form`
   display: flex;
@@ -14,7 +15,8 @@ const InputStyled = styled.input`
   padding: 0 ${spacing.s1};
   font-size: 20px;
   border-radius: 4px;
-  border: 2px solid ${colors.imageBorder};
+  border: 2px solid #864e164a;
+  color: ${colors.textColor};
 `;
 
 const TextArea = styled(InputStyled)`
@@ -59,25 +61,31 @@ const SubmitStyled = styled.button`
 const Form = () => (
   <FormStyled onSubmit={(e) => {
     e.preventDefault();
-    console.log({
+    const data = ({
       title: e.target[0].value,
       label: e.target[1].value,
       Image: e.target[2].value,
       body: e.target[3].value,
     });
+    postSingleBlog(data)
+      .then((val) => {
+        console.log(val);
+      }).catch((err) => {
+        console.log(err);
+      });
   }}
   >
     <Label>
       <Title>Title:</Title>
-      <InputStyled id="title" type="text" placeholder="Title..." />
+      <InputStyled id="title" type="text" />
     </Label>
     <Label>
       <Title> Label:</Title>
-      <InputStyled type="text" placeholder="Label..." />
+      <InputStyled type="text" />
     </Label>
     <Label>
       <Title> Image:</Title>
-      <InputStyled type="text" placeholder="Image..." />
+      <InputStyled type="text" />
     </Label>
     <Label>
       <Title>Body:</Title>

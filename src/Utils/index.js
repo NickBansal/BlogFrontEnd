@@ -11,3 +11,8 @@ export const getSingleBlog = async (blogId) => {
   const { data } = await axios.get(`${URL}/${blogId}`);
   return data;
 };
+
+export const postSingleBlog = async (blog) => {
+  const { data } = await axios.post(`${URL}/`, blog);
+  return data;
+};
