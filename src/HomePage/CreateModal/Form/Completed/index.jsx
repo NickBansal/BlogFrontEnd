@@ -19,10 +19,10 @@ const Completed = ({ openCreate, id }) => (
   <div>
     <Title>Blog successfully posted</Title>
     <ButtonWrapper>
-      <Link to="/">
-        <Buttons onClick={() => openCreate(false)} text="Homepage" />
+      <Link onClick={() => openCreate(false)} to="/">
+        <Buttons text="Homepage" />
       </Link>
-      <Link to={`/${id}`}>
+      <Link onClick={() => openCreate(false)} to={`/${id}`}>
         <Buttons text="Blog" />
       </Link>
     </ButtonWrapper>
