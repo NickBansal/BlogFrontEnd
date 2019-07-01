@@ -67,7 +67,7 @@ const Form = ({ openCreate }) => {
         e.preventDefault();
         const data = ({
           title: e.target[0].value,
-          label: e.target[1].value,
+          category: e.target[1].value,
           image: e.target[2].value,
           body: e.target[3].value,
         });

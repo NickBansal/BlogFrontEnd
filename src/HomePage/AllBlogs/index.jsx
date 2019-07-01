@@ -64,6 +64,7 @@ const Body = styled.p`
   text-align: center;
   color: ${colors.textColor};
   margin: ${spacing.s1} 0 0 0;
+  word-break: break-word;
   @media (min-width: ${breakPoints.mobile}) {
     text-align: left;
   }

@@ -34,6 +34,7 @@ const Title = styled.h2`
 const Body = styled.p`
   text-align: center;
   color: ${colors.textColor};
+  word-break: break-all;
 `;
 
 const BlogInfo = styled.div`

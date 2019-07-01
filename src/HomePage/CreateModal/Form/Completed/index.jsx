@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { func, string } from 'prop-types';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import Buttons from 'Components/Buttons';
 import { colors } from 'Components/StyleGuide';
 
@@ -21,13 +21,22 @@ const LinkStyled = styled(Link)`
 `;
 LinkStyled.displayName = 'LinkStyled';
 
+const Grid = styled.div`
+    width: 50%;
+    text-align: center;
+`;
+
 const Completed = ({ openCreate, id }) => (
   <div>
     <Title>Blog successfully posted</Title>
     <ButtonWrapper>
-      <LinkStyled onClick={() => openCreate(false)} to="/">
+      <Grid onClick={() => {
+        openCreate(false);
+        navigate('/');
+      }}
+      >
         <Buttons text="Homepage" />
-      </LinkStyled>
+      </Grid>
       <LinkStyled onClick={() => openCreate(false)} to={`/${id}`}>
         <Buttons text="Blog" />
       </LinkStyled>
