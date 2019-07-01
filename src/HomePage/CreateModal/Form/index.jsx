@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { spacing, colors, transitionSpeed } from 'Components/StyleGuide';
 import { postSingleBlog } from 'Utils';
@@ -58,41 +58,49 @@ const SubmitStyled = styled.button`
   transition: ${transitionSpeed};
 `;
 
-const Form = () => (
-  <FormStyled onSubmit={(e) => {
-    e.preventDefault();
-    const data = ({
-      title: e.target[0].value,
-      label: e.target[1].value,
-      Image: e.target[2].value,
-      body: e.target[3].value,
-    });
-    postSingleBlog(data)
-      .then((val) => {
-        console.log(val);
-      }).catch((err) => {
-        console.log(err);
+const Form = () => {
+  const [state, setState] = useState({
+    completed: false,
+    error: false,
+  });
+  const { completed, error } = state;
+
+  return completed ? <h1>Done</h1> : (
+    <FormStyled onSubmit={(e) => {
+      e.preventDefault();
+      const data = ({
+        title: e.target[0].value,
+        label: e.target[1].value,
+        Image: e.target[2].value,
+        body: e.target[3].value,
       });
-  }}
-  >
-    <Label>
-      <Title>Title:</Title>
-      <InputStyled id="title" type="text" />
-    </Label>
-    <Label>
-      <Title> Label:</Title>
-      <InputStyled type="text" />
-    </Label>
-    <Label>
-      <Title> Image:</Title>
-      <InputStyled type="text" />
-    </Label>
-    <Label>
-      <Title>Body:</Title>
-      <TextArea rows="4" cols="70" wrap="hard" />
-    </Label>
-    <SubmitStyled type="submit">Submit</SubmitStyled>
-  </FormStyled>
-);
+      postSingleBlog(data)
+        .then(() => {
+          setState({ error: false, completed: true });
+        }).catch(() => {
+          setState({ error: true, completed: false });
+        });
+    }}
+    >
+      <Label>
+        <Title>Title:</Title>
+        <InputStyled id="title" type="text" />
+      </Label>
+      <Label>
+        <Title> Label:</Title>
+        <InputStyled type="text" />
+      </Label>
+      <Label>
+        <Title> Image:</Title>
+        <InputStyled type="text" />
+      </Label>
+      <Label>
+        <Title>Body:</Title>
+        <TextArea rows="4" cols="70" wrap="hard" />
+      </Label>
+      <SubmitStyled type="submit">Submit</SubmitStyled>
+    </FormStyled>
+  );
+};
 
 export default Form;
