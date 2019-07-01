@@ -60,7 +60,7 @@ const Form = ({ openCreate }) => {
   });
   const { completed, error, id } = state;
 
-  return completed
+  return !completed
     ? <Completed id={id} openCreate={openCreate} />
     : (
       <FormStyled onSubmit={(e) => {

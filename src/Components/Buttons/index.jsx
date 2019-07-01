@@ -5,7 +5,7 @@ import { spacing, colors, transitionSpeed } from 'Components/StyleGuide';
 
 const SubmitStyled = styled.button`
   margin: ${spacing.s2} auto;
-  min-width: 20%;
+  min-width: 120px;
   font-size: 20px;
   height: 40px;
   border-radius: 10px;

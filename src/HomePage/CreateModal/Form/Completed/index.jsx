@@ -15,16 +15,21 @@ const ButtonWrapper = styled.div`
   display: flex;
 `;
 
+const LinkStyled = styled(Link)`
+    width: 50%;
+    text-align: center;
+`;
+
 const Completed = ({ openCreate, id }) => (
   <div>
     <Title>Blog successfully posted</Title>
     <ButtonWrapper>
-      <Link onClick={() => openCreate(false)} to="/">
+      <LinkStyled onClick={() => openCreate(false)} to="/">
         <Buttons text="Homepage" />
-      </Link>
-      <Link onClick={() => openCreate(false)} to={`/${id}`}>
+      </LinkStyled>
+      <LinkStyled onClick={() => openCreate(false)} to={`/${id}`}>
         <Buttons text="Blog" />
-      </Link>
+      </LinkStyled>
     </ButtonWrapper>
   </div>
 );
