@@ -86,7 +86,7 @@ const SingleBlog = ({ id, handleClick }) => {
             in
             {' '}
             <LinkStyled to="/">
-              <Bold onClick={() => handleClick(blog.label)}>{blog.label}</Bold>
+              <Bold onClick={() => handleClick(blog.category)}>{blog.category}</Bold>
             </LinkStyled>
           </p>
         </BlogInfo>

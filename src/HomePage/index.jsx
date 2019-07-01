@@ -46,7 +46,7 @@ const HomePage = () => {
 
   const filterBlogs = (value) => {
     const { data } = state;
-    const filtered = value === 'All' ? data : data.filter(blog => blog.label === value);
+    const filtered = value === 'All' ? data : data.filter(blog => blog.category === value);
     setState({ ...state, filtered });
   };
 
@@ -58,7 +58,7 @@ const HomePage = () => {
     data, loading, error, filtered, create,
   } = state;
 
-  const labelArray = data.map(blog => blog.label);
+  const labelArray = data.map(blog => blog.category);
 
   return (
     <React.Fragment>

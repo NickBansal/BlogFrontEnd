@@ -19,6 +19,7 @@ const LinkStyled = styled(Link)`
     width: 50%;
     text-align: center;
 `;
+LinkStyled.displayName = 'LinkStyled';
 
 const Completed = ({ openCreate, id }) => (
   <div>
