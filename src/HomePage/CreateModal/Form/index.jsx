@@ -73,7 +73,7 @@ const Form = ({ openCreate, addBlog }) => {
         });
         postSingleBlog(data)
           .then((blog) => {
-            addBlog(data);
+            addBlog(blog);
             setState({
               error: false, completed: true, id: blog._id,
             });
