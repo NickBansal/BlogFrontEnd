@@ -83,7 +83,7 @@ const SingleBlog = ({ id, handleClick }) => {
   return (
     <React.Fragment>
       {loading && <Loading />}
-      {!deleted && <Deleted />}
+      {deleted && <Deleted deleted={deleted} />}
       <BlogWrapper>
         <Image src={blog.image} alt="blog" />
         <Buttons

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { bool } from 'prop-types';
 import { boxShadow, colors } from 'Components/StyleGuide';
 import Buttons from 'Components/Buttons';
 import { Link } from '@reach/router';
@@ -10,7 +11,8 @@ const ModalWrapper = styled.div`
   border: 2px solid rgba(0,0,0,.1);
   box-shadow: ${boxShadow};
   position: absolute;
-  top: 25%;
+  top: ${({ deleted }) => (deleted ? '25%' : '-25%')};
+  opacity: ${({ deleted }) => (deleted ? 1 : 0)};
   left: 50%; 
   -webkit-transform: translate(-50%, 0);  
   width: 400px;
@@ -22,6 +24,7 @@ const ModalWrapper = styled.div`
   z-index: 100;
   background: white;
   border-radius: 8px;
+  transition: 0.4s ease-in;
 `;
 ModalWrapper.displayName = 'ModalWrapper';
 
@@ -30,8 +33,8 @@ const DeletedText = styled.p`
     color: ${colors.textColor};
 `;
 
-const CreateModal = () => (
-  <ModalWrapper>
+const DeleteModal = ({ deleted }) => (
+  <ModalWrapper deleted={deleted}>
     <DeletedText>Blog has been deleted</DeletedText>
     <Link to="/">
       <Buttons text="Go to HomePage" />
@@ -39,4 +42,8 @@ const CreateModal = () => (
   </ModalWrapper>
 );
 
-export default CreateModal;
+DeleteModal.propTypes = {
+  deleted: bool.isRequired,
+};
+
+export default DeleteModal;
