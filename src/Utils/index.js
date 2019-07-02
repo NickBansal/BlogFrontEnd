@@ -16,3 +16,8 @@ export const postSingleBlog = async (blog) => {
   const { data } = await axios.post(`${URL}/`, blog);
   return data;
 };
+
+export const deleteSingleBlog = async (blogId) => {
+  const { data } = await axios.delete(`${URL}/${blogId}`);
+  return data;
+};

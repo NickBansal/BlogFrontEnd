@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import { spacing, colors, transitionSpeed } from 'Components/StyleGuide';
 
 const SubmitStyled = styled.button`
@@ -25,10 +25,16 @@ const SubmitStyled = styled.button`
 `;
 SubmitStyled.displayName = 'SubmitStyled';
 
-const Buttons = ({ text }) => <SubmitStyled type="submit">{text}</SubmitStyled>;
+const Buttons = ({ text, handleClick }) => <SubmitStyled onClick={handleClick} type="submit">{text}</SubmitStyled>;
 
 Buttons.propTypes = {
   text: string.isRequired,
+  handleClick: func,
 };
+
+Buttons.defaultProps = {
+  handleClick: () => { },
+};
+
 
 export default Buttons;

@@ -3,11 +3,13 @@ import { string, func } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from '@reach/router';
-import { getSingleBlog } from 'Utils';
+import { getSingleBlog, deleteSingleBlog } from 'Utils';
 import {
   spacing, colors, breakPoints, transitionSpeed, imageRadius,
 } from 'Components/StyleGuide';
 import Loading from 'Components/Loading';
+import Buttons from 'Components/Buttons';
+import Deleted from './Deleted';
 
 const BlogWrapper = styled.div`
   display: flex;
@@ -62,6 +64,8 @@ const SingleBlog = ({ id, handleClick }) => {
     blog: [],
     error: false,
     loading: true,
+    deleted: false,
+    deleteError: false,
   });
 
   useEffect(() => {
@@ -72,13 +76,24 @@ const SingleBlog = ({ id, handleClick }) => {
       .catch(() => setState({ error: true }));
   }, [id]);
 
-  const { blog, loading, error } = state;
+  const {
+    blog, loading, error, deleted,
+  } = state;
 
   return (
     <React.Fragment>
       {loading && <Loading />}
+      {!deleted && <Deleted />}
       <BlogWrapper>
         <Image src={blog.image} alt="blog" />
+        <Buttons
+          text="Delete"
+          handleClick={() => {
+            deleteSingleBlog(blog._id)
+              .then(() => setState({ ...state, deleted: true }))
+              .catch(() => setState({ ...state, deleteError: true }));
+          }}
+        />
         <Title>{blog.title}</Title>
         <Body>{blog.body}</Body>
         <BlogInfo>
