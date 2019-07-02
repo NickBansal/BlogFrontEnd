@@ -52,6 +52,9 @@ const Sidebar = ({ labels, handleClick }) => {
   return (
     <SidebarWrapper>
       <Title>Categories</Title>
+      <Label onClick={() => handleClick('All')}>
+        {`All (${labels.length})`}
+      </Label>
       {objKeys.map((label, index) => (
         <LinkStyled key={String(index)} to="/">
           <Label onClick={() => handleClick(label)}>
