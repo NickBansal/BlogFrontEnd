@@ -38,14 +38,14 @@ const DeleteModal = ({
 }) => (
   <ModalWrapper deleted={deleted}>
     <DeletedText>Blog has been deleted</DeletedText>
-    <Link to="/">
-      <Buttons
-        handleClick={() => {
-          removeBlog(id);
-          removeDeleted();
-        }}
-        text="Go to HomePage"
-      />
+    <Link
+      to="/"
+      onClick={() => {
+        removeBlog(id);
+        removeDeleted();
+      }}
+    >
+      <Buttons text="Go to HomePage" />
     </Link>
   </ModalWrapper>
 );
