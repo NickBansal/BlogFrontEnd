@@ -33,11 +33,19 @@ const DeletedText = styled.p`
     color: ${colors.textColor};
 `;
 
-const DeleteModal = ({ deleted, removeBlog, id }) => (
+const DeleteModal = ({
+  deleted, removeBlog, id, removeDeleted,
+}) => (
   <ModalWrapper deleted={deleted}>
     <DeletedText>Blog has been deleted</DeletedText>
     <Link to="/">
-      <Buttons handleClick={() => removeBlog(id)} text="Go to HomePage" />
+      <Buttons
+        handleClick={() => {
+          removeBlog(id);
+          removeDeleted();
+        }}
+        text="Go to HomePage"
+      />
     </Link>
   </ModalWrapper>
 );
@@ -46,6 +54,7 @@ DeleteModal.propTypes = {
   deleted: bool,
   removeBlog: func.isRequired,
   id: string,
+  removeDeleted: func.isRequired,
 };
 
 DeleteModal.defaultProps = {

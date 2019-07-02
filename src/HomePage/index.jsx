@@ -61,8 +61,8 @@ const HomePage = () => {
   };
 
   const addBlog = (blog) => {
-    const filtered = state.data.concat(blog);
-    setState({ ...state, filtered });
+    const data = state.data.concat(blog);
+    setState({ ...state, data });
   };
 
   const {
@@ -74,14 +74,25 @@ const HomePage = () => {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <TopNavigation handleClick={filterBlogs} openCreate={openCreate} />
+      <TopNavigation
+        handleClick={filterBlogs}
+        openCreate={openCreate}
+      />
       {loading && <Loading />}
-      <CreateModal create={create} openCreate={openCreate} addBlog={addBlog} />
+      <CreateModal
+        create={create}
+        openCreate={openCreate}
+        addBlog={addBlog}
+      />
       <PageWrapper create={create}>
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>
           <AllBlogs path="/" data={filtered} />
-          <SingleBlog path="/:id" handleClick={filterBlogs} removeBlog={removeBlog} />
+          <SingleBlog
+            path="/:id"
+            handleClick={filterBlogs}
+            removeBlog={removeBlog}
+          />
         </Router>
       </PageWrapper>
       {error && <p>Error</p>}

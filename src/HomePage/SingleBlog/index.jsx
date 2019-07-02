@@ -17,6 +17,8 @@ const BlogWrapper = styled.div`
   align-items: center;
   margin-top: ${spacing.s5};
   padding: ${spacing.s3};
+  pointer-events: ${({ deleted }) => (deleted ? 'none' : 'auto')};
+  filter: ${({ deleted }) => (deleted ? 'grayscale(30%) blur(5px)' : 'none')};
 `;
 
 const Image = styled.img`
@@ -76,6 +78,8 @@ const SingleBlog = ({ id, handleClick, removeBlog }) => {
       .catch(() => setState({ error: true }));
   }, [id]);
 
+  const removeDeleted = () => setState({ ...state, deleted: false });
+
   const {
     blog, loading, error, deleted,
   } = state;
@@ -83,8 +87,13 @@ const SingleBlog = ({ id, handleClick, removeBlog }) => {
   return (
     <React.Fragment>
       {loading && <Loading />}
-      <Deleted deleted={deleted} removeBlog={removeBlog} id={blog._id} />
-      <BlogWrapper>
+      <Deleted
+        deleted={deleted}
+        removeBlog={removeBlog}
+        id={blog._id}
+        removeDeleted={removeDeleted}
+      />
+      <BlogWrapper deleted={deleted}>
         <Image src={blog.image} alt="blog" />
         <Buttons
           text="Delete"
