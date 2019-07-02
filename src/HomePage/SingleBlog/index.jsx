@@ -87,13 +87,15 @@ const SingleBlog = ({ id, handleClick, removeBlog }) => {
   return (
     <React.Fragment>
       {loading && <Loading />}
-      <Deleted
-        deleted={deleted}
-        removeBlog={removeBlog}
-        id={blog._id}
-        removeDeleted={removeDeleted}
-        category={blog.category}
-      />
+      {!loading && (
+        <Deleted
+          deleted={deleted}
+          removeBlog={removeBlog}
+          id={blog._id}
+          removeDeleted={removeDeleted}
+          category={blog.category}
+        />
+      )}
       <BlogWrapper deleted={deleted}>
         <Image src={blog.image} alt="blog" />
         <Buttons

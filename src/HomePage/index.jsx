@@ -50,11 +50,10 @@ const HomePage = () => {
     setState({ ...state, filtered });
   };
 
-  const removeBlog = (blogId, blogCategory) => {
+  const removeBlog = (blogCategory) => {
     const { data } = state;
-    const filtered = data.filter(blog => blog._id !== blogId);
     const newData = data.filter(blog => blog.category !== blogCategory);
-    setState({ ...state, filtered, data: newData });
+    setState({ ...state, filtered: newData, data: newData });
   };
 
   const openCreate = (value) => {
