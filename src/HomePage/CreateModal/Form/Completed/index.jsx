@@ -21,33 +21,36 @@ const LinkStyled = styled(Link)`
 `;
 LinkStyled.displayName = 'LinkStyled';
 
-const Completed = ({ openCreate, id }) => (
-  <div>
-    <Title>Blog successfully posted</Title>
-    <ButtonWrapper>
-      <LinkStyled
-        onClick={() => {
-          openCreate(false);
-        }}
-        to="/"
-      >
-        <Buttons text="Homepage" />
-      </LinkStyled>
-      <LinkStyled
-        onClick={() => {
-          openCreate(false);
-        }}
-        to={`/${id}`}
-      >
-        <Buttons text="Blog" />
-      </LinkStyled>
-    </ButtonWrapper>
-  </div>
-);
+const Completed = ({ openCreate, id, finished }) => {
+  const handleClick = () => {
+    openCreate(false);
+    finished();
+  };
+  return (
+    <div>
+      <Title>Blog successfully posted</Title>
+      <ButtonWrapper>
+        <LinkStyled
+          onClick={handleClick}
+          to="/"
+        >
+          <Buttons text="Homepage" />
+        </LinkStyled>
+        <LinkStyled
+          onClick={handleClick}
+          to={`/${id}`}
+        >
+          <Buttons text="Blog" />
+        </LinkStyled>
+      </ButtonWrapper>
+    </div>
+  );
+};
 
 Completed.propTypes = {
   openCreate: func.isRequired,
   id: string.isRequired,
+  finished: func.isRequired,
 };
 
 export default Completed;

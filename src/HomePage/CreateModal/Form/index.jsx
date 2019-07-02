@@ -60,8 +60,10 @@ const Form = ({ openCreate, addBlog }) => {
   });
   const { completed, error, id } = state;
 
+  const completedDone = () => setState({ ...state, completed: false });
+
   return completed
-    ? <Completed id={id} openCreate={openCreate} />
+    ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
     : (
       <FormStyled onSubmit={(e) => {
         e.preventDefault();
