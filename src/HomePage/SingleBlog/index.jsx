@@ -59,7 +59,7 @@ const LinkStyled = styled(Link)`
   transition: ${transitionSpeed};
 `;
 
-const SingleBlog = ({ id, handleClick }) => {
+const SingleBlog = ({ id, handleClick, removeBlog }) => {
   const [state, setState] = useState({
     blog: [],
     error: false,
@@ -83,7 +83,7 @@ const SingleBlog = ({ id, handleClick }) => {
   return (
     <React.Fragment>
       {loading && <Loading />}
-      {deleted && <Deleted deleted={deleted} />}
+      <Deleted deleted={deleted} removeBlog={removeBlog} id={blog._id} />
       <BlogWrapper>
         <Image src={blog.image} alt="blog" />
         <Buttons
@@ -115,6 +115,7 @@ const SingleBlog = ({ id, handleClick }) => {
 SingleBlog.propTypes = {
   id: string,
   handleClick: func,
+  removeBlog: func.isRequired,
 };
 
 SingleBlog.defaultProps = {

@@ -50,13 +50,19 @@ const HomePage = () => {
     setState({ ...state, filtered });
   };
 
+  const removeBlog = (blogId) => {
+    const { data } = state;
+    const filtered = data.filter(blog => blog._id !== blogId);
+    setState({ ...state, filtered });
+  };
+
   const openCreate = (value) => {
     setState({ ...state, create: value });
   };
 
   const addBlog = (blog) => {
-    const data = state.data.concat(blog);
-    setState({ ...state, data });
+    const filtered = state.data.concat(blog);
+    setState({ ...state, filtered });
   };
 
   const {
@@ -75,7 +81,7 @@ const HomePage = () => {
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>
           <AllBlogs path="/" data={filtered} />
-          <SingleBlog path="/:id" handleClick={filterBlogs} />
+          <SingleBlog path="/:id" handleClick={filterBlogs} removeBlog={removeBlog} />
         </Router>
       </PageWrapper>
       {error && <p>Error</p>}

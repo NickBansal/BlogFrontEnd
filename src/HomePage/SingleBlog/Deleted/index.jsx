@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { bool } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import { boxShadow, colors } from 'Components/StyleGuide';
 import Buttons from 'Components/Buttons';
 import { Link } from '@reach/router';
@@ -33,17 +33,24 @@ const DeletedText = styled.p`
     color: ${colors.textColor};
 `;
 
-const DeleteModal = ({ deleted }) => (
+const DeleteModal = ({ deleted, removeBlog, id }) => (
   <ModalWrapper deleted={deleted}>
     <DeletedText>Blog has been deleted</DeletedText>
     <Link to="/">
-      <Buttons text="Go to HomePage" />
+      <Buttons handleClick={() => removeBlog(id)} text="Go to HomePage" />
     </Link>
   </ModalWrapper>
 );
 
 DeleteModal.propTypes = {
-  deleted: bool.isRequired,
+  deleted: bool,
+  removeBlog: func.isRequired,
+  id: string,
+};
+
+DeleteModal.defaultProps = {
+  deleted: false,
+  id: '',
 };
 
 export default DeleteModal;
