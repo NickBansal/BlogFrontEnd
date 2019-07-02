@@ -50,10 +50,11 @@ const HomePage = () => {
     setState({ ...state, filtered });
   };
 
-  const removeBlog = (blogId) => {
+  const removeBlog = (blogId, blogCategory) => {
     const { data } = state;
     const filtered = data.filter(blog => blog._id !== blogId);
-    setState({ ...state, filtered });
+    const newData = data.filter(blog => blog.category !== blogCategory);
+    setState({ ...state, filtered, data: newData });
   };
 
   const openCreate = (value) => {
@@ -85,7 +86,12 @@ const HomePage = () => {
         addBlog={addBlog}
       />
       <PageWrapper create={create}>
-        {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
+        {!loading && (
+          <Sidebar
+            labels={labelArray}
+            handleClick={filterBlogs}
+          />
+        )}
         <Router primary={false}>
           <AllBlogs path="/" data={filtered} />
           <SingleBlog

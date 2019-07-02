@@ -92,6 +92,7 @@ const SingleBlog = ({ id, handleClick, removeBlog }) => {
         removeBlog={removeBlog}
         id={blog._id}
         removeDeleted={removeDeleted}
+        category={blog.category}
       />
       <BlogWrapper deleted={deleted}>
         <Image src={blog.image} alt="blog" />
