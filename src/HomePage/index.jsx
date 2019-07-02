@@ -54,6 +54,11 @@ const HomePage = () => {
     setState({ ...state, create: value });
   };
 
+  const addBlog = (blog) => {
+    const data = state.data.concat(blog);
+    setState({ ...state, data });
+  };
+
   const {
     data, loading, error, filtered, create,
   } = state;
@@ -65,7 +70,7 @@ const HomePage = () => {
       <GlobalStyle />
       <TopNavigation handleClick={filterBlogs} openCreate={openCreate} />
       {loading && <Loading />}
-      <CreateModal create={create} openCreate={openCreate} />
+      <CreateModal create={create} openCreate={openCreate} addBlog={addBlog} />
       <PageWrapper create={create}>
         {!loading && <Sidebar labels={labelArray} handleClick={filterBlogs} />}
         <Router primary={false}>

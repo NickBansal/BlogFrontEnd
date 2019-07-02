@@ -53,7 +53,7 @@ const Error = styled.p`
   align-items: center;
 `;
 
-const Form = ({ openCreate }) => {
+const Form = ({ openCreate, addBlog }) => {
   const [state, setState] = useState({
     completed: false,
     error: false,
@@ -73,7 +73,10 @@ const Form = ({ openCreate }) => {
         });
         postSingleBlog(data)
           .then((blog) => {
-            setState({ error: false, completed: true, id: blog._id });
+            addBlog(data);
+            setState({
+              error: false, completed: true, id: blog._id,
+            });
           }).catch(() => {
             setState({ ...state, error: true });
           });
@@ -103,6 +106,7 @@ const Form = ({ openCreate }) => {
 
 Form.propTypes = {
   openCreate: func.isRequired,
+  addBlog: func.isRequired,
 };
 
 export default Form;

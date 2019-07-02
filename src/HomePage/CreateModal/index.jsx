@@ -43,19 +43,20 @@ const ModalHeader = styled.div`
     justify-content: space-between;
 `;
 
-const CreateModal = ({ create, openCreate }) => (
+const CreateModal = ({ create, openCreate, addBlog }) => (
   <ModalWrapper create={create}>
     <ModalHeader>
       <Title>Create new post</Title>
       <Cross openCreate={openCreate} />
     </ModalHeader>
-    <Form openCreate={openCreate} />
+    <Form openCreate={openCreate} addBlog={addBlog} />
   </ModalWrapper>
 );
 
 CreateModal.propTypes = {
   create: bool.isRequired,
   openCreate: func.isRequired,
+  addBlog: func.isRequired,
 };
 
 export default CreateModal;
