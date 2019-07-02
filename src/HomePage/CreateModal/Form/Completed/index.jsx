@@ -18,6 +18,7 @@ const ButtonWrapper = styled.div`
 const LinkStyled = styled(Link)`
     width: 50%;
     text-align: center;
+    margin: auto;
 `;
 LinkStyled.displayName = 'LinkStyled';
 
