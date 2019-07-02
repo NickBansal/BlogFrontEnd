@@ -32,15 +32,9 @@ const Completed = ({ openCreate, id, finished }) => {
       <ButtonWrapper>
         <LinkStyled
           onClick={handleClick}
-          to="/"
-        >
-          <Buttons text="Homepage" />
-        </LinkStyled>
-        <LinkStyled
-          onClick={handleClick}
           to={`/${id}`}
         >
-          <Buttons text="Blog" />
+          <Buttons text="Go to Blog" />
         </LinkStyled>
       </ButtonWrapper>
     </div>

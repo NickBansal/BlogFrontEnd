@@ -9,12 +9,13 @@ describe('<Completed />', () => {
   const props = {
     openCreate,
     id: '',
+    finished: jest.fn(),
   };
   beforeEach(() => {
     wrapper = shallow(<Completed {...props} />);
   });
   it('Should render two buttons', () => {
-    expect(wrapper.find(Buttons)).toHaveLength(2);
+    expect(wrapper.find(Buttons)).toHaveLength(1);
   });
   it('Should call the openCreate function on the onclick event handler', () => {
     expect(openCreate).not.toBeCalled();

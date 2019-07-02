@@ -7,6 +7,7 @@ describe('<CreateModal />', () => {
   const props = {
     openCreate: jest.fn(),
     create: false,
+    addBlog: jest.fn(),
   };
   beforeEach(() => {
     wrapper = mount(<CreateModal {...props} />);
