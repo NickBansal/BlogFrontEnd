@@ -30,13 +30,14 @@ const HomePage = () => {
     filtered: [],
     create: false,
     currentPage: 1,
-    blogsPerPage: 3,
+    blogsPerPage: 4,
   });
 
   useEffect(() => {
     getAllBlogs()
       .then((blogs) => {
         setState({
+          ...state,
           create: false,
           data: blogs[0],
           loading: false,
@@ -44,7 +45,7 @@ const HomePage = () => {
           deleted: false,
         });
       })
-      .catch(() => setState({ error: true }));
+      .catch(() => setState({ ...state, error: true }));
   }, []);
 
   const filterBlogs = (value) => {
@@ -71,7 +72,7 @@ const HomePage = () => {
   };
 
   const handlePageChange = (pageNumber) => {
-    setState({ currentPage: pageNumber });
+    setState({ ...state, currentPage: pageNumber });
   };
 
   const {

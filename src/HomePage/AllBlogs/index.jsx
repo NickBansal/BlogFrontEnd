@@ -26,7 +26,7 @@ const BlogWrapper = styled.div`
 BlogWrapper.displayName = 'BlogWrapper';
 
 const FullWrapper = styled.div`
-  margin: 40px auto;
+  margin: ${spacing.s5} auto;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -36,7 +36,7 @@ const Image = styled.img`
   height: 150px;
   width: 150px;
   border-radius: ${imageRadius};
-  margin-right: 20px;
+  margin-right: ${spacing.s3};
 `;
 Image.displayName = 'Image';
 
@@ -82,6 +82,24 @@ const Info = styled.p`
   font-size: 13px;
 `;
 
+const Pagination = styled.div`
+  display: flex;
+  margin: ${spacing.s3} auto;
+`;
+
+const Page = styled.div`
+  border: 2px solid black;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  background: ${({ currentPage }) => (currentPage ? 'orange' : 'white')}
+  &:hover {
+    cursor: pointer;
+    background: yellow;
+  }
+`;
+
 const AllBlogs = ({
   data, handlePageChange, blogsPerPage, currentPage,
 }) => {
@@ -91,17 +109,18 @@ const AllBlogs = ({
 
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(data.length / 3); i += 1) {
+  for (let i = 1; i <= Math.ceil(data.length / blogsPerPage); i += 1) {
     pageNumbers.push(i);
   }
 
   const renderPageNumbers = pageNumbers.map(num => (
-    <li
+    <Page
+      currentPage={currentPage === num}
       key={num}
       onClick={() => handlePageChange(num)}
     >
       {num}
-    </li>
+    </Page>
   ));
 
   return (
@@ -109,7 +128,10 @@ const AllBlogs = ({
       {currentTodos.map((blog, index) => {
         const lastElement = index === data.length - 1;
         return (
-          <BlogWrapper lastElement={lastElement} key={blog._id}>
+          <BlogWrapper
+            lastElement={lastElement}
+            key={blog._id}
+          >
             <Image src={blog.image} alt="blog" />
             <div>
               <LinkStyled to={`/${blog._id}`}>
@@ -127,7 +149,7 @@ const AllBlogs = ({
           </BlogWrapper>
         );
       })}
-      <ul>{renderPageNumbers}</ul>
+      <Pagination>{renderPageNumbers}</Pagination>
     </FullWrapper>
   );
 };
@@ -143,13 +165,8 @@ AllBlogs.propTypes = {
     label: string,
   })).isRequired,
   handlePageChange: func.isRequired,
-  blogsPerPage: number,
-  currentPage: number,
-};
-
-AllBlogs.defaultProps = {
-  currentPage: 1,
-  blogsPerPage: 3,
+  blogsPerPage: number.isRequired,
+  currentPage: number.isRequired,
 };
 
 export default AllBlogs;
