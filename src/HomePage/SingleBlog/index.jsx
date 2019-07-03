@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { string, func } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from '@reach/router';
@@ -61,7 +61,9 @@ const LinkStyled = styled(Link)`
   transition: ${transitionSpeed};
 `;
 
-const SingleBlog = ({ id, handleClick, removeBlog }) => {
+const SingleBlog = ({
+  id, handleClick, removeBlog, deleted, openDelete,
+}) => {
   const [state, setState] = useState({
     blog: [],
     error: false,
@@ -78,10 +80,8 @@ const SingleBlog = ({ id, handleClick, removeBlog }) => {
       .catch(() => setState({ error: true }));
   }, [id]);
 
-  const removeDeleted = () => setState({ ...state, deleted: false });
-
   const {
-    blog, loading, error, deleted,
+    blog, loading, error,
   } = state;
 
   return (
@@ -92,7 +92,6 @@ const SingleBlog = ({ id, handleClick, removeBlog }) => {
           deleted={deleted}
           removeBlog={removeBlog}
           id={blog._id}
-          removeDeleted={removeDeleted}
           category={blog.category}
         />
       )}
@@ -102,7 +101,7 @@ const SingleBlog = ({ id, handleClick, removeBlog }) => {
           text="Delete"
           handleClick={() => {
             deleteSingleBlog(blog._id)
-              .then(() => setState({ ...state, deleted: true }))
+              .then(() => openDelete())
               .catch(() => setState({ ...state, deleteError: true }));
           }}
         />
@@ -128,6 +127,8 @@ SingleBlog.propTypes = {
   id: string,
   handleClick: func,
   removeBlog: func.isRequired,
+  openDelete: func.isRequired,
+  deleted: bool.isRequired,
 };
 
 SingleBlog.defaultProps = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
-import { func } from 'prop-types';
+import { func, bool } from 'prop-types';
 import {
   colors, transitionSpeed, spacing, breakPoints,
 } from 'Components/StyleGuide';
@@ -11,6 +11,7 @@ const NavigationWrapper = styled.div`
   width: 100%;
   background: ${colors.navBackground};
   color: ${colors.navText};
+  cursor: ${({ create }) => (create ? 'not-allowed' : 'auto')};
 `;
 
 const Divider = styled.div`
@@ -26,9 +27,9 @@ const Links = styled.h2`
   padding: ${spacing.s1};
   margin: 0;
   &:hover {
-    cursor: pointer;
-    background: ${colors.navHighlight};
-    color: ${colors.navBackground};
+    cursor: ${({ create }) => (create ? 'not-allowed' : 'pointer')};
+    background: ${({ create }) => (create ? colors.navBackground : colors.navHighlight)};
+    color: ${({ create }) => (create ? colors.navText : colors.navBackground)};
   }
   transition: ${transitionSpeed} ease-in;
 `;
@@ -48,16 +49,18 @@ const MaxWidth = styled.div`
   z-index: 400;
 `;
 
-const TopNavigation = ({ handleClick, openCreate }) => (
+const TopNavigation = ({
+  handleClick, openCreate, disable,
+}) => (
   <NavigationWrapper>
     <MaxWidth>
       <LinkStyled to="/">
-        <Links onClick={() => handleClick('All')}>Home</Links>
+        <Links create={disable} onClick={() => handleClick('All')}>Home</Links>
       </LinkStyled>
       <HamburgerMenu />
       <Divider>
-        <Links onClick={() => openCreate(true)}>Create</Links>
-        <Links>Login</Links>
+        <Links create={disable} onClick={() => openCreate(true)}>Create</Links>
+        <Links create={disable}>Login</Links>
       </Divider>
     </MaxWidth>
   </NavigationWrapper>
@@ -66,6 +69,7 @@ const TopNavigation = ({ handleClick, openCreate }) => (
 TopNavigation.propTypes = {
   handleClick: func.isRequired,
   openCreate: func.isRequired,
+  disable: bool.isRequired,
 };
 
 export default TopNavigation;

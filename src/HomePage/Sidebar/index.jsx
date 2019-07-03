@@ -1,5 +1,7 @@
 import React from 'react';
-import { arrayOf, string, func } from 'prop-types';
+import {
+  arrayOf, string, func, bool,
+} from 'prop-types';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
 import {
@@ -11,6 +13,10 @@ const SidebarWrapper = styled.div`
   flex-direction: column
   display: none;
   padding: 50px ${spacing.s2};
+  filter: ${({ disable }) => (disable ? 'grayscale(30%) blur(5px)' : 'none')};
+  transition: ${transitionSpeed};
+  transition-delay: ${transitionSpeed};
+  pointer-events: ${({ disable }) => (disable ? 'none' : 'auto')};
 
   @media (min-width: ${breakPoints.tablet}) {
     display: block;
@@ -40,7 +46,7 @@ const LinkStyled = styled(Link)`
   color: ${colors.navText};
 `;
 
-const Sidebar = ({ labels, handleClick }) => {
+const Sidebar = ({ labels, handleClick, disable }) => {
   const labelObj = labels.reduce((acc, value) => {
     // eslint-disable-next-line no-unused-expressions
     acc[value] ? acc[value] += 1 : acc[value] = 1;
@@ -50,7 +56,7 @@ const Sidebar = ({ labels, handleClick }) => {
   const objKeys = Object.keys(labelObj);
 
   return (
-    <SidebarWrapper>
+    <SidebarWrapper disable={disable}>
       <Title>Categories</Title>
       <LinkStyled to="/">
         <Label onClick={() => handleClick('All')}>
@@ -71,6 +77,7 @@ const Sidebar = ({ labels, handleClick }) => {
 Sidebar.propTypes = {
   labels: arrayOf(string).isRequired,
   handleClick: func.isRequired,
+  disable: bool.isRequired,
 };
 
 export default Sidebar;

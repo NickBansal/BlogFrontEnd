@@ -19,7 +19,7 @@ const PageWrapper = styled.div`
   filter: ${({ create }) => (create ? 'grayscale(30%) blur(5px)' : 'none')};
   transition: ${transitionSpeed};
   transition-delay: ${transitionSpeed};
-  pointer-events: ${({ create }) => (create ? 'none' : 'auto')};;
+  pointer-events: ${({ create }) => (create ? 'none' : 'auto')};
 `;
 
 const HomePage = () => {
@@ -39,6 +39,7 @@ const HomePage = () => {
           data: blogs[0],
           loading: false,
           filtered: blogs[0],
+          deleted: false,
         });
       })
       .catch(() => setState({ error: true }));
@@ -53,12 +54,14 @@ const HomePage = () => {
   const removeBlog = (blogCategory) => {
     const { data } = state;
     const newData = data.filter(blog => blog.category !== blogCategory);
-    setState({ ...state, filtered: newData, data: newData });
+    setState({
+      ...state, filtered: newData, data: newData, deleted: false,
+    });
   };
 
-  const openCreate = (value) => {
-    setState({ ...state, create: value });
-  };
+  const openCreate = value => setState({ ...state, create: value });
+
+  const openDelete = () => setState({ ...state, deleted: true });
 
   const addBlog = (blog) => {
     const data = state.data.concat(blog);
@@ -66,7 +69,7 @@ const HomePage = () => {
   };
 
   const {
-    data, loading, error, filtered, create,
+    data, loading, error, filtered, create, deleted,
   } = state;
 
   const labelArray = data.map(blog => blog.category);
@@ -77,6 +80,7 @@ const HomePage = () => {
       <TopNavigation
         handleClick={filterBlogs}
         openCreate={openCreate}
+        disable={create || deleted}
       />
       {loading && <Loading />}
       <CreateModal
@@ -89,6 +93,7 @@ const HomePage = () => {
           <Sidebar
             labels={labelArray}
             handleClick={filterBlogs}
+            disable={create || deleted}
           />
         )}
         <Router primary={false}>
@@ -97,6 +102,8 @@ const HomePage = () => {
             path="/:id"
             handleClick={filterBlogs}
             removeBlog={removeBlog}
+            deleted={deleted}
+            openDelete={openDelete}
           />
         </Router>
       </PageWrapper>
