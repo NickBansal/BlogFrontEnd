@@ -96,13 +96,13 @@ const HomePage = () => {
         addBlog={addBlog}
       />
       <PageWrapper create={create}>
-
-        <Sidebar
-          labels={labelArray}
-          handleClick={filterBlogs}
-          disable={create || deleted}
-        />
-
+        {!loading && (
+          <Sidebar
+            labels={labelArray}
+            handleClick={filterBlogs}
+            disable={create || deleted}
+          />
+        )}
         <Router primary={false}>
           <AllBlogs
             path="/"
