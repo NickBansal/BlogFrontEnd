@@ -15,6 +15,10 @@ const Spinner = styled.div`
   width: 70px;
   height: 70px;
   animation: spin 1s ease-in infinite;
+  z-index: 200;
+  position: absolute;
+  left: 50%; 
+  -webkit-transform: translate(-50%, 0);  
 
   @keyframes spin {
     0% { transform: rotate(0deg); }

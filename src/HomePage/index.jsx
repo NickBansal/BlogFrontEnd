@@ -4,7 +4,6 @@ import { Router } from '@reach/router';
 import { GlobalStyle } from 'Components/GlobalStyles';
 import { getAllBlogs } from 'Utils';
 import { transitionSpeed } from 'Components/StyleGuide';
-import Loading from 'Components/Loading';
 import TopNavigation from './TopNavigation';
 import AllBlogs from './AllBlogs';
 import Sidebar from './Sidebar';
@@ -89,7 +88,6 @@ const HomePage = () => {
         openCreate={openCreate}
         disable={create || deleted || false}
       />
-      {loading && <Loading />}
       <CreateModal
         create={create}
         openCreate={openCreate}
@@ -110,6 +108,7 @@ const HomePage = () => {
             currentPage={currentPage}
             handlePageChange={handlePageChange}
             blogsPerPage={blogsPerPage}
+            loading={loading}
           />
           <SingleBlog
             path="/:id"

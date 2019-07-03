@@ -84,7 +84,7 @@ const SingleBlog = ({
     blog, loading, error,
   } = state;
 
-  return (
+  return loading ? <Loading /> : (
     <React.Fragment>
       <Deleted
         deleted={deleted}
@@ -92,32 +92,30 @@ const SingleBlog = ({
         id={blog._id}
         category={blog.category}
       />
-      {!loading && (
-        <BlogWrapper deleted={deleted}>
-          <Image src={blog.image} alt="blog" />
-          <Buttons
-            text="Delete"
-            handleClick={() => {
-              deleteSingleBlog(blog._id)
-                .then(() => openDelete())
-                .catch(() => setState({ ...state, deleteError: true }));
-            }}
-          />
-          <Title>{blog.title}</Title>
-          <Body>{blog.body}</Body>
-          <BlogInfo>
-            {blog.created && <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>}
-            <p>
-              in
-              {' '}
-              <LinkStyled to="/">
-                <Bold onClick={() => handleClick(blog.category)}>{blog.category}</Bold>
-              </LinkStyled>
-            </p>
-          </BlogInfo>
-          {error && <Loading />}
-        </BlogWrapper>
-      )}
+      <BlogWrapper deleted={deleted}>
+        <Image src={blog.image} alt="blog" />
+        <Buttons
+          text="Delete"
+          handleClick={() => {
+            deleteSingleBlog(blog._id)
+              .then(() => openDelete())
+              .catch(() => setState({ ...state, deleteError: true }));
+          }}
+        />
+        <Title>{blog.title}</Title>
+        <Body>{blog.body}</Body>
+        <BlogInfo>
+          {blog.created && <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>}
+          <p>
+            in
+            {' '}
+            <LinkStyled to="/">
+              <Bold onClick={() => handleClick(blog.category)}>{blog.category}</Bold>
+            </LinkStyled>
+          </p>
+        </BlogInfo>
+        {error && <Loading />}
+      </BlogWrapper>
     </React.Fragment>
   );
 };

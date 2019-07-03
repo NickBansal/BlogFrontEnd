@@ -8,6 +8,7 @@ import { Link } from '@reach/router';
 import {
   colors, transitionSpeed, spacing, breakPoints, boxShadow, imageRadius,
 } from 'Components/StyleGuide';
+import Loading from 'Components/Loading';
 
 const BlogWrapper = styled.div`
   margin: 0 auto;
@@ -101,7 +102,7 @@ const Page = styled.div`
 `;
 
 const AllBlogs = ({
-  data, handlePageChange, blogsPerPage, currentPage,
+  data, handlePageChange, blogsPerPage, currentPage, loading,
 }) => {
   const indexOfLastTodo = currentPage * blogsPerPage;
   const indexOfFirstTodo = indexOfLastTodo - blogsPerPage;
@@ -125,6 +126,7 @@ const AllBlogs = ({
 
   return (
     <FullWrapper>
+      {loading && <Loading />}
       {currentTodos.map((blog, index) => {
         const lastElement = index === data.length - 1;
         return (
@@ -167,6 +169,7 @@ AllBlogs.propTypes = {
   handlePageChange: func.isRequired,
   blogsPerPage: number.isRequired,
   currentPage: number.isRequired,
+  loading: bool.isRequired,
 };
 
 export default AllBlogs;
