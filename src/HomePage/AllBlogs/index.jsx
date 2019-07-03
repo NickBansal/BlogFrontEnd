@@ -1,6 +1,6 @@
 import React, { } from 'react';
 import {
-  arrayOf, shape, string, bool, instanceOf, oneOfType,
+  arrayOf, shape, string, bool, instanceOf, oneOfType, func, number,
 } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
@@ -82,31 +82,55 @@ const Info = styled.p`
   font-size: 13px;
 `;
 
-const AllBlogs = ({ data }) => (
+const AllBlogs = ({
+  data, handlePageChange, blogsPerPage, currentPage,
+}) => {
+  const indexOfLastTodo = currentPage * blogsPerPage;
+  const indexOfFirstTodo = indexOfLastTodo - blogsPerPage;
+  const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo);
 
-  <FullWrapper>
-    {data.map((blog, index) => {
-      const lastElement = index === data.length - 1;
-      return (
-        <BlogWrapper lastElement={lastElement} key={blog._id}>
-          <Image src={blog.image} alt="blog" />
-          <div>
-            <LinkStyled to={`/${blog._id}`}>
-              <Title>{blog.title}</Title>
-            </LinkStyled>
-            <Body>
-              {`${blog.body.substring(0, 100)}...`}
-            </Body>
-            <BlogInfoWrapper>
-              <Info>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</Info>
-              <Info>{`In: ${blog.category}`}</Info>
-            </BlogInfoWrapper>
-          </div>
-        </BlogWrapper>
-      );
-    })}
-  </FullWrapper>
-);
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(data.length / 3); i += 1) {
+    pageNumbers.push(i);
+  }
+
+  const renderPageNumbers = pageNumbers.map(num => (
+    <li
+      key={num}
+      onClick={() => handlePageChange(num)}
+    >
+      {num}
+    </li>
+  ));
+
+  return (
+    <FullWrapper>
+      {currentTodos.map((blog, index) => {
+        const lastElement = index === data.length - 1;
+        return (
+          <BlogWrapper lastElement={lastElement} key={blog._id}>
+            <Image src={blog.image} alt="blog" />
+            <div>
+              <LinkStyled to={`/${blog._id}`}>
+                <Title>{blog.title}</Title>
+              </LinkStyled>
+              <Body>
+                {`${blog.body.substring(0, 100)}...`}
+              </Body>
+              <BlogInfoWrapper>
+                <Info>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</Info>
+                <Info>{`In: ${blog.category}`}</Info>
+              </BlogInfoWrapper>
+            </div>
+
+          </BlogWrapper>
+        );
+      })}
+      <ul>{renderPageNumbers}</ul>
+    </FullWrapper>
+  );
+};
 
 AllBlogs.propTypes = {
   data: arrayOf(shape({
@@ -118,6 +142,14 @@ AllBlogs.propTypes = {
     image: string,
     label: string,
   })).isRequired,
+  handlePageChange: func.isRequired,
+  blogsPerPage: number,
+  currentPage: number,
+};
+
+AllBlogs.defaultProps = {
+  currentPage: 1,
+  blogsPerPage: 3,
 };
 
 export default AllBlogs;

@@ -29,6 +29,8 @@ const HomePage = () => {
     loading: true,
     filtered: [],
     create: false,
+    currentPage: 1,
+    blogsPerPage: 3,
   });
 
   useEffect(() => {
@@ -68,8 +70,12 @@ const HomePage = () => {
     setState({ ...state, data });
   };
 
+  const handlePageChange = (pageNumber) => {
+    setState({ currentPage: pageNumber });
+  };
+
   const {
-    data, loading, error, filtered, create, deleted,
+    data, loading, error, filtered, create, deleted, currentPage, blogsPerPage,
   } = state;
 
   const labelArray = data.map(blog => blog.category);
@@ -80,7 +86,7 @@ const HomePage = () => {
       <TopNavigation
         handleClick={filterBlogs}
         openCreate={openCreate}
-        disable={create || deleted}
+        disable={create || deleted || false}
       />
       {loading && <Loading />}
       <CreateModal
@@ -97,12 +103,18 @@ const HomePage = () => {
           />
         )}
         <Router primary={false}>
-          <AllBlogs path="/" data={filtered} />
+          <AllBlogs
+            path="/"
+            data={filtered}
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+            blogsPerPage={blogsPerPage}
+          />
           <SingleBlog
             path="/:id"
             handleClick={filterBlogs}
             removeBlog={removeBlog}
-            deleted={deleted}
+            deleted={deleted || false}
             openDelete={openDelete}
           />
         </Router>
