@@ -7,7 +7,9 @@ describe('<TopNavigation />', () => {
   const handleClick = jest.fn();
   const openCreate = jest.fn();
   const props = {
-    handleClick, openCreate,
+    handleClick,
+    openCreate,
+    disable: true,
   };
   beforeEach(() => {
     wrapper = shallow(<TopNavigation {...props} />);

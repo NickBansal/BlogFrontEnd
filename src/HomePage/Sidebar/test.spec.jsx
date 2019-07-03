@@ -8,6 +8,7 @@ describe('<Sidebar />', () => {
   const props = {
     handleClick,
     labels: ['Cats', 'Cats', 'Lions', 'Dogs'],
+    disable: true,
   };
   beforeEach(() => {
     wrapper = shallow(<Sidebar {...props} />);
