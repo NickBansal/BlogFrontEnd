@@ -2,30 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { bool, func } from 'prop-types';
 import {
-  colors, spacing, boxShadow, breakPoints,
+  colors, spacing, breakPoints,
 } from 'Components/StyleGuide';
+import { ModalWrapper } from 'Components/GlobalStyles';
 import Cross from './Cross';
 import Form from './Form';
 
-const ModalWrapper = styled.div`
-  height: auto;
-  width: 95%;
-  border: 2px solid rgba(0,0,0,.1);
-  box-shadow: ${boxShadow};
-  position: absolute;
-  top: ${props => (props.create ? '45%' : '-30%')};
-  left: 50%;  
-  z-index: 200;
-  transform: translate(-50%, -50%);
-  background: white;
+const Modal = styled(ModalWrapper)`
+  top: ${props => (props.create ? '15%' : '-60%')};
   opacity: ${props => (props.create ? 1 : 0)};
-  transition: 0.4s ease-in;
-  border-radius: 8px;
+  z-index:200
   @media (min-width: ${breakPoints.mobile}) {
     width: 550px;
   }
 `;
-ModalWrapper.displayName = 'ModalWrapper';
+Modal.displayName = 'Modal';
 
 const Title = styled.p`
   font-size: 24px;
@@ -44,13 +35,13 @@ const ModalHeader = styled.div`
 `;
 
 const CreateModal = ({ create, openCreate, addBlog }) => (
-  <ModalWrapper create={create}>
+  <Modal create={create}>
     <ModalHeader>
       <Title>Create new post</Title>
       <Cross openCreate={openCreate} />
     </ModalHeader>
     <Form openCreate={openCreate} addBlog={addBlog} />
-  </ModalWrapper>
+  </Modal>
 );
 
 CreateModal.propTypes = {
