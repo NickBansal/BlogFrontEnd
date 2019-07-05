@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { string, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from '@reach/router';
 import { getSingleBlog, deleteSingleBlog } from 'Utils';
 import {
-  spacing, colors, breakPoints, transitionSpeed, imageRadius,
+  spacing,
+  colors,
+  breakPoints,
+  transitionSpeed,
+  imageRadius,
 } from 'Components/StyleGuide';
 import Loading from 'Components/Loading';
 import Buttons from 'Components/Buttons';
@@ -62,7 +66,7 @@ const LinkStyled = styled(Link)`
 `;
 
 const SingleBlog = ({
-  id, handleClick, removeBlog, deleted, openDelete,
+ id, handleClick, removeBlog, deleted, openDelete 
 }) => {
   const [state, setState] = useState({
     blog: [],
@@ -81,12 +85,12 @@ const SingleBlog = ({
     // eslint-disable-next-line
   }, [id]);
 
-  const {
-    blog, loading, error,
-  } = state;
+  const { blog, loading, error } = state;
 
-  return loading ? <Loading /> : (
-    <React.Fragment>
+  return loading ? (
+    <Loading />
+  ) : (
+    <Fragment>
       <Deleted
         deleted={deleted}
         removeBlog={removeBlog}
@@ -106,18 +110,21 @@ const SingleBlog = ({
         <Title>{blog.title}</Title>
         <Body>{blog.body}</Body>
         <BlogInfo>
-          {blog.created && <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>}
+          {blog.created && (
+            <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>
+          )}
           <p>
-            in
-            {' '}
+            {'in '}
             <LinkStyled to="/">
-              <Bold onClick={() => handleClick(blog.category)}>{blog.category}</Bold>
+              <Bold onClick={() => handleClick(blog.category)}>
+                {blog.category}
+              </Bold>
             </LinkStyled>
           </p>
         </BlogInfo>
         {error && <Loading />}
       </BlogWrapper>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
@@ -131,7 +138,7 @@ SingleBlog.propTypes = {
 
 SingleBlog.defaultProps = {
   id: '',
-  handleClick: () => { },
+  handleClick: () => {},
 };
 
 export default SingleBlog;
