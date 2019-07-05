@@ -24,11 +24,3 @@ describe('<Blog />', () => {
     expect(wrapper.find('TopNavigation').exists()).toBe(true);
   });
 });
-
-
-// it('Should make the correct API call and set the state', () => {
-//   expect(getAllBlogs).toHaveBeenCalledTimes(1);
-// });
-// it('Should pass through the correct labels to allBlogs', () => {
-//   expect(wrapper.find('AllBlogs').prop('labels')).toEqual(['Cats', 'Cats', 'Dogs', 'Lions']);
-// });

@@ -13,6 +13,7 @@ const NavigationWrapper = styled.div`
   color: ${colors.navText};
   cursor: ${({ create }) => (create ? 'not-allowed' : 'auto')};
 `;
+NavigationWrapper.displayName = 'NavigationWrapper';
 
 const Divider = styled.div`
   display: none;

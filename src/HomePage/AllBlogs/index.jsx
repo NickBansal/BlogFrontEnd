@@ -87,6 +87,7 @@ const Pagination = styled.div`
   display: flex;
   margin: ${spacing.s3} auto;
 `;
+Pagination.displayName = 'Pagination';
 
 const Page = styled.div`
   border: 2px solid black;
@@ -100,6 +101,7 @@ const Page = styled.div`
     background: yellow;
   }
 `;
+Page.displayName = 'Page';
 
 const AllBlogs = ({
   data, handlePageChange, blogsPerPage, currentPage, loading,

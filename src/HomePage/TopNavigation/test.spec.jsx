@@ -22,4 +22,9 @@ describe('<TopNavigation />', () => {
     wrapper.find('Links').at(0).prop('onClick')();
     expect(handleClick).toBeCalledWith('All');
   });
+  it('Should call the openCreate function on the onClick event handler', () => {
+    expect(openCreate).not.toBeCalled();
+    wrapper.find('Links').at(1).prop('onClick')();
+    expect(openCreate).toBeCalledWith(true);
+  });
 });

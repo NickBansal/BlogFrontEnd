@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { getAllBlogs, getSingleBlog, postSingleBlog } from '.';
+import {
+  getAllBlogs, getSingleBlog, postSingleBlog, deleteSingleBlog,
+} from '.';
 
 jest.mock('axios');
 
@@ -34,6 +36,14 @@ describe('Testing all the API axios calls', () => {
     postSingleBlog(blogData)
       .then((data) => {
         expect(axios.post).toBeCalledWith('https://backendblog.herokuapp.com/blogs/', blogData);
+        expect(data).toEqual('Test');
+      });
+  });
+  it('deleteSingleBlog', async () => {
+    axios.delete.mockResolvedValue({ data: 'Test' });
+    deleteSingleBlog('blog_id')
+      .then((data) => {
+        expect(axios.delete).toBeCalledWith('https://backendblog.herokuapp.com/blogs/blog_id');
         expect(data).toEqual('Test');
       });
   });

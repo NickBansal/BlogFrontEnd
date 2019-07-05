@@ -7,6 +7,7 @@ const LoadStyled = styled.h1`
   display: flex;
   justify-content: center;
 `;
+LoadStyled.displayName = 'LoadStyled';
 
 const Spinner = styled.div`
   border: 10px solid #f3f3f3; 
@@ -26,6 +27,7 @@ const Spinner = styled.div`
     100% { transform: rotate(360deg); }
   }
 `;
+Spinner.displayName = 'Spinner';
 
 const Loading = () => <LoadStyled><Spinner /></LoadStyled>;
 
