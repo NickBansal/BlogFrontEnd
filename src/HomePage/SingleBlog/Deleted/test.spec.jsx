@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Link } from '@reach/router';
 import DeleteModal from '.';
 
@@ -11,6 +11,7 @@ describe('<DeleteModal />', () => {
     removeBlog,
     removeDeleted,
     category: 'Test',
+    deleted: true,
   };
   beforeEach(() => {
     wrapper = shallow(<DeleteModal {...props} />);
@@ -24,5 +25,14 @@ describe('<DeleteModal />', () => {
     wrapper.find(Link).prop('onClick')();
     expect(removeDeleted).toHaveBeenCalledTimes(1);
     expect(removeBlog).toHaveBeenCalledWith('Test');
+  });
+  it('Should have the correct style rules', () => {
+    wrapper = mount(<DeleteModal {...props} />);
+    expect(wrapper.find('Modal')).toHaveStyleRule('top', '25%');
+    expect(wrapper.find('Modal')).toHaveStyleRule('opacity', '1');
+
+    wrapper.setProps({ deleted: false });
+    expect(wrapper.find('Modal')).toHaveStyleRule('top', '-25%');
+    expect(wrapper.find('Modal')).toHaveStyleRule('opacity', '0');
   });
 });

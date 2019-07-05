@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Sidebar from '.';
 
 describe('<Sidebar />', () => {
@@ -12,6 +12,9 @@ describe('<Sidebar />', () => {
   };
   beforeEach(() => {
     wrapper = shallow(<Sidebar {...props} />);
+  });
+  afterEach(() => {
+    handleClick.mockClear();
   });
   it('Should render a title', () => {
     expect(wrapper.find('Title').children().text()).toBe('Categories');
@@ -26,5 +29,19 @@ describe('<Sidebar />', () => {
     expect(handleClick).not.toBeCalled();
     wrapper.find('Label').at(0).prop('onClick')();
     expect(handleClick).toBeCalledWith('All');
+  });
+  it('Should call the handleClick function on the onClick event handler', () => {
+    expect(handleClick).not.toBeCalled();
+    wrapper.find('Label').at(1).prop('onClick')();
+    expect(handleClick).toBeCalledWith('Cats');
+  });
+  it('Should have the correct style rules', () => {
+    wrapper = mount(<Sidebar {...props} />);
+    expect(wrapper.find('SidebarWrapper')).toHaveStyleRule('filter', 'grayscale(30%) blur(5px)');
+    expect(wrapper.find('SidebarWrapper')).toHaveStyleRule('pointer-events', 'none');
+
+    wrapper.setProps({ disable: false });
+    expect(wrapper.find('SidebarWrapper')).toHaveStyleRule('filter', 'none');
+    expect(wrapper.find('SidebarWrapper')).toHaveStyleRule('pointer-events', 'auto');
   });
 });

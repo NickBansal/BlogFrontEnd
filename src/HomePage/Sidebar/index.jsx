@@ -22,6 +22,7 @@ const SidebarWrapper = styled.div`
     display: block;
   }
 `;
+SidebarWrapper.displayName = 'SidebarWrapper';
 
 const Title = styled.h2`
   color: ${colors.textColor};
