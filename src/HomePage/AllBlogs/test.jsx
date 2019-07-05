@@ -16,13 +16,14 @@ describe('<AllBlogs />', () => {
     },
   ];
   const props = {
+    data,
     handlePageChange: jest.fn(),
     blogsPerPage: 5,
     currentPage: 1,
     loading: false,
   };
   beforeEach(() => {
-    wrapper = shallow(<AllBlogs data={data} {...props} />);
+    wrapper = shallow(<AllBlogs {...props} />);
   });
   it('Should render a title', () => {
     expect(
@@ -36,7 +37,7 @@ describe('<AllBlogs />', () => {
     expect(wrapper.find('Image').exists()).toBe(true);
   });
   it('Should not display a bottom-border on the last element', () => {
-    wrapper = mount(<AllBlogs data={data} {...props} />);
+    wrapper = mount(<AllBlogs {...props} />);
     wrapper.setProps({
       data: [
         ...data,

@@ -21,17 +21,28 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "npm run test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "jest": {
     "collectCoverageFrom": [
-      "**/*.{js,jsx}",
+      "<rootDir>/src/Components/**/*.{js,jsx}",
+      "<rootDir>/src/HomePage/**/*.{js,jsx}",
+      "<rootDir>/src/Utils/**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
   },
   "browserslist": {
     "production": [
