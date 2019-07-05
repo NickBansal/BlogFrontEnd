@@ -17,7 +17,7 @@ const Spinner = styled.div`
   animation: spin 1s ease-in infinite;
   z-index: 200;
   position: absolute;
-  left: 50%; 
+  left: 45%; 
   -webkit-transform: translate(-50%, 0);  
 
   @keyframes spin {

@@ -78,6 +78,7 @@ const SingleBlog = ({
         setState({ ...state, blog: blogs[0], loading: false });
       })
       .catch(() => setState({ ...state, error: true }));
+    // eslint-disable-next-line
   }, [id]);
 
   const {

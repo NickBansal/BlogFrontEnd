@@ -45,6 +45,7 @@ const HomePage = () => {
         });
       })
       .catch(() => setState({ ...state, error: true }));
+    // eslint-disable-next-line
   }, []);
 
   const filterBlogs = (value) => {
