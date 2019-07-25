@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { func } from 'prop-types';
+import Dropzone from 'react-dropzone';
 import { spacing, colors } from 'Components/StyleGuide';
 import { postSingleBlog } from 'Utils';
 import Buttons from 'Components/Buttons';
@@ -53,12 +54,31 @@ const Error = styled.p`
   align-items: center;
 `;
 
+const DropZoneText = styled.p`
+  font-size: 16px;
+  margin: 0 auto;
+`;
+
+const Section = styled.section`
+  border: dotted 2px;
+  height: 80px;
+  width: 80%;
+  padding: 0 8px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Form = ({ openCreate, addBlog }) => {
   const [state, setState] = useState({
     completed: false,
     error: false,
+    fileDropped: false,
   });
-  const { completed, error, id } = state;
+  const {
+    completed, error, id, fileDropped,
+  } = state;
 
   const completedDone = () => setState({ ...state, completed: false });
 
@@ -77,10 +97,10 @@ const Form = ({ openCreate, addBlog }) => {
           .then((blog) => {
             addBlog(blog);
             setState({
-              error: false, completed: true, id: blog._id,
+              error: false, completed: true, id: blog._id, fileDropped: false,
             });
           }).catch(() => {
-            setState({ ...state, error: true });
+            setState({ ...state, error: true, fileDropped: false });
           });
       }}
       >
@@ -94,8 +114,22 @@ const Form = ({ openCreate, addBlog }) => {
         </Label>
         <Label>
           <Title> Image:</Title>
-          <InputStyled type="text" />
+          <Dropzone onDrop={(file) => {
+            console.log(file);
+            setState({ ...state, fileDropped: true });
+          }}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <Section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <DropZoneText>Drag and drop some files here, or click to select files</DropZoneText>
+                </div>
+              </Section>
+            )}
+          </Dropzone>
         </Label>
+        {fileDropped && <p>File dropped</p>}
         <Label>
           <Title>Body:</Title>
           <TextArea rows="4" cols="70" wrap="hard" />

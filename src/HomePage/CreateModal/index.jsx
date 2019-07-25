@@ -9,7 +9,7 @@ import Cross from './Cross';
 import Form from './Form';
 
 const Modal = styled(ModalWrapper)`
-  top: ${props => (props.create ? '15%' : '-60%')};
+  top: ${props => (props.create ? '15%' : '-90%')};
   opacity: ${props => (props.create ? 1 : 0)};
   z-index:200
   @media (min-width: ${breakPoints.mobile}) {
