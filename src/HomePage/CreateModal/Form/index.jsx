@@ -93,6 +93,7 @@ const Form = ({ openCreate, addBlog }) => {
     completed: false,
     error: false,
     fileDropped: false,
+    imageInput: null,
   });
   const {
     completed, error, id, fileDropped,
@@ -109,7 +110,7 @@ const Form = ({ openCreate, addBlog }) => {
           title: e.target[0].value,
           category: e.target[1].value,
           image: e.target[2].value,
-          body: e.target[3].value,
+          body: e.target[2].value,
         });
         postSingleBlog(data)
           .then((blog) => {
@@ -134,12 +135,12 @@ const Form = ({ openCreate, addBlog }) => {
           <Title> Image:</Title>
           <Dropzone onDrop={(file) => {
             console.log(file);
-            setState({ ...state, fileDropped: true });
+            setState({ ...state, fileDropped: true, imageInput: file[0].path });
           }}
           >
-            {({ getRootProps, getInputProps }) => (
+            {({ getInputProps }) => (
               <Section>
-                <DZInner {...getRootProps()}>
+                <DZInner>
                   <input {...getInputProps()} />
                   <DropZoneText>
                     Drag and drop some files here, or
