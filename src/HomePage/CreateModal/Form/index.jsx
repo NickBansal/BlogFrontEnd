@@ -72,6 +72,20 @@ const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const DZInner = styled.div`
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Click = styled.span`
+  color: ${colors.navText};
+  font-style: italic;
 `;
 
 const Form = ({ openCreate, addBlog }) => {
@@ -125,10 +139,16 @@ const Form = ({ openCreate, addBlog }) => {
           >
             {({ getRootProps, getInputProps }) => (
               <Section>
-                <div {...getRootProps()}>
+                <DZInner {...getRootProps()}>
                   <input {...getInputProps()} />
-                  <DropZoneText>Drag and drop some files here, or click to select files</DropZoneText>
-                </div>
+                  <DropZoneText>
+                    Drag and drop some files here, or
+                    {' '}
+                    <Click>click</Click>
+                    {' '}
+                    to select files
+                  </DropZoneText>
+                </DZInner>
               </Section>
             )}
           </Dropzone>
