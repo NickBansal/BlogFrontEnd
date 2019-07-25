@@ -136,7 +136,7 @@ const AllBlogs = ({
             lastElement={lastElement}
             key={blog._id}
           >
-            <Image src={blog.image} alt="blog" />
+            <Image src={`data:image/png;base64, ${blog.image}`} alt="blog" />
             <div>
               <LinkStyled to={`/${blog._id}`}>
                 <Title>{blog.title}</Title>
