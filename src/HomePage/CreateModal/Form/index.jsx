@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { func } from 'prop-types';
 import Dropzone from 'react-dropzone';
-import { spacing, colors } from 'Components/StyleGuide';
+import { spacing, colors, breakPoints } from 'Components/StyleGuide';
 import { postSingleBlog } from 'Utils';
 import Buttons from 'Components/Buttons';
 import Completed from './Completed';
@@ -55,15 +55,19 @@ const Error = styled.p`
 `;
 
 const DropZoneText = styled.p`
-  font-size: 16px;
-  margin: 0 auto;
+  font-size: 15px;
+
+  @media (min-width: ${breakPoints.mobile}) {
+    font-size: 18px;
+  }
+}
 `;
 
 const Section = styled.section`
   border: dotted 2px;
   height: 80px;
   width: 80%;
-  padding: 0 8px;
+  padding: 0 ${spacing.s1};
   border-radius: 4px;
   display: flex;
   justify-content: center;

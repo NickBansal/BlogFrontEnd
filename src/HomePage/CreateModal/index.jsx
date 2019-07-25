@@ -9,6 +9,7 @@ import Cross from './Cross';
 import Form from './Form';
 
 const Modal = styled(ModalWrapper)`
+width: 450px;
   top: ${props => (props.create ? '15%' : '-90%')};
   opacity: ${props => (props.create ? 1 : 0)};
   z-index:200
