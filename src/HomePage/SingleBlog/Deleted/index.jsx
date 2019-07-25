@@ -44,12 +44,13 @@ const DeleteModal = ({
 DeleteModal.propTypes = {
   deleted: bool,
   removeBlog: func.isRequired,
-  removeDeleted: func.isRequired,
+  removeDeleted: func,
   category: string.isRequired,
 };
 
 DeleteModal.defaultProps = {
   deleted: false,
+  removeDeleted: () => { },
 };
 
 export default DeleteModal;

@@ -66,7 +66,7 @@ const LinkStyled = styled(Link)`
 `;
 
 const SingleBlog = ({
- id, handleClick, removeBlog, deleted, openDelete 
+  id, handleClick, removeBlog, deleted, openDelete,
 }) => {
   const [state, setState] = useState({
     blog: [],
@@ -98,7 +98,7 @@ const SingleBlog = ({
         category={blog.category}
       />
       <BlogWrapper deleted={deleted}>
-        <Image src={blog.image} alt="blog" />
+        <Image src={`data:image/png;base64, ${blog.image}`} alt="blog" />
         <Buttons
           text="Delete"
           handleClick={() => {
@@ -131,14 +131,15 @@ const SingleBlog = ({
 SingleBlog.propTypes = {
   id: string,
   handleClick: func,
-  removeBlog: func.isRequired,
+  removeBlog: func,
   openDelete: func.isRequired,
   deleted: bool.isRequired,
 };
 
 SingleBlog.defaultProps = {
   id: '',
-  handleClick: () => {},
+  handleClick: () => { },
+  removeBlog: () => { },
 };
 
 export default SingleBlog;
