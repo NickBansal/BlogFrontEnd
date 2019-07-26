@@ -53,11 +53,9 @@ const Title = styled.p`
   width: 13%;
 `;
 
-const Error = styled.p`
+const SharedMessage = styled.p`
   text-align: center;
-  color: ${colors.navHighlight};
-  margin: ${spacing.s1} auto 0;
-  border: 2px solid ${colors.navHighlight};
+  margin: ${spacing.s1} auto;
   height: 30px;
   width: 91%;
   border-radius: 4px;
@@ -69,6 +67,16 @@ const Error = styled.p`
     width: 95%;
     font-size: 18px;
   }
+`;
+
+const Error = styled(SharedMessage)`
+  color: ${colors.navHighlight};
+  border: 2px solid ${colors.navHighlight};
+`;
+
+const FileName = styled(SharedMessage)`
+  color: ${colors.navText};
+  border: 2px solid ${colors.navText};
 `;
 
 const Section = styled.section`
@@ -130,24 +138,6 @@ const FileDropped = styled.div`
 
   &:hover {
     cursor: pointer;
-  }
-`;
-
-const FileName = styled.p`
-  text-align: center;
-  color: ${colors.navText};
-  margin: ${spacing.s1} auto;
-  border: 2px solid ${colors.navText};
-  height: 30px;
-  width: 91%;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media (min-width: ${breakPoints.mobile}) {
-    width: 95%;
-    font-size: 18px;
   }
 `;
 
