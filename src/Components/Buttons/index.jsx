@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { string, func } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 import { spacing, colors, transitionSpeed } from 'Components/StyleGuide';
 
 const SubmitStyled = styled.button`
@@ -9,11 +9,11 @@ const SubmitStyled = styled.button`
   font-size: 20px;
   height: 40px;
   border-radius: 10px;
-  border: solid 3px ${colors.navHighlight};
-  color: ${colors.navHighlight};
-
+  border: solid 3px ${({ disabled }) => (disabled ? 'white' : colors.navHighlight)};
+  color: ${({ disabled }) => (disabled ? 'white' : colors.navHighlight)};
+background: ${({ disabled }) => (!disabled ? 'white' : colors.imageBorder)};
   &:hover {
-    cursor: pointer;
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
     background: ${colors.navHighlight};
     color: ${colors.navBackground};
   }
@@ -25,15 +25,17 @@ const SubmitStyled = styled.button`
 `;
 SubmitStyled.displayName = 'SubmitStyled';
 
-const Buttons = ({ text, handleClick }) => <SubmitStyled onClick={handleClick} type="submit">{text}</SubmitStyled>;
+const Buttons = ({ text, handleClick, disabled }) => <SubmitStyled onClick={handleClick} type="submit" disabled>{text}</SubmitStyled>;
 
 Buttons.propTypes = {
   text: string.isRequired,
   handleClick: func,
+  disabled: bool,
 };
 
 Buttons.defaultProps = {
   handleClick: () => { },
+  disabled: false,
 };
 
 
