@@ -54,19 +54,19 @@ const Title = styled.p`
 `;
 
 const SharedMessage = styled.p`
-  text-align: center;
-  margin: ${spacing.s1} auto;
-  height: 30px;
-  width: 91%;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+text-align: center;
+margin: ${spacing.s1} auto;
+height: 30px;
+width: 91%;
+border-radius: 4px;
+display: flex;
+justify-content: center;
+align-items: center;
 
-  @media (min-width: ${breakPoints.mobile}) {
-    width: 95%;
-    font-size: 18px;
-  }
+@media (min-width: ${breakPoints.mobile}) {
+  width: 95%;
+  font-size: 18px;
+}
 `;
 
 const Error = styled(SharedMessage)`
@@ -151,9 +151,7 @@ const Form = ({ openCreate, addBlog }) => {
   const {
     completed, error, id, fileDropped, fileInput,
   } = state;
-
   const completedDone = () => setState({ ...state, completed: false });
-
   return completed
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
     : (
@@ -164,7 +162,7 @@ const Form = ({ openCreate, addBlog }) => {
           const formData = new FormData();
           formData.set('title', e.target[0].value);
           formData.set('category', e.target[1].value);
-          formData.set('body', e.target[3].value);
+          formData.set('body', e.target[2].value);
           formData.append('productImage', fileInput);
 
           postSingleBlog(formData)
@@ -210,7 +208,9 @@ const Form = ({ openCreate, addBlog }) => {
           )}
           {fileDropped
             && (
-              <FileDropped onClick={() => setState({ ...state, fileDropped: false })}>
+              <FileDropped
+                onClick={() => setState({ ...state, fileDropped: false, fileInput: null })}
+              >
                 File selected, please click here to replace file
               </FileDropped>
             )}
@@ -225,10 +225,8 @@ const Form = ({ openCreate, addBlog }) => {
       </FormStyled>
     );
 };
-
 Form.propTypes = {
   openCreate: func.isRequired,
   addBlog: func.isRequired,
 };
-
 export default Form;
