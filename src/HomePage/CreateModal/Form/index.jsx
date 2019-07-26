@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { func } from 'prop-types';
+import Dropzone from 'react-dropzone';
 import { spacing, colors } from 'Components/StyleGuide';
 import { postSingleBlog } from 'Utils';
 import Buttons from 'Components/Buttons';
@@ -67,8 +68,6 @@ const Form = ({ openCreate, addBlog }) => {
 
   const completedDone = () => setState({ ...state, completed: false });
 
-  const onChange = e => setState({ fileInput: e.target.files[0] });
-
   return completed
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
     : (
@@ -103,7 +102,16 @@ const Form = ({ openCreate, addBlog }) => {
         </Label>
         <Label>
           <Title> Image:</Title>
-          <input type="file" onChange={onChange} />
+          <Dropzone onDrop={file => setState({ ...state, fileInput: file[0] })}>
+            {({ getInputProps }) => (
+              <section>
+                <div>
+                  <input {...getInputProps()} />
+                  <p>Drag and drop some files here, or click to select files</p>
+                </div>
+              </section>
+            )}
+          </Dropzone>
         </Label>
         {fileDropped && <p>File dropped</p>}
         <Label>
