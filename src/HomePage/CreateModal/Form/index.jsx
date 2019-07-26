@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { func } from 'prop-types';
-import Dropzone from 'react-dropzone';
-import { spacing, colors, breakPoints } from 'Components/StyleGuide';
+import { spacing, colors } from 'Components/StyleGuide';
 import { postSingleBlog } from 'Utils';
 import Buttons from 'Components/Buttons';
 import Completed from './Completed';
@@ -54,110 +53,64 @@ const Error = styled.p`
   align-items: center;
 `;
 
-const DropZoneText = styled.p`
-  font-size: 15px;
-
-  @media (min-width: ${breakPoints.mobile}) {
-    font-size: 18px;
-  }
-}
-`;
-
-const Section = styled.section`
-  border: dotted 2px;
-  height: 80px;
-  width: 80%;
-  padding: 0 ${spacing.s1};
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const DZInner = styled.div`
-  &:focus {
-    outline: none;
-  }
-`;
-
-const Click = styled.span`
-  color: ${colors.navText};
-  font-style: italic;
-`;
 
 const Form = ({ openCreate, addBlog }) => {
   const [state, setState] = useState({
     completed: false,
     error: false,
     fileDropped: false,
-    imageInput: null,
+    fileInput: null,
   });
   const {
-    completed, error, id, fileDropped,
+    completed, error, id, fileDropped, fileInput,
   } = state;
 
   const completedDone = () => setState({ ...state, completed: false });
 
+  const onChange = e => setState({ fileInput: e.target.files[0] });
+
   return completed
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
     : (
-      <FormStyled onSubmit={(e) => {
-        e.preventDefault();
-        const data = ({
-          title: e.target[0].value,
-          category: e.target[1].value,
-          image: e.target[2].value,
-          body: e.target[2].value,
-        });
-        postSingleBlog(data)
-          .then((blog) => {
-            addBlog(blog);
-            setState({
-              error: false, completed: true, id: blog._id, fileDropped: false,
-            });
-          }).catch(() => {
-            setState({ ...state, error: true, fileDropped: false });
+      <FormStyled
+        name="myForm"
+        onSubmit={(e) => {
+          e.preventDefault();
+
+          const data = ({
+            title: e.target[0].value,
+            category: e.target[1].value,
+            productImage: fileInput,
+            body: e.target[3].value,
           });
-      }}
+
+          postSingleBlog(data)
+            .then((blog) => {
+              addBlog(blog);
+              setState({
+                error: false, completed: true, id: blog._id, fileDropped: false,
+              });
+            }).catch(() => {
+              setState({ ...state, error: true, fileDropped: false });
+            });
+        }}
       >
         <Label>
           <Title>Title:</Title>
-          <InputStyled id="title" type="text" />
+          <InputStyled id="title" type="text" name="title" />
         </Label>
         <Label>
           <Title> Label:</Title>
-          <InputStyled type="text" />
+          <InputStyled type="text" name="category" />
         </Label>
         <Label>
           <Title> Image:</Title>
-          <Dropzone onDrop={(file) => {
-            console.log(file);
-            setState({ ...state, fileDropped: true, imageInput: file[0].path });
-          }}
-          >
-            {({ getInputProps }) => (
-              <Section>
-                <DZInner>
-                  <input {...getInputProps()} />
-                  <DropZoneText>
-                    Drag and drop some files here, or
-                    {' '}
-                    <Click>click</Click>
-                    {' '}
-                    to select files
-                  </DropZoneText>
-                </DZInner>
-              </Section>
-            )}
-          </Dropzone>
+          <input type="file" name="myImage" onChange={onChange} />
         </Label>
         {fileDropped && <p>File dropped</p>}
         <Label>
           <Title>Body:</Title>
-          <TextArea rows="4" cols="70" wrap="hard" />
+          <TextArea rows="4" cols="70" wrap="hard" name="body" />
         </Label>
         {error && <Error>Please fill out all the fields</Error>}
         <Buttons text="Submit" />
