@@ -22,6 +22,7 @@ export const colors = {
   navText: '#F96714',
   navBackground: '#F3E0BE',
   navHighlight: '#9B1B30',
+  inputBorder: '#864e164a',
 };
 
 export const transitionSpeed = '0.3s';

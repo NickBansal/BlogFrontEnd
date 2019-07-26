@@ -19,7 +19,7 @@ const InputStyled = styled.input`
   padding: 0 ${spacing.s1};
   font-size: 20px;
   border-radius: 4px;
-  border: 2px solid #864e164a;
+  border: 2px solid ${colors.inputBorder};
   color: ${colors.textColor};
 
   @media (min-width: ${breakPoints.mobile}) {
@@ -49,7 +49,7 @@ const Label = styled.label`
 `;
 
 const Title = styled.p`
-  margin: 0;
+  margin: 4px 0;
   width: 13%;
 `;
 
@@ -59,11 +59,16 @@ const Error = styled.p`
   margin: ${spacing.s1} auto 0;
   border: 2px solid ${colors.navHighlight};
   height: 30px;
-  width: 80%;
+  width: 91%;
   border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: ${breakPoints.mobile}) {
+    width: 95%;
+    font-size: 18px;
+  }
 `;
 
 const Section = styled.section`
@@ -81,6 +86,10 @@ const Section = styled.section`
   @media (min-width: ${breakPoints.mobile}) {
     flex-direction: row;
     width: 80%;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -101,6 +110,45 @@ const DZInner = styled.div`
 const Click = styled.span`
   color: ${colors.navText};
   font-style: italic;
+`;
+
+const FileDropped = styled.div`
+  height: 40px;
+  width: 90%;
+  border: 2px solid ${colors.textColor};
+  padding: 0 ${spacing.s1};
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-style: italic;
+  @media (min-width: ${breakPoints.mobile}) {
+    width: 80%;
+    font-size: 18px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const FileName = styled.p`
+  text-align: center;
+  color: ${colors.navText};
+  margin: ${spacing.s1} auto;
+  border: 2px solid ${colors.navText};
+  height: 30px;
+  width: 91%;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: ${breakPoints.mobile}) {
+    width: 95%;
+    font-size: 18px;
+  }
 `;
 
 const Form = ({ openCreate, addBlog }) => {
@@ -150,28 +198,34 @@ const Form = ({ openCreate, addBlog }) => {
         </Label>
         <Label>
           <Title> Image:</Title>
-          <Dropzone onDrop={(file) => {
-            console.log(file);
-            setState({ ...state, fileDropped: true, fileInput: file[0] });
-          }}
-          >
-            {({ getRootProps, getInputProps }) => (
-              <Section>
-                <DZInner {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <DropZoneText>
-                    Drag and drop some files here, or
-                    {' '}
-                    <Click>click</Click>
-                    {' '}
-                    to select files
-                  </DropZoneText>
-                </DZInner>
-              </Section>
+          {!fileDropped && (
+            <Dropzone
+              onDrop={file => setState({ ...state, fileDropped: true, fileInput: file[0] })}
+            >
+              {({ getRootProps, getInputProps }) => (
+                <Section>
+                  <DZInner {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <DropZoneText>
+                      Drag and drop some files here, or
+                      {' '}
+                      <Click>click</Click>
+                      {' '}
+                      to select files
+                    </DropZoneText>
+                  </DZInner>
+                </Section>
+              )}
+            </Dropzone>
+          )}
+          {fileDropped
+            && (
+              <FileDropped onClick={() => setState({ ...state, fileDropped: false })}>
+                File selected, please click here to replace file
+              </FileDropped>
             )}
-          </Dropzone>
         </Label>
-        {fileDropped && <p>File dropped</p>}
+        {fileDropped && <FileName>{fileInput.name}</FileName>}
         <Label>
           <Title>Body:</Title>
           <TextArea rows="4" cols="70" wrap="hard" name="body" />
