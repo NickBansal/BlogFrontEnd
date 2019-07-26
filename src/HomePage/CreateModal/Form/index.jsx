@@ -15,12 +15,17 @@ const FormStyled = styled.form`
 
 const InputStyled = styled.input`
   height: 40px;
-  width: 80%;
+  width: 90%;
   padding: 0 ${spacing.s1};
   font-size: 20px;
   border-radius: 4px;
   border: 2px solid #864e164a;
   color: ${colors.textColor};
+
+  @media (min-width: ${breakPoints.mobile}) {
+    width: 80%;
+  }
+  
 `;
 
 const TextArea = styled(InputStyled)`
@@ -28,12 +33,19 @@ const TextArea = styled(InputStyled)`
 `;
 
 const Label = styled.label`
-  width: 100%;
+  width: 97%;
   margin: ${spacing.s1}
   font-size: 20px;
   color: ${colors.textColor};
   display: flex;
   align-items: center;
+  flex-direction: column;
+
+  @media (min-width: ${breakPoints.mobile}) {
+    flex-direction: row;
+    width: 100%;
+  }
+
 `;
 
 const Title = styled.p`
@@ -56,7 +68,7 @@ const Error = styled.p`
 
 const Section = styled.section`
   height: 80px;
-  width: 80%;
+  width: 90%;
   border-radius: 4px;
   display: flex;
   border: 2px dotted;
@@ -65,6 +77,11 @@ const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: ${breakPoints.mobile}) {
+    flex-direction: row;
+    width: 80%;
+  }
 `;
 
 const DropZoneText = styled.p`
