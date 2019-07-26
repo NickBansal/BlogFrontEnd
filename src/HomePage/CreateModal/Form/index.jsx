@@ -81,12 +81,6 @@ const Form = ({ openCreate, addBlog }) => {
           formData.set('category', e.target[1].value);
           formData.set('body', e.target[3].value);
           formData.append('productImage', fileInput);
-          // const data = ({
-          //   title: e.target[0].value,
-          //   category: e.target[1].value,
-          //   productImage: fileInput,
-          //   body: e.target[3].value,
-          // });
 
           postSingleBlog(formData)
             .then((blog) => {
