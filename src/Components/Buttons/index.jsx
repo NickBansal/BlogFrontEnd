@@ -11,11 +11,12 @@ const SubmitStyled = styled.button`
   border-radius: 10px;
   border: solid 3px ${({ disabled }) => (disabled ? 'white' : colors.navHighlight)};
   color: ${({ disabled }) => (disabled ? 'white' : colors.navHighlight)};
-background: ${({ disabled }) => (!disabled ? 'white' : colors.imageBorder)};
+  background: ${({ disabled }) => (!disabled ? 'white' : colors.imageBorder)};
+  
   &:hover {
     cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-    background: ${colors.navHighlight};
-    color: ${colors.navBackground};
+    background: ${({ disabled }) => (disabled ? colors.imageBorder : colors.navHighlight)};
+    color: ${({ disabled }) => (disabled ? 'white' : colors.navBackground)};
   }
 
   &:focus {
@@ -25,7 +26,15 @@ background: ${({ disabled }) => (!disabled ? 'white' : colors.imageBorder)};
 `;
 SubmitStyled.displayName = 'SubmitStyled';
 
-const Buttons = ({ text, handleClick, disabled }) => <SubmitStyled onClick={handleClick} type="submit" disabled>{text}</SubmitStyled>;
+const Buttons = ({ text, handleClick, disabled }) => (
+  <SubmitStyled
+    onClick={handleClick}
+    type="submit"
+    disabled={disabled}
+  >
+    {text}
+  </SubmitStyled>
+);
 
 Buttons.propTypes = {
   text: string.isRequired,

@@ -150,12 +150,12 @@ const Form = ({ openCreate, addBlog }) => {
     notSupported: false,
   });
   const {
-    completed, error, id, fileDropped, fileInput, notSupported,
+    completed, error, id, fileDropped, fileInput,
   } = state;
 
   const completedDone = () => setState({ ...state, completed: false });
 
-  const message = notSupported ? fileInput.name : 'File type is not supported';
+  // const message = !notSupported ? fileInput.name : 'File type is not supported';
 
   return completed
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
@@ -170,19 +170,15 @@ const Form = ({ openCreate, addBlog }) => {
           formData.set('body', e.target[2].value);
           formData.append('productImage', fileInput);
 
-          if (fileInput.type !== 'image/jpeg' || fileInput.type !== 'image/png') {
-            setState({ ...state, notSupported: true });
-          } else {
-            postSingleBlog(formData)
-              .then((blog) => {
-                addBlog(blog);
-                setState({
-                  error: false, completed: true, id: blog._id, fileDropped: false,
-                });
-              }).catch(() => {
-                setState({ ...state, error: true, fileDropped: false });
+          postSingleBlog(formData)
+            .then((blog) => {
+              addBlog(blog);
+              setState({
+                error: false, completed: true, id: blog._id, fileDropped: false,
               });
-          }
+            }).catch(() => {
+              setState({ ...state, error: true, fileDropped: false });
+            });
         }}
       >
         <Label>
@@ -197,9 +193,12 @@ const Form = ({ openCreate, addBlog }) => {
           <Title> Image:</Title>
           {!fileDropped && (
             <Dropzone
-              onDrop={file => setState({
-                ...state, fileDropped: true, fileInput: file[0], notSupported: false,
-              })}
+              onDrop={(file) => {
+                setState({
+                  ...state, fileDropped: true, fileInput: file[0], notSupported: false,
+                });
+              }
+              }
             >
               {({ getRootProps, getInputProps }) => (
                 <Section>
@@ -226,13 +225,13 @@ const Form = ({ openCreate, addBlog }) => {
               </FileDropped>
             )}
         </Label>
-        {fileDropped && <FileName>{message}</FileName>}
+        {fileDropped && <FileName>{fileInput.name}</FileName>}
         <Label>
           <Title>Body:</Title>
           <TextArea rows="4" cols="70" wrap="hard" name="body" />
         </Label>
         {error && <Error>Please fill out all the fields</Error>}
-        <Buttons text="Submit" disabled />
+        <Buttons text="Submit" />
       </FormStyled>
     );
 };
