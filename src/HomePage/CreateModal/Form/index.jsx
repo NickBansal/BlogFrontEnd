@@ -73,18 +73,22 @@ const Form = ({ openCreate, addBlog }) => {
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
     : (
       <FormStyled
-        name="myForm"
+        enctype="multipart/form-data"
         onSubmit={(e) => {
           e.preventDefault();
+          const formData = new FormData();
+          formData.set('title', e.target[0].value);
+          formData.set('category', e.target[1].value);
+          formData.set('body', e.target[3].value);
+          formData.append('productImage', fileInput);
+          // const data = ({
+          //   title: e.target[0].value,
+          //   category: e.target[1].value,
+          //   productImage: fileInput,
+          //   body: e.target[3].value,
+          // });
 
-          const data = ({
-            title: e.target[0].value,
-            category: e.target[1].value,
-            productImage: fileInput,
-            body: e.target[3].value,
-          });
-
-          postSingleBlog(data)
+          postSingleBlog(formData)
             .then((blog) => {
               addBlog(blog);
               setState({
@@ -97,15 +101,15 @@ const Form = ({ openCreate, addBlog }) => {
       >
         <Label>
           <Title>Title:</Title>
-          <InputStyled id="title" type="text" name="title" />
+          <InputStyled id="title" type="text" />
         </Label>
         <Label>
           <Title> Label:</Title>
-          <InputStyled type="text" name="category" />
+          <InputStyled type="text" />
         </Label>
         <Label>
           <Title> Image:</Title>
-          <input type="file" name="myImage" onChange={onChange} />
+          <input type="file" onChange={onChange} />
         </Label>
         {fileDropped && <p>File dropped</p>}
         <Label>

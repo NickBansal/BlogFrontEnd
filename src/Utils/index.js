@@ -13,13 +13,12 @@ export const getSingleBlog = async (blogId) => {
 };
 
 export const postSingleBlog = async (blog) => {
-  console.log(blog);
-  const config = {
-    headers: {
-      'content-type': 'multipart/form-data',
-    },
-  };
-  const { data } = await axios.post(`${URL}/`, blog, config);
+  const { data } = await axios({
+    method: 'post',
+    url: `${URL}/`,
+    data: blog,
+    config: { headers: { 'Content-Type': 'multipart/form-data' } },
+  });
   return data;
 };
 
