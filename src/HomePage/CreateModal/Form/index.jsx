@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { func } from 'prop-types';
-import { spacing, colors, breakPoints } from 'Components/StyleGuide';
+import {
+  spacing, colors, breakPoints, transitionSpeed,
+} from 'Components/StyleGuide';
 import { postSingleBlog } from 'Utils';
 import Buttons from 'Components/Buttons';
 import Completed from './Completed';
@@ -78,6 +80,29 @@ const Error = styled(SharedMessage)`
 const FileName = styled(SharedMessage)`
   color: ${colors.navText};
   border: 2px solid ${colors.navText};
+  margin: 0 auto;
+`;
+
+const Progress = styled(SharedMessage)`
+  background: ${colors.navText};
+  margin: 0 auto;
+  word-break: break-all;
+  position: absolute;
+  top: 0;
+  height: 33px;
+  left: 13px;
+  max-width: 93%;
+  width: ${({ progress }) => progress};
+  transition: ${transitionSpeed};
+
+  @media (min-width: ${breakPoints.mobile}) {
+    max-width: 95.5%;
+    width: ${({ progress }) => progress};
+  }
+`;
+
+const ProgressWrapper = styled.div`
+  position: relative
 `;
 
 const Form = ({ openCreate, addBlog }) => {
@@ -109,10 +134,12 @@ const Form = ({ openCreate, addBlog }) => {
 
   const handleDrop = (file) => {
     if (file[0].type !== 'image/jpeg' && file[0].type !== 'image/png') {
-      setState({ ...state, fileDropped: true, notSupported: true });
+      setState({
+        ...state, fileDropped: true, notSupported: true, error: false,
+      });
     } else {
       setState({
-        ...state, fileDropped: true, fileInput: file[0], notSupported: false,
+        ...state, fileDropped: true, fileInput: file[0], notSupported: false, error: false,
       });
     }
   };
@@ -120,8 +147,6 @@ const Form = ({ openCreate, addBlog }) => {
   const handleClick = () => setState({ ...state, fileDropped: false, notSupported: false });
 
   const progressBar = value => setState({ ...state, progress: value });
-
-  console.log(progress);
 
   const disabledBtn = !title.length
     || !category.length || !body.length || !fileDropped || notSupported;
@@ -174,7 +199,10 @@ const Form = ({ openCreate, addBlog }) => {
             />
           )}
         </Label>
-        {fileDropped && !notSupported && <FileName>{fileInput.name}</FileName>}
+        <ProgressWrapper>
+          {fileDropped && !notSupported && <FileName>{fileInput.name}</FileName>}
+          {fileDropped && !notSupported && <Progress progress={progress} />}
+        </ProgressWrapper>
         <Label>
           <Title>Body:</Title>
           <TextArea
