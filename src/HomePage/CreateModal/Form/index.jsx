@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { func } from 'prop-types';
-import Dropzone from 'react-dropzone';
+// import Dropzone from 'react-dropzone';
 import { spacing, colors, breakPoints } from 'Components/StyleGuide';
 import { postSingleBlog } from 'Utils';
 import Buttons from 'Components/Buttons';
 import Completed from './Completed';
+import DropZone from './DropZone';
 
 const FormStyled = styled.form`
   display: flex;
@@ -106,7 +107,6 @@ const DropZoneText = styled.p`
   @media (min-width: ${breakPoints.mobile}) {
     font-size: 18px;
   }
-}
 `;
 
 const DZInner = styled.div`
@@ -174,6 +174,16 @@ const Form = ({ openCreate, addBlog }) => {
 
   const completedDone = () => setState({ ...state, completed: false });
 
+  const handleDrop = (file) => {
+    if (file[0].type !== 'image/jpeg' && file[0].type !== 'image/png') {
+      setState({ ...state, fileDropped: true, notSupported: true });
+    } else {
+      setState({
+        ...state, fileDropped: true, fileInput: file[0], notSupported: false,
+      });
+    }
+  };
+
   const disabledBtn = !title.length
     || !category.length || !body.length || !fileDropped || notSupported;
   // const message = !notSupported ? fileInput.name : 'File type is not supported';
@@ -219,34 +229,35 @@ const Form = ({ openCreate, addBlog }) => {
         <Label>
           <Title> Image:</Title>
           {!fileDropped && (
-            <Dropzone
-              onDrop={(file) => {
-                console.log(file[0].type);
-                if (file[0].type !== 'image/jpeg' && file[0].type !== 'image/png') {
-                  setState({ ...state, fileDropped: true, notSupported: true });
-                } else {
-                  setState({
-                    ...state, fileDropped: true, fileInput: file[0], notSupported: false,
-                  });
-                }
-              }
-              }
-            >
-              {({ getRootProps, getInputProps }) => (
-                <Section>
-                  <DZInner {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <DropZoneText>
-                      Drag and drop some files here, or
-                      {' '}
-                      <Click>click</Click>
-                      {' '}
-                      to select files
-                    </DropZoneText>
-                  </DZInner>
-                </Section>
-              )}
-            </Dropzone>
+            <DropZone handleDrop={handleDrop} />
+            // <Dropzone
+            //   onDrop={(file) => {
+            //     console.log(file[0].type);
+            //     if (file[0].type !== 'image/jpeg' && file[0].type !== 'image/png') {
+            //       setState({ ...state, fileDropped: true, notSupported: true });
+            //     } else {
+            //       setState({
+            //         ...state, fileDropped: true, fileInput: file[0], notSupported: false,
+            //       });
+            //     }
+            //   }
+            //   }
+            // >
+            //   {({ getRootProps, getInputProps }) => (
+            //     <Section>
+            //       <DZInner {...getRootProps()}>
+            //         <input {...getInputProps()} />
+            //         <DropZoneText>
+            //           Drag and drop some files here, or
+            //           {' '}
+            //           <Click>click</Click>
+            //           {' '}
+            //           to select files
+            //         </DropZoneText>
+            //       </DZInner>
+            //     </Section>
+            //   )}
+            // </Dropzone>
           )}
           {fileDropped && !notSupported && (
             <FileDropped
