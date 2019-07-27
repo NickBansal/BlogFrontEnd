@@ -141,6 +141,14 @@ const FileDropped = styled.div`
   }
 `;
 
+const FileNotSupported = styled(FileDropped)`
+  border: 2px solid ${colors.navHighlight};
+  color: ${colors.navHighlight};
+  @media (min-width: ${breakPoints.mobile}) {
+    font-size: 16px;
+  }
+`;
+
 const Form = ({ openCreate, addBlog }) => {
   const [state, setState] = useState({
     completed: false,
@@ -249,11 +257,11 @@ const Form = ({ openCreate, addBlog }) => {
           )}
           {fileDropped && notSupported
             && (
-              <FileDropped
+              <FileNotSupported
                 onClick={() => setState({ ...state, fileDropped: false, notSupported: false })}
               >
                 File type not supported, please click here to replace file
-              </FileDropped>
+              </FileNotSupported>
             )}
         </Label>
         {fileDropped && !notSupported && <FileName>{fileInput.name}</FileName>}
