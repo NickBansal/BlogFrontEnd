@@ -81,6 +81,10 @@ const FileName = styled(SharedMessage)`
   color: ${colors.navText};
   border: 2px solid ${colors.navText};
   margin: 0 auto;
+
+  @media (min-width: ${breakPoints.mobile}) {
+    width: 95.5%;
+  }
 `;
 
 const Progress = styled(SharedMessage)`
@@ -90,17 +94,20 @@ const Progress = styled(SharedMessage)`
   position: absolute;
   top: 0;
   height: 33px;
-  left: 13px;
+  left: 12px;
+  max-width: 93%;
   width: ${({ progress }) => progress}%;
   transition: ${transitionSpeed};
 
   @media (min-width: ${breakPoints.mobile}) {
+    max-width: 95.5%;
     width: ${({ progress }) => progress}%;
   }
 `;
 
 const ProgressWrapper = styled.div`
-  position: relative
+  position: relative;
+  margin-bottom: ${spacing.s1};
 `;
 
 const Form = ({ openCreate, addBlog }) => {
