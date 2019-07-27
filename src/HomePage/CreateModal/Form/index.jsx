@@ -91,13 +91,11 @@ const Progress = styled(SharedMessage)`
   top: 0;
   height: 33px;
   left: 13px;
-  max-width: 93%;
-  width: ${({ progress }) => progress};
+  width: ${({ progress }) => progress}%;
   transition: ${transitionSpeed};
 
   @media (min-width: ${breakPoints.mobile}) {
-    max-width: 95.5%;
-    width: ${({ progress }) => progress};
+    width: ${({ progress }) => progress}%;
   }
 `;
 

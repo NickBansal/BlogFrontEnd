@@ -13,7 +13,7 @@ const Modal = styled(ModalWrapper)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: ${({ deleted }) => (deleted ? '25%' : '-25%')};
+  top: ${({ deleted }) => (deleted ? '45vh' : '-25%')};
   opacity: ${({ deleted }) => (deleted ? 1 : 0)};
 `;
 Modal.displayName = 'Modal';
