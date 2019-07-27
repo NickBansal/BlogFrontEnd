@@ -30,7 +30,13 @@ const FilePrompts = ({ notSupported, handleClick }) => {
     ? 'File type not supported, please click here to replace file'
     : 'File selected, please click here to replace file';
   return (
-    <FileDropped onClick={handleClick} notSupported={notSupported}>{message}</FileDropped>
+    <FileDropped
+      data-testid="file-dropped"
+      onClick={handleClick}
+      notSupported={notSupported}
+    >
+      {message}
+    </FileDropped>
   );
 };
 

@@ -60,7 +60,14 @@ const TopNavigation = ({
           <Links create={disable} onClick={() => handleClick('All')}>Home</Links>
         </LinkStyled>
       )}
-      {disable && <Links create={disable} onClick={() => handleClick('All')}>Home</Links>}
+      {disable && (
+        <Links
+          create={disable}
+          onClick={() => handleClick('All')}
+        >
+            Home
+        </Links>
+      )}
       <HamburgerMenu />
       <Divider>
         <Links create={disable} onClick={() => openCreate(true)}>Create</Links>
@@ -73,7 +80,11 @@ const TopNavigation = ({
 TopNavigation.propTypes = {
   handleClick: func.isRequired,
   openCreate: func.isRequired,
-  disable: bool.isRequired,
+  disable: bool,
+};
+
+TopNavigation.defaultProps = {
+  disable: false,
 };
 
 export default TopNavigation;
