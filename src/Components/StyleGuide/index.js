@@ -23,6 +23,7 @@ export const colors = {
   navBackground: '#F3E0BE',
   navHighlight: '#9B1B30',
   inputBorder: '#864e164a',
+  disabledBtn: '#CED3D9',
 };
 
 export const transitionSpeed = '0.3s';

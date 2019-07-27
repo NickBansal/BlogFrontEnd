@@ -11,11 +11,11 @@ const SubmitStyled = styled.button`
   border-radius: 10px;
   border: solid 3px ${({ disabled }) => (disabled ? 'white' : colors.navHighlight)};
   color: ${({ disabled }) => (disabled ? 'white' : colors.navHighlight)};
-  background: ${({ disabled }) => (!disabled ? 'white' : colors.imageBorder)};
+  background: ${({ disabled }) => (!disabled ? 'white' : colors.disabledBtn)};
   
   &:hover {
     cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-    background: ${({ disabled }) => (disabled ? colors.imageBorder : colors.navHighlight)};
+    background: ${({ disabled }) => (disabled ? colors.disabledBtn : colors.navHighlight)};
     color: ${({ disabled }) => (disabled ? 'white' : colors.navBackground)};
   }
 

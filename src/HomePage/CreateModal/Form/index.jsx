@@ -148,15 +148,18 @@ const Form = ({ openCreate, addBlog }) => {
     fileDropped: false,
     fileInput: null,
     notSupported: false,
+    title: '',
+    category: '',
+    body: '',
   });
   const {
-    completed, error, id, fileDropped, fileInput,
+    completed, error, id, fileDropped, fileInput, title, category, body,
   } = state;
 
   const completedDone = () => setState({ ...state, completed: false });
 
+  const disabledBtn = !title.length || !category.length || !body.length;
   // const message = !notSupported ? fileInput.name : 'File type is not supported';
-
   return completed
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
     : (
@@ -183,11 +186,18 @@ const Form = ({ openCreate, addBlog }) => {
       >
         <Label>
           <Title>Title:</Title>
-          <InputStyled id="title" type="text" />
+          <InputStyled
+            id="title"
+            type="text"
+            onChange={e => setState({ ...state, title: e.target.value })}
+          />
         </Label>
         <Label>
           <Title> Label:</Title>
-          <InputStyled type="text" />
+          <InputStyled
+            type="text"
+            onChange={e => setState({ ...state, category: e.target.value })}
+          />
         </Label>
         <Label>
           <Title> Image:</Title>
@@ -228,10 +238,16 @@ const Form = ({ openCreate, addBlog }) => {
         {fileDropped && <FileName>{fileInput.name}</FileName>}
         <Label>
           <Title>Body:</Title>
-          <TextArea rows="4" cols="70" wrap="hard" name="body" />
+          <TextArea
+            rows="4"
+            cols="70"
+            wrap="hard"
+            name="body"
+            onChange={e => setState({ ...state, body: e.target.value })}
+          />
         </Label>
-        {error && <Error>Please fill out all the fields</Error>}
-        <Buttons text="Submit" />
+        {error && <Error>Something went wrong, please try again</Error>}
+        <Buttons text="Submit" disabled={disabledBtn} />
       </FormStyled>
     );
 };
