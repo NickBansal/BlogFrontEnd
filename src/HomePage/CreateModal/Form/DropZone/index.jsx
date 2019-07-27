@@ -45,7 +45,7 @@ const Click = styled.span`
 `;
 
 const DropZone = ({ handleDrop }) => (
-  <Dropzone onDrop={handleDrop}>
+  <Dropzone data-testid="drop-zone" onDrop={handleDrop}>
     {({ getRootProps, getInputProps }) => (
       <Section>
         <DZInner {...getRootProps()}>

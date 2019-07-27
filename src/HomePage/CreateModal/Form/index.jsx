@@ -90,6 +90,7 @@ const Form = ({ openCreate, addBlog }) => {
     title: '',
     category: '',
     body: '',
+    progress: 0,
   });
   const {
     completed,
@@ -101,6 +102,7 @@ const Form = ({ openCreate, addBlog }) => {
     category,
     body,
     notSupported,
+    progress,
   } = state;
 
   const completedDone = () => setState({ ...state, completed: false });
@@ -117,6 +119,10 @@ const Form = ({ openCreate, addBlog }) => {
 
   const handleClick = () => setState({ ...state, fileDropped: false, notSupported: false });
 
+  const progressBar = value => setState({ ...state, progress: value });
+
+  console.log(progress);
+
   const disabledBtn = !title.length
     || !category.length || !body.length || !fileDropped || notSupported;
 
@@ -124,7 +130,6 @@ const Form = ({ openCreate, addBlog }) => {
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
     : (
       <FormStyled
-        enctype="multipart/form-data"
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData();
@@ -133,7 +138,7 @@ const Form = ({ openCreate, addBlog }) => {
           formData.set('body', e.target[2].value);
           formData.append('productImage', fileInput);
 
-          postSingleBlog(formData)
+          postSingleBlog(formData, progressBar)
             .then((blog) => {
               addBlog(blog);
               setState({
