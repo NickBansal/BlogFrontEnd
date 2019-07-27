@@ -10,7 +10,7 @@ import Form from './Form';
 
 const Modal = styled(ModalWrapper)`
   width: 460px;
-  top: ${props => (props.create ? '15%' : '-90%')};
+  top: ${props => (props.create ? '15%' : '-110%')};
   opacity: ${props => (props.create ? 1 : 0)};
   z-index:200
   @media (min-width: ${breakPoints.mobile}) {

@@ -31,8 +31,19 @@ const InputStyled = styled.input`
   
 `;
 
-const TextArea = styled(InputStyled)`
+const TextArea = styled.textarea`
   height: 200px;
+  width: 90%;
+  padding: 0 ${spacing.s1};
+  font-size: 20px;
+  border-radius: 4px;
+  border: 2px solid ${colors.inputBorder};
+  color: ${colors.textColor};
+
+  @media (min-width: ${breakPoints.mobile}) {
+    width: 80%;
+  }
+  
 `;
 
 const Label = styled.label`
