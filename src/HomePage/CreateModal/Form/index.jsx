@@ -158,7 +158,7 @@ const Form = ({ openCreate, addBlog }) => {
 
   const completedDone = () => setState({ ...state, completed: false });
 
-  const disabledBtn = !title.length || !category.length || !body.length;
+  const disabledBtn = !title.length || !category.length || !body.length || !fileDropped;
   // const message = !notSupported ? fileInput.name : 'File type is not supported';
   return completed
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
@@ -177,7 +177,7 @@ const Form = ({ openCreate, addBlog }) => {
             .then((blog) => {
               addBlog(blog);
               setState({
-                error: false, completed: true, id: blog._id, fileDropped: false,
+                ...state, error: false, completed: true, id: blog._id, fileDropped: false,
               });
             }).catch(() => {
               setState({ ...state, error: true, fileDropped: false });
