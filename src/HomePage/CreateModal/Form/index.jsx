@@ -153,12 +153,21 @@ const Form = ({ openCreate, addBlog }) => {
     body: '',
   });
   const {
-    completed, error, id, fileDropped, fileInput, title, category, body,
+    completed,
+    error,
+    id,
+    fileDropped,
+    fileInput,
+    title,
+    category,
+    body,
+    notSupported,
   } = state;
 
   const completedDone = () => setState({ ...state, completed: false });
 
-  const disabledBtn = !title.length || !category.length || !body.length || !fileDropped;
+  const disabledBtn = !title.length
+    || !category.length || !body.length || !fileDropped || notSupported;
   // const message = !notSupported ? fileInput.name : 'File type is not supported';
   return completed
     ? <Completed id={id} openCreate={openCreate} finished={completedDone} />
@@ -204,9 +213,14 @@ const Form = ({ openCreate, addBlog }) => {
           {!fileDropped && (
             <Dropzone
               onDrop={(file) => {
-                setState({
-                  ...state, fileDropped: true, fileInput: file[0], notSupported: false,
-                });
+                console.log(file[0].type);
+                if (file[0].type !== 'image/jpeg' && file[0].type !== 'image/png') {
+                  setState({ ...state, fileDropped: true, notSupported: true });
+                } else {
+                  setState({
+                    ...state, fileDropped: true, fileInput: file[0], notSupported: false,
+                  });
+                }
               }
               }
             >
@@ -226,16 +240,23 @@ const Form = ({ openCreate, addBlog }) => {
               )}
             </Dropzone>
           )}
-          {fileDropped
+          {fileDropped && !notSupported && (
+            <FileDropped
+              onClick={() => setState({ ...state, fileDropped: false, notSupported: false })}
+            >
+              File selected, please click here to replace file
+            </FileDropped>
+          )}
+          {fileDropped && notSupported
             && (
               <FileDropped
-                onClick={() => setState({ ...state, fileDropped: false })}
+                onClick={() => setState({ ...state, fileDropped: false, notSupported: false })}
               >
-                File selected, please click here to replace file
+                File type not supported, please click here to replace file
               </FileDropped>
             )}
         </Label>
-        {fileDropped && <FileName>{fileInput.name}</FileName>}
+        {fileDropped && !notSupported && <FileName>{fileInput.name}</FileName>}
         <Label>
           <Title>Body:</Title>
           <TextArea
