@@ -13,7 +13,7 @@ describe('<CreateModal />', () => {
     wrapper = mount(<CreateModal {...props} />);
   });
   it('Should pass in the correct styles when create is false', () => {
-    expect(wrapper.find('Modal')).toHaveStyleRule('top', '-60%');
+    expect(wrapper.find('Modal')).toHaveStyleRule('top', '-90%');
     expect(wrapper.find('Modal')).toHaveStyleRule('opacity', '0');
   });
   it('Should pass in the correct styles when create is true', () => {

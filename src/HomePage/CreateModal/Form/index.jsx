@@ -6,6 +6,7 @@ import { postSingleBlog } from 'Utils';
 import Buttons from 'Components/Buttons';
 import Completed from './Completed';
 import DropZone from './DropZone';
+import FilePrompts from './FilePrompts';
 
 const FormStyled = styled.form`
   display: flex;
@@ -79,35 +80,6 @@ const FileName = styled(SharedMessage)`
   border: 2px solid ${colors.navText};
 `;
 
-const FileDropped = styled.div`
-  height: 40px;
-  width: 90%;
-  border: 2px solid ${colors.textColor};
-  padding: 0 ${spacing.s1};
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-  font-style: italic;
-  @media (min-width: ${breakPoints.mobile}) {
-    width: 80%;
-    font-size: 18px;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const FileNotSupported = styled(FileDropped)`
-  border: 2px solid ${colors.navHighlight};
-  color: ${colors.navHighlight};
-  @media (min-width: ${breakPoints.mobile}) {
-    font-size: 16px;
-  }
-`;
-
 const Form = ({ openCreate, addBlog }) => {
   const [state, setState] = useState({
     completed: false,
@@ -142,6 +114,8 @@ const Form = ({ openCreate, addBlog }) => {
       });
     }
   };
+
+  const handleClick = () => setState({ ...state, fileDropped: false, notSupported: false });
 
   const disabledBtn = !title.length
     || !category.length || !body.length || !fileDropped || notSupported;
@@ -188,21 +162,12 @@ const Form = ({ openCreate, addBlog }) => {
         <Label>
           <Title> Image:</Title>
           {!fileDropped && <DropZone handleDrop={handleDrop} />}
-          {fileDropped && !notSupported && (
-            <FileDropped
-              onClick={() => setState({ ...state, fileDropped: false, notSupported: false })}
-            >
-              File selected, please click here to replace file
-            </FileDropped>
+          {fileDropped && (
+            <FilePrompts
+              handleClick={handleClick}
+              notSupported={notSupported}
+            />
           )}
-          {fileDropped && notSupported
-            && (
-              <FileNotSupported
-                onClick={() => setState({ ...state, fileDropped: false, notSupported: false })}
-              >
-                File type not supported, please click here to replace file
-              </FileNotSupported>
-            )}
         </Label>
         {fileDropped && !notSupported && <FileName>{fileInput.name}</FileName>}
         <Label>

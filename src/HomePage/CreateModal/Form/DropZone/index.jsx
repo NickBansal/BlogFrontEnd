@@ -45,26 +45,26 @@ const Click = styled.span`
 `;
 
 const DropZone = ({ handleDrop }) => (
-    <Dropzone onDrop={handleDrop}>
-        {({ getRootProps, getInputProps }) => (
-            <Section>
-                <DZInner {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <DropZoneText>
-                        Drag and drop some files here, or
+  <Dropzone onDrop={handleDrop}>
+    {({ getRootProps, getInputProps }) => (
+      <Section>
+        <DZInner {...getRootProps()}>
+          <input {...getInputProps()} />
+          <DropZoneText>
+            Drag and drop some files here, or
             {' '}
-                        <Click>click</Click>
-                        {' '}
-                        to select files
+            <Click>click</Click>
+            {' '}
+            to select files
           </DropZoneText>
-                </DZInner>
-            </Section>
-        )}
-    </Dropzone>
+        </DZInner>
+      </Section>
+    )}
+  </Dropzone>
 );
 
 DropZone.propTypes = {
-    handleDrop: func.isRequired,
+  handleDrop: func.isRequired,
 };
 
 export default DropZone;
