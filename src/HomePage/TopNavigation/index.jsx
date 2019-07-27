@@ -55,9 +55,12 @@ const TopNavigation = ({
 }) => (
   <NavigationWrapper>
     <MaxWidth>
-      <LinkStyled to="/">
-        <Links create={disable} onClick={() => handleClick('All')}>Home</Links>
-      </LinkStyled>
+      {!disable && (
+        <LinkStyled to="/">
+          <Links create={disable} onClick={() => handleClick('All')}>Home</Links>
+        </LinkStyled>
+      )}
+      {disable && <Links create={disable} onClick={() => handleClick('All')}>Home</Links>}
       <HamburgerMenu />
       <Divider>
         <Links create={disable} onClick={() => openCreate(true)}>Create</Links>

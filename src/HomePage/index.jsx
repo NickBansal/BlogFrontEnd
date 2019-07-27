@@ -87,7 +87,7 @@ const HomePage = () => {
       <TopNavigation
         handleClick={filterBlogs}
         openCreate={openCreate}
-        disable={create || deleted || false}
+        disable={create || deleted}
       />
       <CreateModal
         create={create}
