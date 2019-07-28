@@ -3,7 +3,8 @@ import { string, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from '@reach/router';
-import { getSingleBlog, deleteSingleBlog } from 'Utils';
+import deleteSingleBlog from 'Utils/deleteSingleBlog';
+import getSingleBlog from 'Utils/getSingleBlog';
 import {
   spacing,
   colors,

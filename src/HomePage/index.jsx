@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Router } from '@reach/router';
 import { GlobalStyle } from 'Components/GlobalStyles';
-import { getAllBlogs } from 'Utils';
+import getAllBlogs from 'Utils/getAllBlogs';
 import { transitionSpeed } from 'Components/StyleGuide';
 import TopNavigation from './TopNavigation';
 import AllBlogs from './AllBlogs';
