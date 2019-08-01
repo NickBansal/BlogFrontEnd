@@ -108,8 +108,8 @@ const SingleBlog = ({
               .catch(() => setState({ ...state, deleteError: true }));
           }}
         />
-        <Title>{blog.title}</Title>
-        <Body>{blog.body}</Body>
+        <Title data-testid="title">{blog.title}</Title>
+        <Body data-testid="body">{blog.body}</Body>
         <BlogInfo>
           {blog.created && (
             <p>{`Created: ${moment(blog.created).format('DD/MM/YYYY')}`}</p>
@@ -117,7 +117,7 @@ const SingleBlog = ({
           <p>
             {'in '}
             <LinkStyled to="/">
-              <Bold onClick={() => handleClick(blog.category)}>
+              <Bold data-testid="label" onClick={() => handleClick(blog.category)}>
                 {blog.category}
               </Bold>
             </LinkStyled>

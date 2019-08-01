@@ -51,7 +51,7 @@ const DropZone = ({ handleDrop }) => (
         <DZInner {...getRootProps()}>
           <input {...getInputProps()} />
           <DropZoneText>
-            Drag and drop some files here, or
+            Drag and drop files here, or
             {' '}
             <Click>click</Click>
             {' '}

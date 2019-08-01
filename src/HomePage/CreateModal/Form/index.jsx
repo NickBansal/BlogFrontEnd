@@ -174,9 +174,13 @@ const Form = ({ openCreate, addBlog }) => {
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData();
-          formData.set('title', e.target[0].value);
-          formData.set('category', e.target[1].value);
-          formData.set('body', e.target[2].value);
+
+          const values = ['title', 'category', 'body'];
+
+          values.forEach((key, index) => {
+            formData.append(key, e.target[index].value);
+          });
+
           formData.append('productImage', fileInput);
 
           postSingleBlog(formData, progressBar)
