@@ -80,6 +80,7 @@ const SingleBlog = ({
   useEffect(() => {
     getSingleBlog(id)
       .then((blogs) => {
+        console.log(blogs);
         setState({ ...state, blog: blogs[0], loading: false });
       })
       .catch(() => setState({ ...state, error: true }));

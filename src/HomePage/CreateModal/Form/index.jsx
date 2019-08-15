@@ -128,9 +128,11 @@ const Form = ({ openCreate, addBlog }) => {
     fileDropped: false,
     fileInput: null,
     notSupported: false,
-    title: '',
-    category: '',
-    body: '',
+    data: {
+      title: '',
+      category: '',
+      body: '',
+    },
     progress: 0,
   });
   const {
@@ -139,9 +141,11 @@ const Form = ({ openCreate, addBlog }) => {
     id,
     fileDropped,
     fileInput,
-    title,
-    category,
-    body,
+    data: {
+      title,
+      category,
+      body,
+    },
     notSupported,
     progress,
   } = state;
@@ -175,9 +179,7 @@ const Form = ({ openCreate, addBlog }) => {
           e.preventDefault();
           const formData = new FormData();
 
-          const values = ['title', 'category', 'body'];
-
-          values.forEach((key, index) => {
+          Object.keys(state.data).forEach((key, index) => {
             formData.append(key, e.target[index].value);
           });
 
@@ -199,14 +201,16 @@ const Form = ({ openCreate, addBlog }) => {
           <InputStyled
             id="title"
             type="text"
-            onChange={e => setState({ ...state, title: e.target.value })}
+            onChange={e => setState({ ...state, data: { ...state.data, title: e.target.value } })}
           />
         </Label>
         <Label>
           <Title> Label:</Title>
           <InputStyled
             type="text"
-            onChange={e => setState({ ...state, category: e.target.value })}
+            onChange={
+              e => setState({ ...state, data: { ...state.data, category: e.target.value } })
+            }
           />
         </Label>
         <Label>
@@ -226,11 +230,8 @@ const Form = ({ openCreate, addBlog }) => {
         <Label>
           <Title>Body:</Title>
           <TextArea
-            rows="4"
-            cols="70"
-            wrap="hard"
             name="body"
-            onChange={e => setState({ ...state, body: e.target.value })}
+            onChange={e => setState({ ...state, data: { ...state.data, body: e.target.value } })}
           />
         </Label>
         {error && <Error>Something went wrong, please try again</Error>}

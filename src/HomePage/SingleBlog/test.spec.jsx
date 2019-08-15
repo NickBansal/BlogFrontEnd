@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { SynchronousPromise } from 'synchronous-promise';
 import getSingleBlog from 'Utils/getSingleBlog';
 import SingleBlog from '.';
 
@@ -24,7 +23,7 @@ describe('<SingleBlog />', () => {
     openDelete: jest.fn(),
   };
   beforeEach(() => {
-    getSingleBlog.mockImplementation(() => SynchronousPromise.resolve(data));
+    getSingleBlog.mockResolvedValue(data);
   });
   afterEach(() => {
     getSingleBlog.mockClear();
