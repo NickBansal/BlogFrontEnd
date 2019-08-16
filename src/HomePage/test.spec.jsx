@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SynchronousPromise } from 'synchronous-promise';
-import getAllBlogs from 'Utils/getAllBlogs';
+import { getAllBlogs } from 'Utils';
 import Homepage from '.';
 
-jest.mock('Utils/getAllBlogs');
+jest.mock('Utils');
 
 getAllBlogs.mockImplementation(() => SynchronousPromise.resolve(
   [

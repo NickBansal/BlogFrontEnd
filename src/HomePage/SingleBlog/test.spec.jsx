@@ -1,9 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import getSingleBlog from 'Utils/getSingleBlog';
+import {
+  render, cleanup, waitForElementToBeRemoved, wait, fireEvent,
+} from '@testing-library/react';
+import { getSingleBlog, deleteSingleBlog } from 'Utils';
 import SingleBlog from '.';
 
-jest.mock('Utils/getSingleBlog');
+jest.mock('Utils');
+
+afterEach(cleanup);
 
 const data = [{
   _id: '1234',
@@ -15,29 +19,52 @@ const data = [{
 }];
 
 describe('<SingleBlog />', () => {
+  let wrapper;
+  const handleClick = jest.fn();
+  const openDelete = jest.fn();
   const props = {
     id: '',
-    handleClick: jest.fn(),
+    handleClick,
     removeBlog: jest.fn(),
+    openDelete,
     deleted: false,
-    openDelete: jest.fn(),
   };
   beforeEach(() => {
-    getSingleBlog.mockResolvedValue(data);
+    getSingleBlog.mockResolvedValueOnce(data);
   });
-  afterEach(() => {
-    getSingleBlog.mockClear();
+
+  it('Should render the correct title and remove the loading spinner', async () => {
+    wrapper = render(<SingleBlog {...props} />);
+    expect(wrapper.getByTestId('loading-spinner')).toBeDefined();
+
+    await waitForElementToBeRemoved(() => wrapper.getByTestId('loading-spinner'));
+
+    expect(wrapper.getByTestId('title')).toHaveTextContent('Title');
   });
-  it('Should render the correct title', () => {
-    const { getByTestId } = render(<SingleBlog {...props} />);
-    expect(getByTestId('title')).toHaveTextContent('Title');
+  it('Should call the handleClick function on the onClick event handler', async () => {
+    wrapper = render(<SingleBlog {...props} />);
+    expect(handleClick).not.toHaveBeenCalled();
+
+    await wait();
+
+    const label = wrapper.getByTestId('label');
+    fireEvent.click(label);
+    expect(handleClick).toHaveBeenCalledWith('Label');
   });
-  it('Should render the correct body', () => {
-    const { getByTestId } = render(<SingleBlog {...props} />);
-    expect(getByTestId('body')).toHaveTextContent('Body');
-  });
-  it('Should render the correct category', () => {
-    const { getByTestId } = render(<SingleBlog {...props} />);
-    expect(getByTestId('label')).toHaveTextContent('Label');
+  describe('Delete blog', () => {
+    it('Should delete the blog once delete button is clicked', async () => {
+      deleteSingleBlog.mockResolvedValueOnce();
+      wrapper = render(<SingleBlog {...props} />);
+
+      await wait();
+
+      const deleteBtn = wrapper.getByText('Delete');
+      fireEvent.click(deleteBtn);
+
+      await wait();
+
+      expect(deleteSingleBlog).toHaveBeenCalledWith('1234');
+      expect(openDelete).toHaveBeenCalledTimes(1);
+    });
   });
 });

@@ -29,6 +29,6 @@ const Spinner = styled.div`
 `;
 Spinner.displayName = 'Spinner';
 
-const Loading = () => <LoadStyled><Spinner /></LoadStyled>;
+const Loading = ({ ...props }) => <LoadStyled {...props}><Spinner /></LoadStyled>;
 
 export default Loading;

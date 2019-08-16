@@ -4,7 +4,7 @@ import { func } from 'prop-types';
 import {
   spacing, colors, breakPoints, transitionSpeed,
 } from 'Components/StyleGuide';
-import postSingleBlog from 'Utils/postSingleBlog';
+import { postSingleBlog } from 'Utils';
 import Buttons from 'Components/Buttons';
 import Completed from './Completed';
 import DropZone from './DropZone';

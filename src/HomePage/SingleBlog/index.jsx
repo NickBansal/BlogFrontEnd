@@ -3,8 +3,7 @@ import { string, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from '@reach/router';
-import deleteSingleBlog from 'Utils/deleteSingleBlog';
-import getSingleBlog from 'Utils/getSingleBlog';
+import { deleteSingleBlog, getSingleBlog } from 'Utils';
 import {
   spacing,
   colors,
@@ -80,7 +79,6 @@ const SingleBlog = ({
   useEffect(() => {
     getSingleBlog(id)
       .then((blogs) => {
-        console.log(blogs);
         setState({ ...state, blog: blogs[0], loading: false });
       })
       .catch(() => setState({ ...state, error: true }));
@@ -90,7 +88,7 @@ const SingleBlog = ({
   const { blog, loading, error } = state;
 
   return loading ? (
-    <Loading />
+    <Loading data-testid="loading-spinner" />
   ) : (
     <Fragment>
       <Deleted
