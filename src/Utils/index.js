@@ -27,6 +27,7 @@ export const postSingleBlog = async (blog, progressBar) => {
       const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
       if (totalLength !== null) {
         const progressData = Math.round((progressEvent.loaded * 100) / totalLength);
+        console.log(progressData);
         progressBar(progressData);
       }
     },

@@ -28,7 +28,7 @@ describe('<DeleteModal />', () => {
   });
   it('Should have the correct style rules', () => {
     wrapper = mount(<DeleteModal {...props} />);
-    expect(wrapper.find('Modal')).toHaveStyleRule('top', '25%');
+    expect(wrapper.find('Modal')).toHaveStyleRule('top', '45vh');
     expect(wrapper.find('Modal')).toHaveStyleRule('opacity', '1');
 
     wrapper.setProps({ deleted: false });
