@@ -7,3 +7,6 @@
 * [ ] formik
 * [ ] Lazy load
 * [ ] Properly implement pagination with stylerules
+* [ ] [Backend] add better error handlers
+* [ ] Add in authorisation/user log in
+* [ ] Add in live chat

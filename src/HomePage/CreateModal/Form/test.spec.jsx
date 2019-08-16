@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import { postSingleBlog } from 'Utils';
+import { render, cleanup } from '@testing-library/react';
 import Form from '.';
 
 afterEach(cleanup);
